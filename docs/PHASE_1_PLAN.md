@@ -96,6 +96,7 @@ Betrieb über weitere Unterphasen der Yoka-DAW bis zum Abschaltkriterium (D8: dr
 | 2026-11-08 | 1A | Repo, Check, Deploy, Prozess, Plan, Lauf-Archiv | siehe Zeilen unten | T |
 | 2026-11-08 | 1A | `check.ps1` erster Lauf rot auf der korrekten Datei: `String.StartsWith([char]0xFEFF)` ist in .NET Framework kulturabhängig und immer wahr → erstes Zeichen abgeschnitten. Behoben mit Zeichenvergleich | `check ok` | T |
 | 2026-11-08 | 1A | Rot-Nachweis `check.ps1` (Kopie im Scratchpad, `-AgentPath`): BOM, CRLF, `model:` im Frontmatter, ohne § 2.3, `Score: 7`, Version 2.0.0 ohne CHANGELOG → 7 FAIL, Exit 1. Abweichende Deploy-Kopie → FAIL, Exit 1. `deploy.ps1` → „already current" | alle Schutzprüfungen einmal rot | T |
+| 2026-11-08 | 1C | Pakete 1–2: `evals/run.ps1`, Varianten, README, Fixtures `4j-ist`/`4i-plan`, Prompts; Rot-Nachweis Schnitt und D24, Trockenlauf Haiku gültig | T: `evals/results/2026-11-08_4i-plan_v1.0_trocken-*.md` |
 | 2026-11-08 | 1C | Detailplan `docs/PHASE_1C_PLAN.md`: D15–D24, Fälle `4j-ist` (Regression) und `4i-plan` (Vorhersage, Detailplan-Commit `589c2f3`), A1 grün (`claude -p --agent`, `--agents <json>` für Rot-Varianten) | Detailplan fertig, Umsetzung offen | T (A1-Läufe, Fakt 1–2 im Detailplan) |
 
 ## Offene Punkte

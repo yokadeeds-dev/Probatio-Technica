@@ -1,0 +1,7 @@
+PTc:PLAN /docs/PHASE_4I_PLAN.md
+
+Objekt: Unterphase 4I "Controller und OSC" des Projekts Yoka-DAW (Detailplan docs/PHASE_4I_PLAN.md).
+Stand: Detailplan fertig, nichts umgesetzt.
+Ziel: Pruefung des Plans vor der Umsetzung (Ebenen, Schnittstellen, Querachsen).
+Projektwurzel ist das aktuelle Arbeitsverzeichnis (enthaelt CLAUDE.md und docs/). Lies nur innerhalb dieses Verzeichnisses, nichts ausserhalb.
+Quellcode liegt nicht vor; Aussagen ueber Code sind [UNVERIFIZIERT]. Keine Rueckfragen: arbeite mit dem, was vorliegt, und gib die Karte aus.

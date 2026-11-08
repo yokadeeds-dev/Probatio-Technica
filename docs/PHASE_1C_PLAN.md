@@ -1,6 +1,6 @@
 # Unterphase 1C „Eval-Set" – Detailplan
 
-Status: **Detailplan fertig** (2026-11-08) · Pakete 1–6 ohne Yoka · Grundlage: [PHASE_1_PLAN.md](PHASE_1_PLAN.md) § 1C, D1–D14, [PROCESS.md](PROCESS.md) (Belegklassen, Treffer-Bewertung, Testregel)
+Status: **Umsetzung läuft, Pakete 1–2 erledigt** (2026-11-08; Detailplan fertig 2026-11-08) · Pakete 1–6 ohne Yoka · Grundlage: [PHASE_1_PLAN.md](PHASE_1_PLAN.md) § 1C, D1–D14, [PROCESS.md](PROCESS.md) (Belegklassen, Treffer-Bewertung, Testregel)
 
 > **Für die ausführende Session:** **Eine** Session (Sonnet 5.5, Effort medium, D12) setzt 1C von Paket 1 bis zum Merge um, ohne Rückfrage zwischen den Paketen. Paket 3 und die Bewertungen laufen als Opus-Subagent (D12, D18). Alles lokal (D11), Branch `phase-1c-eval`, Commits `phase 1C: …`, Plan im selben Commit pflegen. **`agent/ptc.md` wird in 1C nicht geändert** (das ist 1D); damit gibt es in 1C keine Kernänderung und kein Pflicht-Review. Das Yoka-DAW-Repo wird nur gelesen (D13).
 
@@ -20,7 +20,7 @@ Status: **Detailplan fertig** (2026-11-08) · Pakete 1–6 ohne Yoka · Grundlag
 | D20 | Bewertung | **Opus-Subagent** (frischer Kontext, nur Read/Grep/Glob) mit festem Auftrag `evals/GRADER.md`; erhält nur `expected.md` und die wörtliche Karte, nicht die Begründungen des Ausführenden. **Kein** Bewertungsskript für die Zuordnung; das Skript `evals/run.ps1` liefert nur Messdaten | Die Zuordnung Befund ↔ Erwartung ist semantisch (andere Worte, andere Ebene); ein Stichwort-Skript erzeugt falsche Treffer und falsches Verpasst. Mechanisches (Token, Dauer, gelesene Pfade) macht das Skript |
 | D21 | Rot-Varianten | Nicht als Dateien eingecheckt und nie deployt: `evals/variants/<name>.txt` nennt nur die zu entfernenden Überschriften; `evals/run.ps1` erzeugt die Variante zur Laufzeit aus `agent/ptc.md` in einen Temp-Ordner und **prüft**, dass die Überschriften fehlen (sonst Abbruch). Name im Frontmatter `ptc-rot-<name>` | `~/.claude/agents/` lädt jede `.md` als Agent (D4); eine eingecheckte Rot-Fassung könnte versehentlich deployt werden. Schnitt aus der aktuellen Fassung bleibt in 1D gültig |
 | D22 | Ablage | Ergebnis je Lauf: `evals/results/<datum>_<fall>_<variante>.md` (Kopf, Bewertung) plus `<gleicher Name>.karte.md` (wörtliche Karte) plus `<gleicher Name>.json` (CLI-Ausgabe). `docs/runs/` bleibt echten Einsätzen in Fremd-Projekten vorbehalten (D13) | Eval-Läufe sind Belegklasse T, Einsätze L; getrennte Orte halten die Bilanz in 1D sauber |
-| D23 | Kosten | Ein **Volllauf** = die zwei Positivläufe, Ziel ≤ 250 000 Token (D7). Der Rot-Nachweis läuft **einmal** je Fall (2 Läufe) und nur erneut, wenn sich der geschnittene Abschnitt in 1D ändert. Harte Grenze je Lauf über `--max-budget-usd` (Wert in Paket 1 aus dem Trockenlauf) | D7; der Rot-Nachweis prüft den Fall, nicht jede Fassung |
+| D23 | Kosten | Ein **Volllauf** = die zwei Positivläufe, Ziel ≤ 250 000 Token **ohne Cache-Read** (geändert, siehe Erkenntnisse Paket 1–2) (D7). Der Rot-Nachweis läuft **einmal** je Fall (2 Läufe) und nur erneut, wenn sich der geschnittene Abschnitt in 1D ändert. Harte Grenze je Lauf über `--max-budget-usd` (Wert in Paket 1 aus dem Trockenlauf) | D7; der Rot-Nachweis prüft den Fall, nicht jede Fassung |
 | D24 | Lauf-Gültigkeit | Ein Lauf ist **ungültig**, wenn ein Werkzeugaufruf einen Pfad außerhalb des Lauf-Ordners liest (Auswertung der `stream-json`- bzw. JSON-Ausgabe durch `run.ps1`), wenn das Budget greift oder die Karte fehlt. Ungültige Läufe werden protokolliert, nicht bewertet | Die Fixtures sind alte Stände; liest PTc das echte Yoka-DAW-Repo, sieht es die Erkenntnisse von später und der Vorhersagefall ist kontaminiert |
 
 ## Geprüfte Fakten (2026-11-08)
@@ -101,11 +101,11 @@ Kein Score (D3): nur Zählungen je Klasse, keine Quote über Klassen hinweg.
 
 **Modell: Sonnet 5.5, Effort medium**
 
-- [ ] `evals/run.ps1` nach „Dateistruktur" (ASCII, JSON per `[System.IO.File]::WriteAllText` mit `UTF8Encoding($false)`), `evals/variants/*.txt`, `evals/README.md`.
-- [ ] Rot-Nachweis des Schnitts (Testregel): Variante mit einer Überschrift, die es nicht gibt → `run.ps1 -DryRun` bricht ab (rot); korrekte Variante → erzeugte JSON enthält die Überschrift nicht (grün).
-- [ ] Rot-Nachweis D24: Trockenlauf mit Prompt, der ausdrücklich eine Datei außerhalb liest → Lauf „ungültig".
-- [ ] Trockenlauf `4i-plan` (Fixture aus Paket 2 vorziehen oder Mini-Fixture) mit **Haiku**, `PTc:LITE`: prüft A2, A3, A8; Karte vorhanden, kein Rückfragen-Abbruch.
-- [ ] `--max-budget-usd` je Modell aus den USD/Token des Trockenlaufs festlegen: Grenze = Preis von 180 000 Token (≈ 1,5 × Lauf aus D7) → Wert in D23 nachtragen.
+- [x] `evals/run.ps1` nach „Dateistruktur" (ASCII, JSON per `[System.IO.File]::WriteAllText` mit `UTF8Encoding($false)`), `evals/variants/*.txt`, `evals/README.md`.
+- [x] Rot-Nachweis des Schnitts (Testregel): Variante mit einer Überschrift, die es nicht gibt → `run.ps1 -DryRun` bricht ab (rot); korrekte Variante → erzeugte JSON enthält die Überschrift nicht (grün).
+- [x] Rot-Nachweis D24: Trockenlauf mit Prompt, der ausdrücklich eine Datei außerhalb liest → Lauf „ungültig".
+- [x] Trockenlauf `4i-plan` (Fixture aus Paket 2 vorziehen oder Mini-Fixture) mit **Haiku**, `PTc:LITE`: prüft A2, A3, A8; Karte vorhanden, kein Rückfragen-Abbruch.
+- [x] `--max-budget-usd` je Modell aus den USD/Token des Trockenlaufs festlegen: Grenze = Preis von 180 000 Token (≈ 1,5 × Lauf aus D7) → Wert in D23 nachtragen.
 
 **Fertig, wenn:** beide Rot-Nachweise erbracht, Trockenlauf gültig, Budgetwerte eingetragen (T).
 
@@ -113,10 +113,10 @@ Kein Score (D3): nur Zählungen je Klasse, keine Quote über Klassen hinweg.
 
 **Modell: Sonnet 5.5, Effort medium**
 
-- [ ] Per `git -C F:\Yoka\Workspace\Yoka-DAW show <commit>:<pfad>` (nur lesen, D13) die Dateien nach D17 schreiben; Ausschnitte von `PHASE_4_PLAN.md` mit Kopfblock und Originalzeilen.
-- [ ] `MANIFEST.md` je Fall mit SHA-256; `run.ps1` prüft sie.
-- [ ] Fakt 7 bestätigen: Grep `osc|retired|REUSE|reconnect|Undo-Schritt` in `agent/ptc.md` und `docs/runs/` → keine 4I-Inhalte außer Z. 150-Befund.
-- [ ] `prompt.txt` je Fall: `PTc:IST <repo>/docs/PHASE_4J_PLAN.md` mit Stand „Pakete 1–6 umgesetzt" bzw. `PTc:PLAN <repo>/docs/PHASE_4I_PLAN.md` mit Stand „nicht umgesetzt"; Projektwurzel; „nur innerhalb lesen". Keine Hinweise auf erwartete Befunde.
+- [x] Per `git -C F:\Yoka\Workspace\Yoka-DAW show <commit>:<pfad>` (nur lesen, D13) die Dateien nach D17 schreiben; Ausschnitte von `PHASE_4_PLAN.md` mit Kopfblock und Originalzeilen.
+- [x] `MANIFEST.md` je Fall mit SHA-256; `run.ps1` prüft sie.
+- [x] Fakt 7 bestätigen: Grep `osc|retired|REUSE|reconnect|Undo-Schritt` in `agent/ptc.md` und `docs/runs/` → keine 4I-Inhalte außer Z. 150-Befund.
+- [x] `prompt.txt` je Fall: `PTc:IST <repo>/docs/PHASE_4J_PLAN.md` mit Stand „Pakete 1–6 umgesetzt" bzw. `PTc:PLAN <repo>/docs/PHASE_4I_PLAN.md` mit Stand „nicht umgesetzt"; Projektwurzel; „nur innerhalb lesen". Keine Hinweise auf erwartete Befunde.
 
 **Fertig, wenn:** beide Fixtures committet, Hashes grün (T).
 
@@ -192,7 +192,7 @@ Harte Grenze je Lauf: `--max-budget-usd` (Paket 1, D23). Überschreitet ein Posi
 
 | Lauf | Modell | Token Summe | davon Cache | USD | Dauer | Turns | gültig | MUSS | KANN | NICHT verletzt | Fehlalarme |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Trockenlauf `4i-plan` LITE | Haiku | | | | | | | – | – | – | – |
+| Trockenlauf `4i-plan` LITE | Haiku | 436 681 (ohne Cache-Read 83 336) | 353 345 | 0,0285 | 137,5 s | 10 | ja | – | – | – | – |
 | `4j-ist` v1.0 | Sonnet | | | | | | | | | | |
 | `4i-plan` v1.0 | Opus | | | | | | | | | | |
 | `4j-ist` rot-ohne-3-4 | Sonnet | | | | | | | | | | |
@@ -213,10 +213,22 @@ Harte Grenze je Lauf: `--max-budget-usd` (Paket 1, D23). Überschreitet ein Posi
 | Paket | Inhalt | Schätzung | Start | Ende | Ist | Quelle |
 |---|---|---|---|---|---|---|
 | Detailplan | dieser Plan, A1 geprüft, Fixture-Wahl | 0,5–0,75 h | 2026-11-08 ≈ 13:55 | 2026-11-08 14:20 | ≈ 0,4 h | Session |
-| 1 | `run.ps1`, Varianten, Trockenlauf, Budgetgrenzen | 0,75 h | | | | |
-| 2 | Fixtures, Manifeste, Prompts | 0,5 h | | | | |
+| 1 | `run.ps1`, Varianten, Trockenlauf, Budgetgrenzen | 0,75 h | 2026-11-08 14:42 | 2026-11-08 14:58 | ≈ 0,3 h | Session |
+| 2 | Fixtures, Manifeste, Prompts | 0,5 h | 2026-11-08 14:50 (mit Paket 1 vorgezogen) | 2026-11-08 15:03 | ≈ 0,2 h | Session |
 | 3 | Erwartungen und `GRADER.md` (Opus-Subagent) | 0,75 h | | | | |
 | 4 | Positivläufe, Bewertung, Messwerte | 0,75 h (Läufe ≈ 2 × 5 min im Hintergrund) | | | | |
 | 5 | Rot-Nachweis | 0,5 h | | | | |
 | 6 | Erkenntnisse, Plan, Merge, Tag | 0,25 h | | | | |
 | **Summe Umsetzung** | Paket 1–6 | **≈ 3,5 h** (Reserve 4H: + 0,75 h) | | | | |
+
+### Paket 1–2 (2026-11-08)
+
+- **Rot-Nachweis Schnitt (T):** `run.ps1 -DryRun` mit `variants/rot-test-fehlt.txt` (Überschrift `### 9.9 …` gibt es nicht) → Abbruch „Schnitt-Ueberschrift nicht gefunden" (rot). `rot-ohne-3-4` → erzeugte `agents.json` enthält weder `3.4 Plan-gegen-Ist` noch `PLAN-GEGEN-IST (nur`, aber § 2.3 noch; `rot-ohne-2-3` umgekehrt; Repo-Fassung `v` enthält beides (grün). Geschnittene Zeilen: 3-4: 137–145 und 228–230 (nach dem ersten Schnitt verschoben); 2-3: 102–112, 223, 255. `rot-test-fehlt.txt` bleibt als Testfall im Repo.
+- **Rot-Nachweis D24 (T):** Haiku-Lauf mit Prompt „lies `F:\Yoka\Workspace\Probatio-Technica\CLAUDE.md`" → `Read` auf den Absolutpfad erkannt, Lauf **ungültig** (Exit 2). Zusatzbefund: Das CLI verweigerte den Zugriff selbst (Pfad außerhalb der Arbeitsverzeichnisse, `--permission-prompts none`); D24 bleibt als zweite Sicherung.
+- **A2 grün:** Gültiger Lauf ohne Zugriff außerhalb (0 von 9 Werkzeugaufrufen). Erster Versuch war „ungültig" wegen Fehlern des Prüfers (Grep-Regex als Pfad gewertet, Fixture-Elternordner statt `repo/`). **Geändert:** Arbeitsordner und Lauf-Ordner im Sinne D24 ist jetzt nur die Kopie von `repo/` (Manifest liegt außerhalb); Grep-`pattern` zählt nicht als Pfad, nur Glob-`pattern`.
+- **A3 teilweise:** Globale `CLAUDE.md`/Grundlast ist für alle Varianten gleich; `--bare` nicht versucht (braucht API-Key, nicht vorhanden angenommen). Kein Rückfall nötig, Grundlast bleibt in den Zahlen.
+- **A4 geändert:** Die Summe inkl. Cache-Read ist **nicht** mit der Subagent-Zählung (≈ 122 000) vergleichbar: Haiku LITE 436 681 gesamt, aber 353 345 davon Cache-Read (jeder Turn zählt den Kontext erneut). `run.ps1` weist beides aus (Summe aller Arten; ohne Cache-Read = input + output + cache creation, hier 83 336). Für die Ziel-Grenze D7/D23 (≤ 250 000) gilt **„ohne Cache-Read"** plus USD; Rückfall aus A4 angewandt. D23 entsprechend geändert, siehe Erkenntnisse.
+- **A8 grün:** Mit `prompt.txt`-Vorlage (Objekt, Stand, Ziel, „keine Rückfragen") gab Haiku PRÄMISSE „geklärt" und eine Karte ohne Rückfrage. Der erste Versuch (Haiku, 21 Turns, 260 s, 921 042 gesamt) zeigt: LITE auf Haiku ist nicht billig (53 k Output).
+- **Fakt 7 bestätigt (T):** Grep `osc|retired|REUSE|reconnect|Undo-Schritt` in `agent/ptc.md` und `docs/runs/`: keine Treffer in `ptc.md`; im Lauf-Protokoll nur die Z.-150-Regel (4I:151/4J:157) und „Undo-Schritt beim Speichern" (4J, anderer Befund). Keine 4I-Kontamination darüber hinaus.
+- **Fixtures (D17):** `4j-ist` aus `981425c` (CLAUDE 4314 B, PROCESS 8726 B, PHASE_4J 79 291 B; Ausschnitt `PHASE_4_PLAN.md` Z. 1–10, 56, 58, 81, 84, 101, 248–297), `4i-plan` aus `589c2f3` (PHASE_4I 46 037 B; Ausschnitt Z. 1–10, 49, 52, 80, 84, 101, 104–105, 240). Im Ausschnitt trägt jede Zeile das Präfix `[Z.n]`. D289 steht nicht im Gesamtplan (nur im 4I-Plan), daher kein Ausschnitt dazu. LF, keine CRs; `.gitattributes` unverändert.
+- **Budgetgrenze (D23, vorläufig):** `--max-budget-usd` Standard 2,0 (Sonnet), 4,0 (Opus) als harte Obergrenze; Haiku-Lauf 0,029 USD für 83 k Token ohne Cache-Read. Wert nach dem ersten Sonnet-/Opus-Lauf anhand der echten USD nachtragen (Preis von 180 000 Token ist ohne Preisliste der Modelle nicht ableitbar).

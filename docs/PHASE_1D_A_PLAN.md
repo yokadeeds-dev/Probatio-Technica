@@ -168,11 +168,11 @@ Nicht geändert: `evals/cases/*/expected.md`, `evals/cases/*/prompt.txt`, `evals
 
 **Modell: Sonnet 5.5, Effort medium**
 
-- [ ] `evals/run.ps1` nach D30: Version per Regex `## Version (\d+)\.(\d+)\.\d+` aus `$AgentPath` (Name `v<major>.<minor>`); Name `<datum>_<fall>_v1.1` bzw. `<datum>_<fall>_<variante>_v1.1`; vorhandene `.md`/`.json`/`.karte.md` → `throw` (außer `-Tag`).
-- [ ] Rot-Nachweis D30: `run.ps1 -Case 4j-ist -Variant v -DryRun` meldet den neuen Namen; ein absichtlich vorhandener Dummy `evals/results/<datum>_4j-ist_v1.1.json` (danach löschen) → Abbruch. Falls `-DryRun` den Namen nicht erreicht: Namensbildung vor den DryRun-Ausstieg ziehen.
-- [ ] Varianten nach „Rot-Nachweis-Design"; `-DryRun` je Variante: Schnitte gefunden, Überschriften fehlen im Ergebnis, § 3.4 bzw. § 3.5 der jeweils anderen Varianten noch vorhanden (A5).
-- [ ] `evals/cases/4j-ist/rot-bindung.md` und `evals/cases/4i-plan/rot-bindung.md` (Format unten); `evals/README.md` ergänzen.
-- [ ] Commit `phase 1D-a: Paket 3 (run.ps1, Varianten, Rot-Bindung)` **vor** dem ersten v1.1-Lauf (D32); Hash unter Fortschritt.
+- [x] `evals/run.ps1` nach D30: Version per Regex aus `$AgentPath`; Namensbildung und Abbruch-Prüfung vor den DryRun-Ausstieg gezogen.
+- [x] Rot-Nachweis D30 (T): `-DryRun` meldet `Ergebnisname: 2026-11-08_4j-ist_v1.1`; mit Dummy `2026-11-08_4j-ist_v1.1.json` → `Ergebnis existiert schon (kein Ueberschreiben ohne -Tag)`, Exit 1; Dummy gelöscht.
+- [x] Varianten (A5 grün): `-DryRun` je Variante findet alle Schnitte (`rot-ohne-3-5`: Z. 150-156; `rot-ohne-befundpflicht`: 115, 289, 256, 156-158; `rot-ohne-plan-ist-meta`: 141-149, 242-244, 86, 87, 267), `line|| **Meta** |` mit führendem `|` funktioniert; Ergebnisname `<datum>_<fall>_<variante>_v1.1`.
+- [x] `evals/cases/4j-ist/rot-bindung.md` und `evals/cases/4i-plan/rot-bindung.md`; `evals/README.md` ergänzt.
+- [x] Commit `phase 1D-a: Paket 3 (run.ps1, Varianten, Rot-Bindung)` **vor** dem ersten v1.1-Lauf (D32); Hash unter Fortschritt.
 
 **Fertig, wenn:** beide Rot-Nachweise (Abbruch, Schnitte) erbracht, Bindung committet (T).
 
@@ -294,7 +294,7 @@ Review-Urteil Opus-Subagent (frischer Kontext, Durchgang 1, vollständiger Diff)
 | Detailplan | dieser Plan | 0,5 h | 2026-11-08 ≈ 15:20 (erste Messung 15:31 bei Branch-Anlage) | 2026-11-08 15:35 | ≈ 0,25 h | Session |
 | 1 | v1.1 schreiben, check, Rot D29, Verbotsliste | 0,5 h | 2026-11-08 17:34 | 2026-11-08 17:37 | ≈ 0,1 h | `date` |
 | 2 | Review (Opus-Subagent), ggf. zweiter Durchgang | 0,25–0,5 h | 2026-11-08 17:37 | 2026-11-08 17:41 | ≈ 0,1 h (Subagent 128 s, 119 395 Token) | `date`, Subagent-Meldung |
-| 3 | `run.ps1`, Varianten, Rot-Bindung | 0,5 h | | | | |
+| 3 | `run.ps1`, Varianten, Rot-Bindung | 0,5 h | 2026-11-08 17:41 | 2026-11-08 17:47 | ≈ 0,1 h | `date` |
 | 4 | Positivläufe (3, Hintergrund), Bewertung | 0,5 h | | | | |
 | 5 | Rot-Läufe (bis 3), Bewertung | 0,5 h | | | | |
 | 6 | Deploy, Plan, Merge, Tag | 0,25 h | | | | |

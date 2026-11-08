@@ -1,0 +1,5 @@
+section|### 3.4 Plan-gegen-Ist
+block|PLAN-GEGEN-IST (nur IST/VERIFY)
+line|| **Meta** |
+line|> **Meso und Meta immer prüfen.**
+line|5. **Meso und Meta immer.**

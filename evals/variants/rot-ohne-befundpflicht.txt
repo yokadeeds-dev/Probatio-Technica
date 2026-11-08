@@ -1,0 +1,4 @@
+block|**Befundpflicht:**
+line|14. **Offene Frage nur bei fehlender Quelle.**
+line|OFFENE FRAGEN:
+section|### 3.6 Erfüllbarkeit

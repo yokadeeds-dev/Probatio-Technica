@@ -52,6 +52,17 @@ if ($text.Length -gt 0 -and $text[0] -eq [char]0xFEFF) { throw 'BOM in Agent-Dat
 $lines = New-Object System.Collections.Generic.List[string]
 foreach ($l in ($text -replace "`r`n", "`n").Split("`n")) { $lines.Add($l) }
 $agentName = 'ptc-eval'
+$mVer = [regex]::Match($text, '## Version (\d+)\.(\d+)\.\d+')
+if (-not $mVer.Success) { throw 'Version (## Version X.Y.Z) in Agent-Datei fehlt' }
+$verName = 'v' + $mVer.Groups[1].Value + '.' + $mVer.Groups[2].Value
+$nameBase = (Get-Date -Format 'yyyy-MM-dd') + '_' + $Case + '_' + $(if ($Variant -eq 'v') { $verName } else { $Variant + '_' + $verName }) + $(if ($Tag -ne '') { '_' + $Tag } else { '' })
+$resDir = Join-Path $root 'evals\results'
+if ($Tag -eq '') {
+    foreach ($ext in @('.md', '.json', '.karte.md')) {
+        if (Test-Path (Join-Path $resDir ($nameBase + $ext))) { throw "Ergebnis existiert schon (kein Ueberschreiben ohne -Tag): $nameBase$ext" }
+    }
+}
+Write-Host "Ergebnisname: $nameBase"
 $cuts = @()
 if ($Variant -ne 'v') {
     $vf = Join-Path $PSScriptRoot "variants\$Variant.txt"
@@ -129,8 +140,6 @@ $sw.Stop()
 $err = $errTask.Result
 
 # --- Ausgabe auswerten
-$nameBase = (Get-Date -Format 'yyyy-MM-dd') + '_' + $Case + '_' + $(if ($Variant -eq 'v') { 'v1.0' } else { $Variant }) + $(if ($Tag -ne '') { '_' + $Tag } else { '' })
-$resDir = Join-Path $root 'evals\results'
 New-Item -ItemType Directory -Force -Path $resDir | Out-Null
 [System.IO.File]::WriteAllText((Join-Path $resDir "$nameBase.json"), $out, $utf8)
 
@@ -192,7 +201,7 @@ if ($resultEv) {
 $sum = $in + $outT + $cr + $cc
 $sumNoRead = $in + $outT + $cc
 $head = @()
-$head += "# Eval $Case - $(if ($Variant -eq 'v') { 'v1.0' } else { $Variant }) - $(Get-Date -Format 'yyyy-MM-dd')"
+$head += "# Eval $Case - $(if ($Variant -eq 'v') { $verName } else { $Variant + ' ' + $verName }) - $(Get-Date -Format 'yyyy-MM-dd')"
 $head += ''
 $head += '| Feld | Wert |'
 $head += '|---|---|'

@@ -41,6 +41,8 @@ $required = @(
     '### 2.4 Fehlerarten',
     '### 3.1 Schnittstellen-Matrix',
     '### 3.4 Plan-gegen-Ist',
+    '### 3.5 Zustandspfade',
+    ('### 3.6 Erf' + [char]0xFC + 'llbarkeit'),
     '## 4. KONSISTENZ',
     '## 6. VORENTSCHEIDUNG',
     '## 7. MODI',

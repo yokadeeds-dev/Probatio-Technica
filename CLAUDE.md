@@ -25,7 +25,7 @@ PTc ist ein nur lesendes Prüfwerkzeug (Claude-Code-Subagent) für Software-Plä
 - Jede Änderung an `agent/ptc.md` oder `scripts/check.ps1` ist eine Kernänderung: Version erhöhen, CHANGELOG, Review-Subagent (D10, `docs/PROCESS.md` § Reviews).
 - Skripte nur ASCII (PowerShell 5.1 liest UTF-8 ohne BOM als ANSI). Alle Dateien UTF-8 ohne BOM, LF (`.gitattributes`). Code nur per Edit-Tool.
 - Das Repo liegt auf exFAT: `safe.directory` ist global gesetzt.
-- Ausführung nur lokal, keine Cloud-Sessions (D11). GitHub: `yokadeeds-dev/Probatio-Technica`, privat (D5; Stand Remote: siehe Plan § Offene Punkte).
+- Ausführung nur lokal, keine Cloud-Sessions (D11). GitHub: `yokadeeds-dev/Probatio-Technica`, privat (D5).
 - Änderungen an Fremd-Repos (z. B. Yoka-DAW) macht nur deren Worker-Session; dieses Repo übernimmt Lauf-Protokolle und Auswertungen (D13).
 
 ## Arbeitsweise

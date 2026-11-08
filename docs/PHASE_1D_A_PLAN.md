@@ -1,6 +1,6 @@
 # Unterphase 1D-a „v1.1 aus 1C" – Detailplan
 
-Status: **Paket 1+2 erledigt (v1.1.0 geschrieben, Review „kein Blocker"), Paket 3 läuft** (2026-11-08 17:41) · Pakete 1–6 ohne Yoka · Grundlage: [PHASE_1_PLAN.md](PHASE_1_PLAN.md) D1–D14, D25 · [PHASE_1C_PLAN.md](PHASE_1C_PLAN.md) D15–D24 und § Erkenntnisse · [PROCESS.md](PROCESS.md) (Reviews, Testregel)
+Status: **erledigt, v1.1.0 deployt** (2026-11-08 19:36); Merge nach `main`, Tag `phase-1d-a` · Pakete 1–6 ohne Yoka · Grundlage: [PHASE_1_PLAN.md](PHASE_1_PLAN.md) D1–D14, D25 · [PHASE_1C_PLAN.md](PHASE_1C_PLAN.md) D15–D24 und § Erkenntnisse · [PROCESS.md](PROCESS.md) (Reviews, Testregel)
 
 > **Für die ausführende Session:** **Eine** Session (Sonnet 5.5, Effort medium, D12) setzt 1D-a von Paket 1 bis zum Merge um, ohne Rückfrage zwischen den Paketen. Review (Paket 2) und Bewertungen (Paket 4–5) laufen als **Opus-Subagenten** mit frischem Kontext (D10, D12, D20). Alles lokal (D11), Branch `phase-1d-a-v11` (existiert, enthält diesen Plan), Commits `phase 1D-a: …`, Plan im selben Commit pflegen (diese Datei **und** `PHASE_1_PLAN.md`: Statuszeile, Fortschritt, Zeiten). Das Yoka-DAW-Repo wird **nicht** gelesen (Fixtures genügen; D13, D24). **Nicht ändern:** `evals/cases/*/expected.md` und `evals/GRADER.md` (Commit `fd2b581`, D18), `evals/fixtures/**`, bestehende Dateien in `evals/results/`.
 
@@ -198,8 +198,8 @@ Nicht geändert: `evals/cases/*/expected.md`, `evals/cases/*/prompt.txt`, `evals
 
 **Modell: Sonnet 5.5, Effort medium**
 
-- [ ] Je Variante nach „Rot-Nachweis-Design", **nur** wenn mindestens eine gebundene Erwartung im Positivlauf (Lauf **oder** Wiederholung bei `4j-ist`) Treffer war (D33); sonst Fehlen begründen.
-- [ ] Bewertung je Lauf durch frischen Opus-Grader; Rot-Entscheidung nach `rot-bindung.md`; A3 auswerten.
+- [x] Je Variante nach „Rot-Nachweis-Design", **nur** wenn mindestens eine gebundene Erwartung im Positivlauf (Lauf **oder** Wiederholung bei `4j-ist`) Treffer war (D33); sonst Fehlen begründen.
+- [x] Bewertung je Lauf durch frischen Opus-Grader; Rot-Entscheidung nach `rot-bindung.md`; A3 auswerten.
 
 **Fertig, wenn:** je Variante Rot erbracht oder Fehlen begründet (T).
 
@@ -207,9 +207,9 @@ Nicht geändert: `evals/cases/*/expected.md`, `evals/cases/*/prompt.txt`, `evals
 
 **Modell: Sonnet 5.5, Effort medium**
 
-- [ ] Nur bei D31 erfüllt: `powershell -File scripts\deploy.ps1` → Hash gleich; danach `scripts\check.ps1` **ohne** `-SkipDeployed` grün.
-- [ ] Erkenntnisse (Vorschläge für 1B/1D nur als Liste), Messwerte, Zeiten; `PHASE_1_PLAN.md`: Statuszeile (1D-a erledigt, nächstes 1B wartet auf 4K), Unterphasen-Tabelle, Fortschritt, Zeiten.
-- [ ] Merge-Commit nach `main` (`phase 1D-a: Merge v1.1`), Tag `phase-1d-a`, Push `main` und Tag (privat, D5).
+- [x] Nur bei D31 erfüllt: `powershell -File scripts\deploy.ps1` → Hash gleich; danach `scripts\check.ps1` **ohne** `-SkipDeployed` grün.
+- [x] Erkenntnisse (Vorschläge für 1B/1D nur als Liste), Messwerte, Zeiten; `PHASE_1_PLAN.md`: Statuszeile (1D-a erledigt, nächstes 1B wartet auf 4K), Unterphasen-Tabelle, Fortschritt, Zeiten.
+- [x] Merge-Commit nach `main` (`phase 1D-a: Merge v1.1`), Tag `phase-1d-a`, Push `main` und Tag (privat, D5).
 
 **Fertig, wenn:** Deploy ok (oder begründet nicht), Merge und Tag gepusht, Plan aktuell.
 
@@ -275,6 +275,40 @@ Review-Urteil Opus-Subagent (frischer Kontext, Durchgang 1, vollständiger Diff)
 - **A1 (Zustandspfad-Regel bringt J5):** grün, **J5 in 4 von 4 v1.1-Läufen getroffen** (v1.0: 0 von 4). Nach D27 d nur Hinweis, kein Wirkungsnachweis. **A2 (Fehlalarme):** in 1 von 4 `4j-ist`-Läufen eingetreten (J12), nach Nachbesserung 0 von 2; Reststreuung bleibt (Review-Hinweis). **A4 (Kosten):** grün, Volllauf 209 551 ohne Cache-Read, Datei +20 % Byte.
 - **Streuung:** `4j-ist` v1.1 trifft J4 mit 6, 7, 8, 9 oder 10 von 14 Drifts – die Treffer-Zählung ist stabil, die Zahl der weiteren Befunde nicht.
 
+### Paket 5: Rot-Nachweis (2026-11-08 19:25–19:29)
+
+Läufe auf der Fassung nach Nachbesserung (Datei = Deploy-Stand); Bindung aus `rot-bindung.md` (Commit `2a256f3`, vor dem ersten v1.1-Lauf). Bewertung durch frische Opus-Grader, wörtlich in den Ergebnisdateien.
+
+| Variante | Fall / Modell | gebunden | Positivlauf getroffen? | Ergebnis | Rot? |
+|---|---|---|---|---|---|
+| `rot-ohne-3-5` | `4j-ist` Sonnet | J5 | ja (4 von 4) | J5 nur **Teiltreffer** (Matrix-Zelle „Plugin-Fenster am Bus vorbei (bewusst)“, kein LECK, keine Korrektur); Kontrolle J1–J4, J6 Treffer, 0 NICHT, 0 Fehlalarme | **rot erbracht** |
+| `rot-ohne-befundpflicht` | `4i-plan` Opus | I1, I2, I3 | I2, I3 ja (I1 nur Teiltreffer, nicht gebunden-getroffen) | I2 und I3 nur **Teiltreffer** (Ressourcen-Notiz bzw. offene Frage F2); I1 weiter Teiltreffer; Kontrolle I4, I5 Treffer, I6 Teiltreffer (im Positivlauf Treffer), I7 verpasst (wie Positivlauf) | **rot erbracht** |
+| `rot-ohne-plan-ist-meta` | `4j-ist` Sonnet | J3, J4 | ja | J3 (SYNC-4) und J4 (SYNC-2, Muster ≥ 3 der 6 D-Nummern) **weiter Treffer**; J5 in dieser Variante (§ 3.5 vorhanden) sogar Treffer | **nicht rot** |
+
+- **A3 eingetreten:** Der Meta-Schnitt nimmt J3/J4 nicht weg. Erkenntnis: Plan-gegen-Ist ist **emergent** aus Quellen-Bindung, Konsistenz (§ 4) und Prozessregeln (§ 9.8), nicht an § 3.4 gebunden. Kein weiterer Schnitt in 1D-a; `4j-ist` bleibt für J3/J4 ohne Rot-Nachweis (begründet, Rückfall A3). Die 1C-Befunde (`rot-ohne-3-4`, `rot-ohne-2-3`) stützen das.
+- **Einschränkung `rot-ohne-befundpflicht`:** Positivlauf auf der Fassung **vor** der Nachbesserung, Rot-Lauf **danach**. Die Nachbesserung verengt die Befundpflicht (macht I2/I3 eher schwächer, nicht stärker); der Rot-Befund (Teiltreffer statt Treffer) ist daher nur eingeschränkt auf das Fehlen des Abschnitts zurückzuführen. Ein neuer Positivlauf `4i-plan` wurde aus Budgetgründen (D34) nicht gemacht. Rot ist erbracht, aber mit diesem Vorbehalt.
+- Die Teilschnitte der Variante: der Satz in § 0.5 Regel 6 blieb stehen; trotzdem verfehlte die Variante I2/I3 → der Satz allein trägt sie nicht.
+
+### Paket 6: Deploy und Abschluss (2026-11-08 19:30–19:36)
+
+- `scripts/deploy.ps1` → `check ok`, `deployed: …\.claude\agents\ptc.md`; danach `scripts/check.ps1` ohne `-SkipDeployed` → `check ok` (Hash gleich, T). Dateigröße: 339 Zeilen, 23 044 Byte (D34: ≤ 400 / ≤ 23 500).
+- Kosten 1D-a Läufe: 0,61 + 0,64 + 1,15 + 0,60 + 0,59 + 0,55 + 0,59 + 1,08 = **≈ 5,8 USD** (Grenze 8, D34); davon ungültige Läufe wegen Sitzungslimit 0.
+
+## Erkenntnisse (Umsetzung)
+
+- **Wirkung nur auf Ableitungsfällen (D27 d):** J5 in 6 von 6 gültigen v1.1-Läufen getroffen (v1.0: 0 von 4), I2–I4 in `4i-plan` getroffen (I1 weiter Teiltreffer). Das zeigt, dass die Regeln greifen; ob sie auf neuen Plänen wirken, misst erst 1B auf 4K.
+- **Rot-Nachweis:** Neue Abschnitte (§ 3.5, Befundpflicht) sind per Konstruktion die einzige Quelle ihrer Treffer → Rot ist erreichbar; Schnitte bekannter Abschnitte (§ 3.4 samt Meta) sind es nicht (A3).
+- **Fehlalarm-Gefahr der Befundpflicht (A2):** trat in 1 von 4 `4j-ist`-Läufen auf (J12). Die Nachbesserung („ausdrückliche Stütze“) hielt in 2 von 2 Nachläufen; Reststreuung bleibt, weil der Wortlaut „oder die belastete Ressource“ weit ist (Review-Hinweis).
+- **Zählstreuung:** Die Zahl der „weiteren Befunde“ und der gezählten Drifts schwankt je Lauf (J4: 6–11 von 14) bei stabilen MUSS-Treffern.
+- **Review-Ablauf:** Eine Zusatzänderung ohne Anlass (§ 3.6) wurde vom Review als Blocker erkannt und zurückgesetzt; der Prozess „Nachbesserung = zweiter Review + betroffener Fall“ hat gewirkt.
+- **Vorschläge (nur Liste) für 1B/1D (v1.2):**
+  1. Befundpflicht-Wortlaut: „oder die belastete Ressource“ → „Stelle nennt die Last bzw. Komponente oder ihre Grenze“; „Befund zitiert die stützende Stelle und die Stelle der Komponente“.
+  2. § 9.14: „(Ausnahme: Notiz nach § 2.3)“; § 10 Anpassungsbedingung neu fassen (z. B. „nur Muss-Kriterien mit Zahl oder Grenze“); „eine im Plan gesetzte harte Grenze gilt als Stütze“.
+  3. Review-Hinweise aus Durchgang 1: § 2.2 Zustandskreuz-Auslöser („Plan behandelt den Zustand nicht → LECK mit Testaufgabe“), § 4 LECK-Definition erweitern (fehlendes Budget/ungeprüfter Zustand sind keine „Umgehung“), § 8 Ressourcenzeile auf Befund-Verweise, PTc:LITE und § 3.5/§ 3.6, Matrix-Grenze ≈ 12 Zeilen vs. Pfad-Zeilen aus § 3.5.
+  4. Kandidat „Frist verfehlt“ (Yoka, siehe `PHASE_1_PLAN.md` § Offene Punkte).
+  5. `4i-plan` mit v1.1-Endfassung einmal neu laufen lassen (Positivreferenz für die Rot-Variante), sobald Budget da ist.
+  6. I1 (Summe unter Last / Wartezeit) bleibt Teiltreffer: Pflichtfrage 4 reicht nicht; prüfen, ob die Ressourcen-Tabelle „Last nur über Regler“ als gedeckt wertet.
+
 ## Messwerte
 
 | Lauf | Modell | Token Summe | ohne Cache-Read | USD | Dauer | Turns | gültig | MUSS | KANN | NICHT verletzt | Fehlalarme |
@@ -286,9 +320,9 @@ Review-Urteil Opus-Subagent (frischer Kontext, Durchgang 1, vollständiger Diff)
 | `4i-plan` v1.1 (vor Nachbesserung) | Opus | 242 651 | 96 778 | 1,15 | 281,7 s | 7 | ja | 4/5 (I2, I3, I4, I5 Treffer; I1 Teiltreffer) | 1/7 | 0 | 0 |
 | `4j-ist` v1.1 nach Nachbesserung (`nb`) | Sonnet | 234 153 | 106 920 | 0,60 | 185 s | 8 | ja | 6/6 (J5 getroffen) | 1/2 | 0 | 0 |
 | `4j-ist` v1.1 nach Nachbesserung (`nb2`) | Sonnet | 400 716 | 110 209 | 0,59 | 152,9 s | 10 | ja | 6/6 (J5 getroffen) | 1/2 | 0 | 0 |
-| `4j-ist` rot-ohne-3-5 | Sonnet | | | | | | | | | | |
-| `4j-ist` rot-ohne-plan-ist-meta | Sonnet | | | | | | | | | | |
-| `4i-plan` rot-ohne-befundpflicht | Opus | | | | | | | | | | |
+| `4j-ist` rot-ohne-3-5 | Sonnet | 305 657 | 104 636 | 0,55 | 135,4 s | 10 | ja | 5/6 (**J5 Teiltreffer = verfehlt**, J1–J4, J6 Treffer) | 1/2 | 0 | 0 |
+| `4j-ist` rot-ohne-plan-ist-meta | Sonnet | 382 191 | 104 313 | 0,59 | 178,9 s | 9 | ja | 5/6 (J3, J4 **weiter Treffer**; J5 Teiltreffer) | 1/2 | 0 | 0 |
+| `4i-plan` rot-ohne-befundpflicht | Opus | 240 384 | 90 420 | 1,08 | 264,8 s | 6 | ja | 2/5 (**I2, I3, I1 Teiltreffer**; I4, I5 Treffer) | 0/8 | 0 | 0 |
 | **Volllauf v1.1** (`4j-ist` Lauf 1 + `4i-plan`, vor Nachbesserung) | | 647 370 | **209 551** (Ziel ≤ 250 000, D34 erfüllt) | 1,76 | | | | | | | |
 
 ## Erkenntnisse
@@ -310,6 +344,6 @@ Review-Urteil Opus-Subagent (frischer Kontext, Durchgang 1, vollständiger Diff)
 | 2 | Review (Opus-Subagent), ggf. zweiter Durchgang | 0,25–0,5 h | 2026-11-08 17:37 | 2026-11-08 17:41 | ≈ 0,1 h (Subagent 128 s, 119 395 Token) | `date`, Subagent-Meldung |
 | 3 | `run.ps1`, Varianten, Rot-Bindung | 0,5 h | 2026-11-08 17:41 | 2026-11-08 17:47 | ≈ 0,1 h | `date` |
 | 4 | Positivläufe (3, Hintergrund), Bewertung, Nachbesserung (2 Reviews, 2 Nachläufe) | 0,5 h (+0,75 h) | 2026-11-08 17:44 | 2026-11-08 19:25 | ≈ 1,7 h brutto, davon ≈ 1,1 h Wartezeit auf Sitzungslimit | `date` |
-| 5 | Rot-Läufe (bis 3), Bewertung | 0,5 h | | | | |
-| 6 | Deploy, Plan, Merge, Tag | 0,25 h | | | | |
+| 5 | Rot-Läufe (3), Bewertung | 0,5 h | 2026-11-08 19:25 | 2026-11-08 19:29 | ≈ 0,1 h (3 Läufe parallel, mit Paket-4-Dokumentation überlappt) | `date` |
+| 6 | Deploy, Plan, Merge, Tag | 0,25 h | 2026-11-08 19:30 | 2026-11-08 19:36 | ≈ 0,1 h | `date` |
 | **Summe Umsetzung** | Paket 1–6 | **≈ 2,5–3 h** (Nachbesserung + 0,75 h) | | | | |

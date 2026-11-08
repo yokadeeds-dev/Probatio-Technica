@@ -1,6 +1,6 @@
 # Unterphase 1C „Eval-Set" – Detailplan
 
-Status: **Umsetzung läuft, Pakete 1–2 erledigt** (2026-11-08; Detailplan fertig 2026-11-08) · Pakete 1–6 ohne Yoka · Grundlage: [PHASE_1_PLAN.md](PHASE_1_PLAN.md) § 1C, D1–D14, [PROCESS.md](PROCESS.md) (Belegklassen, Treffer-Bewertung, Testregel)
+Status: **Umsetzung läuft, Pakete 1–3 erledigt** (2026-11-08; Detailplan fertig 2026-11-08) · Pakete 1–6 ohne Yoka · Grundlage: [PHASE_1_PLAN.md](PHASE_1_PLAN.md) § 1C, D1–D14, [PROCESS.md](PROCESS.md) (Belegklassen, Treffer-Bewertung, Testregel)
 
 > **Für die ausführende Session:** **Eine** Session (Sonnet 5.5, Effort medium, D12) setzt 1C von Paket 1 bis zum Merge um, ohne Rückfrage zwischen den Paketen. Paket 3 und die Bewertungen laufen als Opus-Subagent (D12, D18). Alles lokal (D11), Branch `phase-1c-eval`, Commits `phase 1C: …`, Plan im selben Commit pflegen. **`agent/ptc.md` wird in 1C nicht geändert** (das ist 1D); damit gibt es in 1C keine Kernänderung und kein Pflicht-Review. Das Yoka-DAW-Repo wird nur gelesen (D13).
 
@@ -124,11 +124,11 @@ Kein Score (D3): nur Zählungen je Klasse, keine Quote über Klassen hinweg.
 
 **Modell: Opus 5.5, Effort medium** (als Subagent aus der Sonnet-Session, D12, D18)
 
-- [ ] Subagent erhält: Fixture-Pfade, 4J-Lauf-Protokoll (für `4j-ist`), die heutige `Yoka-DAW/docs/PHASE_4I_PLAN.md` § Erkenntnisse und Zeiten plus `docs/phase4i_abnahme.md` (für `4i-plan`), das Format oben. **Keine** PTc-Ausgabe.
-- [ ] `4j-ist/expected.md`: die 6 Treffer als MUSS (Plugin-Fenster als LECK-MUSS), die 5 degradierten Punkte als „offene Frage erlaubt, HART verboten" (NICHT), Mehrwert-Spalte aus dem Lauf-Protokoll (alle Meta/Schnittstelle, „niemand vorher"; das ausgelassene Review als Folge).
-- [ ] `4i-plan/expected.md`: Kandidaten aus „Dateistruktur" prüfen, je Zeile Zitat im Fixture **und** Beleg E in den späteren Erkenntnissen; Kontamination markieren (Fakt 7). Mindestens 3 MUSS, sonst D16-Reserve 4H (Fixture und Erwartungen wie hier, +0,75 h).
-- [ ] `evals/GRADER.md` schreiben (Regeln: Zuordnung nach Substanz und Stelle, Ebene darf abweichen; Teiltreffer = nur offene Frage/degradiert; Fehlalarm = NICHT-Verletzung oder sachlich falsch mit Gegenzitat aus dem Fixture; weitere Befunde nur auflisten).
-- [ ] Commit **vor** Paket 4; Hash in D18-Notiz unter „Fortschritt".
+- [x] Subagent erhält: Fixture-Pfade, 4J-Lauf-Protokoll (für `4j-ist`), die heutige `Yoka-DAW/docs/PHASE_4I_PLAN.md` § Erkenntnisse und Zeiten plus `docs/phase4i_abnahme.md` (für `4i-plan`), das Format oben. **Keine** PTc-Ausgabe.
+- [x] `4j-ist/expected.md`: die 6 Treffer als MUSS (Plugin-Fenster als LECK-MUSS), die 5 degradierten Punkte als „offene Frage erlaubt, HART verboten" (NICHT), Mehrwert-Spalte aus dem Lauf-Protokoll (alle Meta/Schnittstelle, „niemand vorher"; das ausgelassene Review als Folge).
+- [x] `4i-plan/expected.md`: Kandidaten aus „Dateistruktur" prüfen, je Zeile Zitat im Fixture **und** Beleg E in den späteren Erkenntnissen; Kontamination markieren (Fakt 7). Mindestens 3 MUSS, sonst D16-Reserve 4H (Fixture und Erwartungen wie hier, +0,75 h).
+- [x] `evals/GRADER.md` schreiben (Regeln: Zuordnung nach Substanz und Stelle, Ebene darf abweichen; Teiltreffer = nur offene Frage/degradiert; Fehlalarm = NICHT-Verletzung oder sachlich falsch mit Gegenzitat aus dem Fixture; weitere Befunde nur auflisten).
+- [x] Commit **vor** Paket 4; Hash in D18-Notiz unter „Fortschritt".
 
 **Fertig, wenn:** zwei `expected.md` und `GRADER.md` committet, jede MUSS-Zeile mit Fixture-Zitat und E-Beleg (E).
 
@@ -213,9 +213,9 @@ Harte Grenze je Lauf: `--max-budget-usd` (Paket 1, D23). Überschreitet ein Posi
 | Paket | Inhalt | Schätzung | Start | Ende | Ist | Quelle |
 |---|---|---|---|---|---|---|
 | Detailplan | dieser Plan, A1 geprüft, Fixture-Wahl | 0,5–0,75 h | 2026-11-08 ≈ 13:55 | 2026-11-08 14:20 | ≈ 0,4 h | Session |
-| 1 | `run.ps1`, Varianten, Trockenlauf, Budgetgrenzen | 0,75 h | 2026-11-08 14:42 | 2026-11-08 14:58 | ≈ 0,3 h | Session |
-| 2 | Fixtures, Manifeste, Prompts | 0,5 h | 2026-11-08 14:50 (mit Paket 1 vorgezogen) | 2026-11-08 15:03 | ≈ 0,2 h | Session |
-| 3 | Erwartungen und `GRADER.md` (Opus-Subagent) | 0,75 h | | | | |
+| 1 | `run.ps1`, Varianten, Trockenlauf, Budgetgrenzen | 0,75 h | 2026-11-08 14:42 | 2026-11-08 14:58 | ≈ 0,27 h | Session |
+| 2 | Fixtures, Manifeste, Prompts | 0,5 h | 2026-11-08 14:50 (mit Paket 1 vorgezogen) | 2026-11-08 14:58 | ≈ 0,15 h | Session |
+| 3 | Erwartungen und `GRADER.md` (Opus-Subagent) | 0,75 h | 2026-11-08 14:59 | 2026-11-08 15:10 | ≈ 0,2 h | Session |
 | 4 | Positivläufe, Bewertung, Messwerte | 0,75 h (Läufe ≈ 2 × 5 min im Hintergrund) | | | | |
 | 5 | Rot-Nachweis | 0,5 h | | | | |
 | 6 | Erkenntnisse, Plan, Merge, Tag | 0,25 h | | | | |
@@ -232,3 +232,10 @@ Harte Grenze je Lauf: `--max-budget-usd` (Paket 1, D23). Überschreitet ein Posi
 - **Fakt 7 bestätigt (T):** Grep `osc|retired|REUSE|reconnect|Undo-Schritt` in `agent/ptc.md` und `docs/runs/`: keine Treffer in `ptc.md`; im Lauf-Protokoll nur die Z.-150-Regel (4I:151/4J:157) und „Undo-Schritt beim Speichern" (4J, anderer Befund). Keine 4I-Kontamination darüber hinaus.
 - **Fixtures (D17):** `4j-ist` aus `981425c` (CLAUDE 4314 B, PROCESS 8726 B, PHASE_4J 79 291 B; Ausschnitt `PHASE_4_PLAN.md` Z. 1–10, 56, 58, 81, 84, 101, 248–297), `4i-plan` aus `589c2f3` (PHASE_4I 46 037 B; Ausschnitt Z. 1–10, 49, 52, 80, 84, 101, 104–105, 240). Im Ausschnitt trägt jede Zeile das Präfix `[Z.n]`. D289 steht nicht im Gesamtplan (nur im 4I-Plan), daher kein Ausschnitt dazu. LF, keine CRs; `.gitattributes` unverändert.
 - **Budgetgrenze (D23, vorläufig):** `--max-budget-usd` Standard 2,0 (Sonnet), 4,0 (Opus) als harte Obergrenze; Haiku-Lauf 0,029 USD für 83 k Token ohne Cache-Read. Wert nach dem ersten Sonnet-/Opus-Lauf anhand der echten USD nachtragen (Preis von 180 000 Token ist ohne Preisliste der Modelle nicht ableitbar).
+
+### Paket 3 (2026-11-08)
+
+- **Erwartungen blind (D18):** Opus-Subagent (225 159 Token, 5,4 min; Plan schätzte 80 000) schrieb `evals/cases/4j-ist/expected.md` (6 MUSS J1–J6, 2 KANN, 5 NICHT) und `evals/cases/4i-plan/expected.md` (5 MUSS I1–I5, davon I5 kontaminierte Regression, 7 KANN, 5 NICHT) ohne PTc-Ausgabe. Zitate per Grep im Fixture geprüft. Reserve 4H nicht nötig (≥ 3 MUSS ohne Kontamination: I1–I4).
+- **Abweichungen vom Plan, vom Subagenten gefunden:** (1) Die Gegenstelle „`PROCESS.md:50`" aus dem 4J-Protokoll gibt es in der 4I-Fixture-`PROCESS.md` nicht; sie ist dort `:42` und `:45` (in `expected.md` vermerkt). (2) Im 4J-Fixture stehen sechs Pakete mit „nicht gemessen" (Z. 342–347), nicht fünf. (3) J5 (Plugin-Fenster) wurde damals vom Review (Paket 2) gefunden, nicht „niemand vorher". (4) I2 teilweise kontaminiert (Katalog-Reserve-Gedanke im 4J-Protokoll). (5) „Damals gefunden von" bei I8, I9, I11 = „Umsetzung" (zählt nicht als Mehrwert). Grenzfälle: I4 (reconnect während Aufnahme) als MUSS, I6 als KANN.
+- **Rot-Zuordnung laut Erwartungen:** `4j-ist`: J3, J4 hängen ganz an § 3.4, J1 überwiegend, J2/J6 teilweise. `4i-plan`: I1, I2 an § 2.3 (I1 kann auch über § 2.1 als Teiltreffer ohne Budget kommen).
+- **Commit der Erwartungen:** siehe Fortschritt in `PHASE_1_PLAN.md` (Hash wird im Folgecommit nachgetragen, vor dem ersten Eval-Lauf).

@@ -1,6 +1,6 @@
 # Unterphase 1C „Eval-Set" – Detailplan
 
-Status: **Umsetzung läuft, Pakete 1–5 erledigt, Paket 6 offen** (2026-11-08; Detailplan fertig 2026-11-08) · Pakete 1–6 ohne Yoka · Grundlage: [PHASE_1_PLAN.md](PHASE_1_PLAN.md) § 1C, D1–D14, [PROCESS.md](PROCESS.md) (Belegklassen, Treffer-Bewertung, Testregel)
+Status: **abgeschlossen, Pakete 1–6 erledigt, Tag `phase-1c`** (2026-11-08; Detailplan fertig 2026-11-08) · Pakete 1–6 ohne Yoka · Grundlage: [PHASE_1_PLAN.md](PHASE_1_PLAN.md) § 1C, D1–D14, [PROCESS.md](PROCESS.md) (Belegklassen, Treffer-Bewertung, Testregel)
 
 > **Für die ausführende Session:** **Eine** Session (Sonnet 5.5, Effort medium, D12) setzt 1C von Paket 1 bis zum Merge um, ohne Rückfrage zwischen den Paketen. Paket 3 und die Bewertungen laufen als Opus-Subagent (D12, D18). Alles lokal (D11), Branch `phase-1c-eval`, Commits `phase 1C: …`, Plan im selben Commit pflegen. **`agent/ptc.md` wird in 1C nicht geändert** (das ist 1D); damit gibt es in 1C keine Kernänderung und kein Pflicht-Review. Das Yoka-DAW-Repo wird nur gelesen (D13).
 
@@ -157,9 +157,9 @@ Kein Score (D3): nur Zählungen je Klasse, keine Quote über Klassen hinweg.
 
 **Modell: Sonnet 5.5, Effort medium**
 
-- [ ] Erkenntnisse: Änderungsvorschläge für 1D (nur Liste, keine Änderung an `agent/ptc.md`).
-- [ ] `PHASE_1_PLAN.md`: Statuszeile, 1C erledigt, Fortschritt, Zeiten; Offene Punkte (A1 erledigt).
-- [ ] Merge-Commit nach `main`, Tag `phase-1c`, Push.
+- [x] Erkenntnisse: Änderungsvorschläge für 1D (nur Liste, keine Änderung an `agent/ptc.md`): siehe „Planung" und „Paket 4–5".
+- [x] `PHASE_1_PLAN.md`: Statuszeile, 1C erledigt, Fortschritt, Zeiten; Offene Punkte (A1 erledigt).
+- [x] Merge-Commit nach `main`, Tag `phase-1c`, Push.
 
 **Fertig, wenn:** Merge und Tag gepusht, Plan aktuell.
 
@@ -219,7 +219,7 @@ Harte Grenze je Lauf: `--max-budget-usd` (Paket 1, D23). Überschreitet ein Posi
 | 3 | Erwartungen und `GRADER.md` (Opus-Subagent) | 0,75 h | 2026-11-08 14:59 | 2026-11-08 15:04 | ≈ 0,1 h | Session |
 | 4 | Positivläufe, Bewertung, Messwerte | 0,75 h (Läufe ≈ 2 × 5 min im Hintergrund) | 2026-11-08 15:05 | 2026-11-08 15:16 (Läufe und Bewertung) | ≈ 0,2 h | Session |
 | 5 | Rot-Nachweis | 0,5 h | 2026-11-08 15:12 (Läufe parallel zu Paket 4) | 2026-11-08 15:25 (Bewertung) | ≈ 0,2 h | Session |
-| 6 | Erkenntnisse, Plan, Merge, Tag | 0,25 h | | | | |
+| 6 | Erkenntnisse, Plan, Merge, Tag | 0,25 h | 2026-11-08 15:26 | 2026-11-08 15:35 | ≈ 0,15 h | Session |
 | **Summe Umsetzung** | Paket 1–6 | **≈ 3,5 h** (Reserve 4H: + 0,75 h) | | | | |
 
 ### Paket 1–2 (2026-11-08)

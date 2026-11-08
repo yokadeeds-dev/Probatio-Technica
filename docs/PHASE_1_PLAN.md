@@ -1,6 +1,6 @@
 # Phase 1 „Nachweis" – Plan
 
-**Status 2026-11-08:** 1A „Fundament" abgeschlossen (Tag `phase-1a`, gepusht nach `yokadeeds-dev/Probatio-Technica`, privat). 1B „Vorhersagetest 4K" wartet auf den 4K-Detailplan der Yoka-DAW (Auslöser dort eingetragen, Paket 7b). 1C „Eval-Set" abgeschlossen (Tag `phase-1c`, [PHASE_1C_PLAN.md](PHASE_1C_PLAN.md)): Eval-Set läuft ohne Dialog; v1.0 ist auf `4j-ist` rot (MUSS J5 stabil verpasst), `4i-plan` ist Messung (1/5 MUSS, 3 Teiltreffer); Rot-Nachweis in beiden Fällen nicht erbracht (Schnitte zu schwach, Begründung dort). Änderungsvorschläge für 1D stehen im Detailplan. Keine Aktion von Yoka nötig.
+**Status 2026-11-08:** 1A „Fundament" abgeschlossen (Tag `phase-1a`, gepusht nach `yokadeeds-dev/Probatio-Technica`, privat). 1B „Vorhersagetest 4K" wartet auf den 4K-Detailplan der Yoka-DAW (Auslöser dort eingetragen, Paket 7b). 1C „Eval-Set" abgeschlossen (Tag `phase-1c`, [PHASE_1C_PLAN.md](PHASE_1C_PLAN.md)): Eval-Set läuft ohne Dialog; v1.0 ist auf `4j-ist` rot (MUSS J5 stabil verpasst), `4i-plan` ist Messung (1/5 MUSS, 3 Teiltreffer); Rot-Nachweis in beiden Fällen nicht erbracht (Schnitte zu schwach, Begründung dort). Änderungsvorschläge für 1D stehen im Detailplan. **Nächstes: 1D-a** (v1.1 aus 1C, vor 1B, D25), Detailplan als eigene Session. Keine Aktion von Yoka nötig.
 
 ## Ziel
 
@@ -16,7 +16,8 @@ Belegen, dass PTc **über Tests und Review hinaus** Befunde liefert – zu vertr
 | **1A** Fundament | Repo, maßgebliche Agent-Datei, Check und Deploy, Prozess, Plan, Lauf-Archiv 4J | – | Opus | erledigt 2026-11-08 |
 | **1B** Vorhersagetest 4K | `PTc:PLAN` auf den 4K-Detailplan vor der Umsetzung; nach 4K Auswertung gegen die 4K-Erkenntnisse | 4K-Detailplan der Yoka-DAW | Lauf Opus, Protokoll Sonnet, Auswertung Opus | wartet |
 | **1C** Eval-Set | eingefrorene Fixtures mit bekannten Befunden, Erwartungsdateien, Ausführungsweg, Rot-Nachweis mit verstümmelter Fassung | keine (parallel zu 1B möglich) | Detailplan Opus, Umsetzung Sonnet | erledigt 2026-11-08 (Tag `phase-1c`, [PHASE_1C_PLAN.md](PHASE_1C_PLAN.md)); Ergebnis rot auf 4J, Rot-Nachweis offen für 1D |
-| **1D** IST-Lauf und Bilanz | `PTc:IST` vor der 4K-Abnahme; Kostenbilanz; Änderungen aus 1B/1C als v1.1 mit Review | nach 1B, 1C; 4K vor Abnahme | Lauf Sonnet, Bilanz Opus | offen |
+| **1D-a** v1.1 aus 1C | Änderungen aus den 1C-Erkenntnissen in `agent/ptc.md` (v1.1), stärkere Rot-Schnitte, Review, Eval-Volllauf, Deploy; **vor** 1B (D25) | nach 1C | Detailplan Opus, Umsetzung Sonnet | offen, Detailplan als eigene Session |
+| **1D** IST-Lauf und Bilanz | `PTc:IST` vor der 4K-Abnahme; Kostenbilanz; Änderungen aus 1B als v1.2 mit Review | nach 1B, 1D-a; 4K vor Abnahme | Lauf Sonnet, Bilanz Opus | offen |
 | **Abnahme Phase 1** | Bilanz an Yoka, Entscheidung Phase 2 | nach 1D | – | offen |
 
 ## Entscheidungen (D1–D14)
@@ -36,6 +37,7 @@ Belegen, dass PTc **über Tests und Review hinaus** Befunde liefert – zu vertr
 | D11 | Ausführungsort | nur lokal, keine Cloud-Sessions | wie Yoka-DAW D112 |
 | D12 | Modelle | Detailpläne und Auswertungen Opus 5.5 / medium; Protokolle, Pflege, Eval-Umsetzung Sonnet 5.5 / medium; Läufe nach D7 | wie Yoka-DAW D161 |
 | D13 | Fremd-Projekte | Läufe stößt das geprüfte Projekt in seinem eigenen Plan an; dieses Repo übernimmt Protokoll und Auswertung in `docs/runs/<Datum>_<projekt>_<objekt>_<modus>.md`. Änderungen am Fremd-Repo macht nur dessen Worker-Session | nach Empfehlung; Rollen-Trennung Worker/Auditor |
+| D25 | v1.1 vor 1B | Die Änderungen aus 1C werden als Unterphase **1D-a** vor 1B umgesetzt; 1B prüft dann v1.1 auf 4K. 1D behält IST-Lauf, Bilanz und die Änderungen aus 1B (v1.2). Die Vorhersagekraft von v1.0 allein wird nicht gemessen | Yoka 2026-11-08 („A", nach Empfehlung): 4K ist unkontaminiert und misst die Verbesserung auf einem neuen Plan statt nur auf 4J/4I, aus denen sie abgeleitet ist |
 | D14 | Kontaminierte Fälle | Der 4J-Lauf (Grundlage von v1.0) ist Regressionsfall, kein Wirkungsnachweis. Wirkung belegen nur Vorhersagetests auf Plänen, die PTc vor der Umsetzung sieht | nach Empfehlung |
 
 ## 1A – Fundament (erledigt)
@@ -74,7 +76,7 @@ Belegen, dass PTc **über Tests und Review hinaus** Befunde liefert – zu vertr
 ## 1D – IST-Lauf und Bilanz
 
 - [ ] `PTc:IST` auf den 4K-Plan vor der 4K-Abnahme (Sonnet), Protokoll und Treffer-Bewertung wie 1B.
-- [ ] v1.1: Änderungen aus 1B/1C in `agent/ptc.md`, Version und CHANGELOG, Review-Subagent (Urteil wörtlich hier), `check.ps1`, Eval-Set grün, Deploy.
+- [ ] v1.2: Änderungen aus 1B in `agent/ptc.md` (die aus 1C kommen in 1D-a als v1.1, D25), Version und CHANGELOG, Review-Subagent (Urteil wörtlich hier), `check.ps1`, Eval-Set grün, Deploy.
 - [ ] Bilanz Phase 1: Tabelle je Lauf (Treffer, Fehlalarme, Verpasst, Mehrwert, Token, Dauer) und Empfehlung für Phase 2.
 
 **Fertig, wenn:** Bilanz mit Belegen L/E/T liegt vor, v1.1 deployt.
@@ -96,6 +98,7 @@ Betrieb über weitere Unterphasen der Yoka-DAW bis zum Abschaltkriterium (D8: dr
 | 2026-11-08 | 1A | Repo, Check, Deploy, Prozess, Plan, Lauf-Archiv | siehe Zeilen unten | T |
 | 2026-11-08 | 1A | `check.ps1` erster Lauf rot auf der korrekten Datei: `String.StartsWith([char]0xFEFF)` ist in .NET Framework kulturabhängig und immer wahr → erstes Zeichen abgeschnitten. Behoben mit Zeichenvergleich | `check ok` | T |
 | 2026-11-08 | 1A | Rot-Nachweis `check.ps1` (Kopie im Scratchpad, `-AgentPath`): BOM, CRLF, `model:` im Frontmatter, ohne § 2.3, `Score: 7`, Version 2.0.0 ohne CHANGELOG → 7 FAIL, Exit 1. Abweichende Deploy-Kopie → FAIL, Exit 1. `deploy.ps1` → „already current" | alle Schutzprüfungen einmal rot | T |
+| 2026-11-08 | 1D-a | Entscheidung D25: v1.1 aus 1C vor 1B als Unterphase 1D-a; Detailplan als eigene Session (Opus) | Reihenfolge geändert | Y |
 | 2026-11-08 | 1C | Pakete 4–5: Positivläufe v1.0 (`4j-ist` + Wiederholung, `4i-plan`), Rot-Läufe `rot-ohne-3-4` und `rot-ohne-2-3`, Bewertung durch Opus-Grader | `4j-ist` rot (J5 stabil verpasst), `4i-plan` Messung 1/5 MUSS, Rot-Nachweis nicht erbracht | T: `evals/results/2026-11-08_*.md` |
 | 2026-11-08 | 1C | Paket 6: Erkenntnisse für 1D, Plan, Merge, Tag `phase-1c` | 1C abgeschlossen | T |
 | 2026-11-08 | 1C | Paket 3: Erwartungen blind (Opus-Subagent), Commit `fd2b581` vor dem ersten Eval-Lauf | T |

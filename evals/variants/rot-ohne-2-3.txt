@@ -1,0 +1,3 @@
+section|### 2.3 Ressourcen
+line|  Ressourcen      :
+line|6. **Ressourcen ohne Messwert

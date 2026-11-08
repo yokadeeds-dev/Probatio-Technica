@@ -1,6 +1,6 @@
 # Phase 1 „Nachweis" – Plan
 
-**Status 2026-11-08:** 1A „Fundament" abgeschlossen (Tag `phase-1a`, lokal; GitHub-Repo wartet auf Yokas Freigabe). 1B „Vorhersagetest 4K" wartet auf den 4K-Detailplan der Yoka-DAW (Auslöser dort eingetragen, Paket 7b). 1C kann parallel starten. Keine Aktion von Yoka nötig.
+**Status 2026-11-08:** 1A „Fundament" abgeschlossen (Tag `phase-1a`, gepusht nach `yokadeeds-dev/Probatio-Technica`, privat). 1B „Vorhersagetest 4K" wartet auf den 4K-Detailplan der Yoka-DAW (Auslöser dort eingetragen, Paket 7b). 1C kann parallel starten. Keine Aktion von Yoka nötig.
 
 ## Ziel
 
@@ -47,7 +47,7 @@ Belegen, dass PTc **über Tests und Review hinaus** Befunde liefert – zu vertr
 - [x] `CLAUDE.md`, `README.md`, `CHANGELOG.md`, `docs/PROCESS.md`, dieser Plan
 - [x] Lauf-Protokoll `docs/runs/2026-11-08_yoka-daw_4j_mimama-full.md` mit Auswertung
 - [x] Commit `b278a9d`, Tag `phase-1a` (lokal)
-- [ ] Privates GitHub-Repo anlegen und pushen: Upload am 2026-11-08 von der automatischen Freigabe gesperrt („Public Data-Sharing Upload"), wartet auf Yokas Freigabe
+- [x] Privates GitHub-Repo `yokadeeds-dev/Probatio-Technica` angelegt, `main` und Tag `phase-1a` gepusht (2026-11-08, nach Yokas Freigabe „Ja, anlegen"; der erste Versuch war von der automatischen Freigabe gesperrt)
 
 ## 1B – Vorhersagetest 4K
 
@@ -99,7 +99,6 @@ Betrieb über weitere Unterphasen der Yoka-DAW bis zum Abschaltkriterium (D8: dr
 
 ## Offene Punkte
 
-- **GitHub-Remote fehlt:** `gh repo create yokadeeds-dev/Probatio-Technica --private --source . --remote origin --push`, danach `git push origin phase-1a`. Braucht Yokas Freigabe (Upload-Sperre der automatischen Freigabe).
 - **1B hängt an der Yoka-DAW:** Der 4K-Auftrag steht erst nach Paket 7b in deren `PHASE_4_PLAN.md`. Prüfen vor 1B: Eintrag vorhanden.
 - **E-Beleg nachtragen:** Ergebnis von Yoka-DAW-Paket 7b (Blocker behoben, zweites Review) in das 4J-Lauf-Protokoll übernehmen.
 - **Annahme A1** (Ausführung ohne Dialog) ungeprüft → 1C.

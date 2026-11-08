@@ -1,0 +1,7 @@
+PTc:IST /docs/PHASE_4J_PLAN.md
+
+Objekt: Unterphase 4J "Workflow" des Projekts Yoka-DAW (Plan docs/PHASE_4J_PLAN.md).
+Stand: Pakete 1 bis 6 sind umgesetzt, Paket 7 und die Abnahme stehen aus.
+Ziel: Pruefung des Plans gegen den dokumentierten Ist-Stand vor der Abnahme.
+Projektwurzel ist das aktuelle Arbeitsverzeichnis (enthaelt CLAUDE.md und docs/). Lies nur innerhalb dieses Verzeichnisses, nichts ausserhalb.
+Quellcode liegt nicht vor; Aussagen ueber Code sind [UNVERIFIZIERT]. Keine Rueckfragen: arbeite mit dem, was vorliegt, und gib die Karte aus.

@@ -40,3 +40,8 @@ Kein Skript fuer die Zuordnung. Ein frischer Opus-Subagent bewertet nach `GRADER
 ## Kosten
 
 Token: `run.ps1` weist **Summe aller Arten** (inkl. Cache-Read, mehrfach gezaehlt je Turn) und **ohne Cache-Read** getrennt aus; massgeblich fuer das Budget ist USD. Grundlast je Lauf ca. 29 000 Token Cache (Claude-Code-Systemprompt, globale `CLAUDE.md`, Werkzeuge).
+
+## Erweiterung 1D-a (v1.1)
+
+- Ergebnisname enthaelt die Version aus `## Version X.Y.Z` der Agent-Datei: `<datum>_<fall>_v1.1[_tag]`, Rot-Varianten `<datum>_<fall>_<variante>_v1.1[_tag]`. Existiert eine Ergebnisdatei schon, bricht `run.ps1` ab (ausser mit `-Tag`).
+- Neue Rot-Varianten (`variants/`): `rot-ohne-3-5`, `rot-ohne-befundpflicht`, `rot-ohne-plan-ist-meta`. Die Bindung Erwartung <-> Schnitt steht in `cases/<fall>/rot-bindung.md` (vor dem ersten v1.1-Lauf committet, PHASE_1D_A_PLAN.md D32).

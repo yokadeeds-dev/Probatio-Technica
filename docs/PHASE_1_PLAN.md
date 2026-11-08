@@ -1,6 +1,6 @@
 # Phase 1 „Nachweis" – Plan
 
-**Status 2026-11-08:** 1A „Fundament" abgeschlossen (Tag `phase-1a`, gepusht nach `yokadeeds-dev/Probatio-Technica`, privat). 1B „Vorhersagetest 4K" wartet auf den 4K-Detailplan der Yoka-DAW (Auslöser dort eingetragen, Paket 7b). 1C kann parallel starten. Keine Aktion von Yoka nötig.
+**Status 2026-11-08:** 1A „Fundament" abgeschlossen (Tag `phase-1a`, gepusht nach `yokadeeds-dev/Probatio-Technica`, privat). 1B „Vorhersagetest 4K" wartet auf den 4K-Detailplan der Yoka-DAW (Auslöser dort eingetragen, Paket 7b). 1C „Eval-Set": Detailplan fertig ([PHASE_1C_PLAN.md](PHASE_1C_PLAN.md), D15–D24, Branch `phase-1c-eval`), Umsetzung als eigene Session (Sonnet) offen. Keine Aktion von Yoka nötig.
 
 ## Ziel
 
@@ -15,7 +15,7 @@ Belegen, dass PTc **über Tests und Review hinaus** Befunde liefert – zu vertr
 |---|---|---|---|---|
 | **1A** Fundament | Repo, maßgebliche Agent-Datei, Check und Deploy, Prozess, Plan, Lauf-Archiv 4J | – | Opus | erledigt 2026-11-08 |
 | **1B** Vorhersagetest 4K | `PTc:PLAN` auf den 4K-Detailplan vor der Umsetzung; nach 4K Auswertung gegen die 4K-Erkenntnisse | 4K-Detailplan der Yoka-DAW | Lauf Opus, Protokoll Sonnet, Auswertung Opus | wartet |
-| **1C** Eval-Set | eingefrorene Fixtures mit bekannten Befunden, Erwartungsdateien, Ausführungsweg, Rot-Nachweis mit verstümmelter Fassung | keine (parallel zu 1B möglich) | Detailplan Opus, Umsetzung Sonnet | offen |
+| **1C** Eval-Set | eingefrorene Fixtures mit bekannten Befunden, Erwartungsdateien, Ausführungsweg, Rot-Nachweis mit verstümmelter Fassung | keine (parallel zu 1B möglich) | Detailplan Opus, Umsetzung Sonnet | Detailplan fertig 2026-11-08 ([PHASE_1C_PLAN.md](PHASE_1C_PLAN.md)), Umsetzung offen |
 | **1D** IST-Lauf und Bilanz | `PTc:IST` vor der 4K-Abnahme; Kostenbilanz; Änderungen aus 1B/1C als v1.1 mit Review | nach 1B, 1C; 4K vor Abnahme | Lauf Sonnet, Bilanz Opus | offen |
 | **Abnahme Phase 1** | Bilanz an Yoka, Entscheidung Phase 2 | nach 1D | – | offen |
 
@@ -61,9 +61,9 @@ Belegen, dass PTc **über Tests und Review hinaus** Befunde liefert – zu vertr
 
 ## 1C – Eval-Set
 
-**Ort: Lokal** · Detailplan als eigene Session (Opus), dann Umsetzung (Sonnet).
+**Ort: Lokal** · Detailplan als eigene Session (Opus), dann Umsetzung (Sonnet). Detailplan: [PHASE_1C_PLAN.md](PHASE_1C_PLAN.md) (D15–D24, Pakete 1–6, ≈ 3,5 h).
 
-- [ ] **Annahme A1 prüfen:** Lässt sich PTc ohne Dialog ausführen (z. B. `claude -p` mit Agent-Auswahl)? Wenn nein: Eval-Läufe als Subagent aus einer Session, Ablauf dokumentiert.
+- [x] **Annahme A1 prüfen:** grün 2026-11-08 – `claude -p --agents <json> --agent <name>` läuft ohne Dialog (PHASE_1C_PLAN.md Fakt 1–3, D15).
 - [ ] **Fixtures:** eingefrorene Kopien in `evals/fixtures/` (nur Dokumente, kein Code): (a) `PHASE_4J_PLAN.md` Stand Paket 6 plus die nötigen Ausschnitte aus `PROCESS.md`/`PHASE_4_PLAN.md` – **Regressionsfall** (D14); (b) mindestens ein abgeschlossener Unterphasen-Plan der Yoka-DAW, dessen Probleme erst in der Umsetzung sichtbar wurden – Kandidaten im Detailplan auswählen.
 - [ ] **Erwartungen:** je Fixture `expected.md` mit den Befunden, die PTc finden muss (mit Stelle), und Befunden, die es **nicht** melden darf.
 - [ ] **Rot-Nachweis:** verstümmelte Fassung (z. B. ohne § 3.4 Plan-gegen-Ist, ohne § 2.3 Ressourcen) verfehlt die zugehörigen Erwartungen.
@@ -96,12 +96,12 @@ Betrieb über weitere Unterphasen der Yoka-DAW bis zum Abschaltkriterium (D8: dr
 | 2026-11-08 | 1A | Repo, Check, Deploy, Prozess, Plan, Lauf-Archiv | siehe Zeilen unten | T |
 | 2026-11-08 | 1A | `check.ps1` erster Lauf rot auf der korrekten Datei: `String.StartsWith([char]0xFEFF)` ist in .NET Framework kulturabhängig und immer wahr → erstes Zeichen abgeschnitten. Behoben mit Zeichenvergleich | `check ok` | T |
 | 2026-11-08 | 1A | Rot-Nachweis `check.ps1` (Kopie im Scratchpad, `-AgentPath`): BOM, CRLF, `model:` im Frontmatter, ohne § 2.3, `Score: 7`, Version 2.0.0 ohne CHANGELOG → 7 FAIL, Exit 1. Abweichende Deploy-Kopie → FAIL, Exit 1. `deploy.ps1` → „already current" | alle Schutzprüfungen einmal rot | T |
+| 2026-11-08 | 1C | Detailplan `docs/PHASE_1C_PLAN.md`: D15–D24, Fälle `4j-ist` (Regression) und `4i-plan` (Vorhersage, Detailplan-Commit `589c2f3`), A1 grün (`claude -p --agent`, `--agents <json>` für Rot-Varianten) | Detailplan fertig, Umsetzung offen | T (A1-Läufe, Fakt 1–2 im Detailplan) |
 
 ## Offene Punkte
 
 - **1B hängt an der Yoka-DAW:** Der 4K-Auftrag steht erst nach Paket 7b in deren `PHASE_4_PLAN.md`. Prüfen vor 1B: Eintrag vorhanden.
 - **E-Beleg nachtragen:** Ergebnis von Yoka-DAW-Paket 7b (Blocker behoben, zweites Review) in das 4J-Lauf-Protokoll übernehmen.
-- **Annahme A1** (Ausführung ohne Dialog) ungeprüft → 1C.
 - **Arbeitskonzept-Doc** nennt PTc noch nicht (§ Werkzeuge) → nach 1B.
 - **Yoka-DAW `PROCESS.md`:** PTc-Eintrag erst in Phase 2 (Steuerdatei, Yokas Ja).
 
@@ -112,5 +112,6 @@ Betrieb über weitere Unterphasen der Yoka-DAW bis zum Abschaltkriterium (D8: dr
 | 1A | Fundament | 0,5–1 h | 2026-11-08 ≈ 11:45 (erste Messung 11:48 nach Repo-Anlage) | 2026-11-08 11:54 | ≈ 0,15 h Wanduhr (Inhalte aus der laufenden Session übernommen) | Session |
 | 1B Paket 1 | Protokoll 4K | 0,25 h | | | | |
 | 1B Paket 2 | Auswertung 4K | 0,5–1 h | | | | |
-| 1C | Eval-Set | 2–3 h | | | | |
+| 1C Detailplan | PHASE_1C_PLAN.md, A1 geprüft | 0,5–0,75 h | 2026-11-08 ≈ 13:55 | 2026-11-08 14:20 | ≈ 0,4 h | Session |
+| 1C Umsetzung | Pakete 1–6 laut PHASE_1C_PLAN.md | ≈ 3,5 h | | | | |
 | 1D | IST-Lauf, v1.1, Bilanz | 1,5–2 h | | | | |

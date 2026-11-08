@@ -1,6 +1,6 @@
 # Unterphase 1C „Eval-Set" – Detailplan
 
-Status: **Umsetzung läuft, Pakete 1–3 erledigt** (2026-11-08; Detailplan fertig 2026-11-08) · Pakete 1–6 ohne Yoka · Grundlage: [PHASE_1_PLAN.md](PHASE_1_PLAN.md) § 1C, D1–D14, [PROCESS.md](PROCESS.md) (Belegklassen, Treffer-Bewertung, Testregel)
+Status: **Umsetzung läuft, Pakete 1–5 erledigt, Paket 6 offen** (2026-11-08; Detailplan fertig 2026-11-08) · Pakete 1–6 ohne Yoka · Grundlage: [PHASE_1_PLAN.md](PHASE_1_PLAN.md) § 1C, D1–D14, [PROCESS.md](PROCESS.md) (Belegklassen, Treffer-Bewertung, Testregel)
 
 > **Für die ausführende Session:** **Eine** Session (Sonnet 5.5, Effort medium, D12) setzt 1C von Paket 1 bis zum Merge um, ohne Rückfrage zwischen den Paketen. Paket 3 und die Bewertungen laufen als Opus-Subagent (D12, D18). Alles lokal (D11), Branch `phase-1c-eval`, Commits `phase 1C: …`, Plan im selben Commit pflegen. **`agent/ptc.md` wird in 1C nicht geändert** (das ist 1D); damit gibt es in 1C keine Kernänderung und kein Pflicht-Review. Das Yoka-DAW-Repo wird nur gelesen (D13).
 
@@ -136,10 +136,10 @@ Kein Score (D3): nur Zählungen je Klasse, keine Quote über Klassen hinweg.
 
 **Modell: Sonnet 5.5, Effort medium** (Läufe nach D19, Bewertung Opus-Subagent)
 
-- [ ] `run.ps1 -Case 4j-ist -Variant v -Model sonnet` und `-Case 4i-plan -Variant v -Model opus` (im Hintergrund, je ≈ 5 min).
-- [ ] Gültigkeit (D24) prüfen; je Lauf Bewertung durch einen frischen Opus-Subagenten nach `GRADER.md`, Ergebnis wörtlich in die Ergebnisdatei.
-- [ ] A4, A5, A7 auswerten; bei verfehlter MUSS in 4J ein Wiederholungslauf (A5).
-- [ ] Messwerte-Tabelle füllen.
+- [x] `run.ps1 -Case 4j-ist -Variant v -Model sonnet` und `-Case 4i-plan -Variant v -Model opus` (im Hintergrund, je ≈ 5 min).
+- [x] Gültigkeit (D24) prüfen; je Lauf Bewertung durch einen frischen Opus-Subagenten nach `GRADER.md`, Ergebnis wörtlich in die Ergebnisdatei.
+- [x] A4, A5, A7 auswerten; bei verfehlter MUSS in 4J ein Wiederholungslauf (A5).
+- [x] Messwerte-Tabelle füllen.
 
 **Fertig, wenn:** `4j-ist` grün (alle MUSS, 0 NICHT verletzt) oder rot mit benannter Ursache für 1D; `4i-plan` bewertet; Volllauf-Token unter „Messwerte" (T).
 
@@ -147,9 +147,9 @@ Kein Score (D3): nur Zählungen je Klasse, keine Quote über Klassen hinweg.
 
 **Modell: Sonnet 5.5, Effort medium**
 
-- [ ] `run.ps1 -Case 4j-ist -Variant rot-ohne-3-4 -Model sonnet` → erwartet: die an § 3.4 hängenden MUSS (D-Drift, gewanderte Falschaussage, Zeiten, Regelkonflikt) verfehlt.
-- [ ] `run.ps1 -Case 4i-plan -Variant rot-ohne-2-3 -Model opus` → erwartet: die an § 2.3 hängenden MUSS (B1, Kontingent) verfehlt; Rückfall A7.
-- [ ] Bewertung je Lauf durch Opus-Subagenten; Rot gilt, wenn **mindestens eine** Erwartung, die im Positivlauf getroffen wurde und am geschnittenen Abschnitt hängt, verfehlt wird. Getroffene Erwartungen trotz Schnitt → A6, Erkenntnis.
+- [x] `run.ps1 -Case 4j-ist -Variant rot-ohne-3-4 -Model sonnet` → erwartet: die an § 3.4 hängenden MUSS (D-Drift, gewanderte Falschaussage, Zeiten, Regelkonflikt) verfehlt. **Ergebnis: alle getroffen, kein Rot.**
+- [x] `run.ps1 -Case 4i-plan -Variant rot-ohne-2-3 -Model opus` → erwartet: die an § 2.3 hängenden MUSS (B1, Kontingent) verfehlt; Rückfall A7 (angewandt: Lauf auf `4j-ist`, Sonnet). **Ergebnis: J6 getroffen, kein Rot.**
+- [x] Bewertung je Lauf durch Opus-Subagenten; Rot gilt, wenn **mindestens eine** Erwartung, die im Positivlauf getroffen wurde und am geschnittenen Abschnitt hängt, verfehlt wird. Getroffene Erwartungen trotz Schnitt → A6, Erkenntnis.
 
 **Fertig, wenn:** je Fall Rot-Nachweis erbracht oder sein Fehlen mit Rückfall begründet (T).
 
@@ -193,11 +193,12 @@ Harte Grenze je Lauf: `--max-budget-usd` (Paket 1, D23). Überschreitet ein Posi
 | Lauf | Modell | Token Summe | davon Cache | USD | Dauer | Turns | gültig | MUSS | KANN | NICHT verletzt | Fehlalarme |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Trockenlauf `4i-plan` LITE | Haiku | 436 681 (ohne Cache-Read 83 336) | 353 345 | 0,0285 | 137,5 s | 10 | ja | – | – | – | – |
-| `4j-ist` v1.0 | Sonnet | | | | | | | | | | |
-| `4i-plan` v1.0 | Opus | | | | | | | | | | |
-| `4j-ist` rot-ohne-3-4 | Sonnet | | | | | | | | | | |
-| `4i-plan` rot-ohne-2-3 | Opus | | | | | | | | | | |
-| **Volllauf** (Summe Positivläufe) | | | | | | | | | | | |
+| `4j-ist` v1.0 | Sonnet | 372 740 (ohne Cache-Read 103 966) | 268 774 | 0,58 | 188,5 s | 10 | ja | 5/6 (J5 verpasst) | 1/2 | 0 | 0 |
+| `4j-ist` v1.0 Wiederholung (A5) | Sonnet | 301 955 (98 428) | 203 527 | 0,58 | 197,1 s | 10 | ja | 5/6 (J5 verpasst) | 1/2 | 0 | 0 |
+| `4i-plan` v1.0 (Messung) | Opus | 289 063 (108 593) | 180 470 | 1,24 | 276,8 s | 9 | ja | 1/5 (I1–I3 Teiltreffer, I4 verpasst; I5 Regression) | 2/7 | 0 | 0 |
+| `4j-ist` rot-ohne-3-4 | Sonnet | 454 138 (100 300) | 353 838 | 0,54 | 136,9 s | 12 | ja | 5/6 (J5 verpasst) | 1/2 | 0 | 0 |
+| `4j-ist` rot-ohne-2-3 (Rückfall A7) | Sonnet | 381 600 (101 178) | 280 422 | 0,53 | 129,1 s | 10 | ja | 5/6 (J5 verpasst) | 1/2 (J7 Teiltreffer) | 0 | 0 |
+| **Volllauf** (`4j-ist` + `4i-plan` v1.0) | | 661 803 (**212 559**, Ziel ≤ 250 000) | 449 244 | 1,82 | 465,3 s | 19 | ja | | | | |
 
 ## Erkenntnisse
 
@@ -215,9 +216,9 @@ Harte Grenze je Lauf: `--max-budget-usd` (Paket 1, D23). Überschreitet ein Posi
 | Detailplan | dieser Plan, A1 geprüft, Fixture-Wahl | 0,5–0,75 h | 2026-11-08 ≈ 13:55 | 2026-11-08 14:20 | ≈ 0,4 h | Session |
 | 1 | `run.ps1`, Varianten, Trockenlauf, Budgetgrenzen | 0,75 h | 2026-11-08 14:42 | 2026-11-08 14:58 | ≈ 0,27 h | Session |
 | 2 | Fixtures, Manifeste, Prompts | 0,5 h | 2026-11-08 14:50 (mit Paket 1 vorgezogen) | 2026-11-08 14:58 | ≈ 0,15 h | Session |
-| 3 | Erwartungen und `GRADER.md` (Opus-Subagent) | 0,75 h | 2026-11-08 14:59 | 2026-11-08 15:10 | ≈ 0,2 h | Session |
-| 4 | Positivläufe, Bewertung, Messwerte | 0,75 h (Läufe ≈ 2 × 5 min im Hintergrund) | | | | |
-| 5 | Rot-Nachweis | 0,5 h | | | | |
+| 3 | Erwartungen und `GRADER.md` (Opus-Subagent) | 0,75 h | 2026-11-08 14:59 | 2026-11-08 15:04 | ≈ 0,1 h | Session |
+| 4 | Positivläufe, Bewertung, Messwerte | 0,75 h (Läufe ≈ 2 × 5 min im Hintergrund) | 2026-11-08 15:05 | 2026-11-08 15:16 (Läufe und Bewertung) | ≈ 0,2 h | Session |
+| 5 | Rot-Nachweis | 0,5 h | 2026-11-08 15:12 (Läufe parallel zu Paket 4) | 2026-11-08 15:25 (Bewertung) | ≈ 0,2 h | Session |
 | 6 | Erkenntnisse, Plan, Merge, Tag | 0,25 h | | | | |
 | **Summe Umsetzung** | Paket 1–6 | **≈ 3,5 h** (Reserve 4H: + 0,75 h) | | | | |
 
@@ -239,3 +240,17 @@ Harte Grenze je Lauf: `--max-budget-usd` (Paket 1, D23). Überschreitet ein Posi
 - **Abweichungen vom Plan, vom Subagenten gefunden:** (1) Die Gegenstelle „`PROCESS.md:50`" aus dem 4J-Protokoll gibt es in der 4I-Fixture-`PROCESS.md` nicht; sie ist dort `:42` und `:45` (in `expected.md` vermerkt). (2) Im 4J-Fixture stehen sechs Pakete mit „nicht gemessen" (Z. 342–347), nicht fünf. (3) J5 (Plugin-Fenster) wurde damals vom Review (Paket 2) gefunden, nicht „niemand vorher". (4) I2 teilweise kontaminiert (Katalog-Reserve-Gedanke im 4J-Protokoll). (5) „Damals gefunden von" bei I8, I9, I11 = „Umsetzung" (zählt nicht als Mehrwert). Grenzfälle: I4 (reconnect während Aufnahme) als MUSS, I6 als KANN.
 - **Rot-Zuordnung laut Erwartungen:** `4j-ist`: J3, J4 hängen ganz an § 3.4, J1 überwiegend, J2/J6 teilweise. `4i-plan`: I1, I2 an § 2.3 (I1 kann auch über § 2.1 als Teiltreffer ohne Budget kommen).
 - **Commit der Erwartungen (D18): `fd2b581`**, vor dem ersten Eval-Lauf. Der Hash steht in jedem Ergebnis.
+
+### Paket 4–5 (2026-11-08)
+
+- **Gültigkeit (D24):** alle 5 Läufe gültig, 0 Zugriffe außerhalb des Lauf-Ordners. Ergebnisse unter `evals/results/` (Bewertungen wörtlich in den `.md`).
+- **`4j-ist` v1.0 ist rot (T):** 5/6 MUSS, J5 (Plugin-Fenster-Änderungen am Bus vorbei, kein Autosave, `PHASE_4J_PLAN.md:290`) fehlt. **A5:** Wiederholungslauf verfehlt J5 ebenfalls; alle vier `4j-ist`-Läufe (Positiv, Wiederholung, beide Rot-Läufe) verpassen ihn → **stabil verpasst**, kein Zufall. Vorschlag 1D: J5 benennt eine **Schnittstelle** (Plugin-Fenster → Autosave/Bus, Änderungspfad vorbei am Bus); Matrix-Regel „jeder Änderungspfad eines Zustands braucht einen Weg zum Persistenzauslöser" prüfen. Treffer J1–J4, J6, J8 mit 0 Fehlalarmen und 0 verletzten NICHT.
+- **`4i-plan` v1.0 (Messung):** 1/5 MUSS (nur I5, kontaminierte Regression); I1, I2, I3 nur **Teiltreffer** (offene Frage bzw. Querachsen-Zeile statt Befund), I4 (`reconnect` während Aufnahme) verpasst. KANN 2/7 (I6, I7), 0 Fehlalarme, 0 NICHT verletzt. **PTc erkennt Probleme, benennt sie aber als offene Frage statt als HART/LECK mit Korrekturliste.** Vorschlag 1D: Regel „eine Querachsen-Zeile ohne Budget/Grenze (z. B. Message-Thread, Kontingent 28/28) ist ein Befund mit Korrekturliste, keine Notiz"; Vorhersage-Probe (PTc:PLAN-Prüfung gegen die Folge „8 Fader = 8 Undo-Schritte") ergänzen.
+- **A7 nicht erfüllt:** v1.0 hat in 4I keinen Treffer an § 2.3 (I1, I2 nur Teiltreffer). Rückfall: Rot ohne § 2.3 auf `4j-ist` (J6).
+- **Rot-Nachweis NICHT erbracht, in beiden Fällen (A6):**
+  - `rot-ohne-3-4`: J1, J2, J3, J4 (laut `expected.md` an § 3.4 hängend) alle getroffen, Ergebnis wie Positivlauf. PTc findet Plan-gegen-Ist-Widersprüche auch ohne § 3.4 (über Konsistenz und Meta-Ebene).
+  - `rot-ohne-2-3` (auf `4j-ist`): J6 (kalter Index 261 s > 180 s) getroffen, Ergebnis wie Positivlauf. Der Befund hängt am Vergleich Plan gegen Ist, nicht an der Ressourcen-Achse.
+  - **Entscheidung (nach Empfehlung, D23 „ein Rot-Lauf je Fall"):** Es folgt kein dritter/vierter Rot-Lauf in 1C. Das Fehlen des Rot-Nachweises ist hiermit begründet (Rückfall A6/A7 durchgespielt); die Schnitte sind nach den Erkenntnissen zu schwach, um Erwartungen zu verfehlen, die an mehreren Abschnitten hängen. Optionen für 1D: Schnitt von § 3.4 **plus** Meta-Zeile in § 1 (A6, zweiter Schnitt) und Rot-Nachweis nur auf Erwartungen, die `expected.md` ausdrücklich an **einen** Abschnitt bindet; oder Rot über `-Variant` mit größerem Schnitt (§ 3 komplett).
+- **Token (A4):** Volllauf 212 559 ohne Cache-Read (Ziel ≤ 250 000 erfüllt), je Positivlauf 98 000–109 000 (unter 150 000). Mit Cache-Read 290 000–372 000 je Lauf. Opus-Lauf `4i-plan` kostet 1,24 USD, Sonnet-Läufe ≈ 0,55 USD; Volllauf 1,82 USD.
+- **Sonnet auf IST (ptc.md § 10):** `4j-ist` auf Sonnet liefert 5/6 MUSS, 0 Fehlalarme; das einzige Verpasste ist inhaltlich (J5), kein Rollen-Fehler. Vorschlag 1D: § 7 „IST auf Sonnet" bestätigen.
+- **Hinweis zur Kontamination:** Der Fall `4j-ist` ist Regression (D14), alle Erwartungen tragen „Regression"; das Ergebnis zeigt keine Wirkung von v1.0 auf neue Befunde, sondern dass das abgeleitete v1.0 die Treffer des MiMaMa-Laufs reproduziert (J1–J4, J6, J8) und J5 weiter verpasst.

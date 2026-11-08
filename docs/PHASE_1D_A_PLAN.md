@@ -1,6 +1,6 @@
 # Unterphase 1D-a „v1.1 aus 1C" – Detailplan
 
-Status: **Detailplan fertig, Umsetzung offen** (2026-11-08) · Pakete 1–6 ohne Yoka · Grundlage: [PHASE_1_PLAN.md](PHASE_1_PLAN.md) D1–D14, D25 · [PHASE_1C_PLAN.md](PHASE_1C_PLAN.md) D15–D24 und § Erkenntnisse · [PROCESS.md](PROCESS.md) (Reviews, Testregel)
+Status: **Paket 1+2 erledigt (v1.1.0 geschrieben, Review „kein Blocker"), Paket 3 läuft** (2026-11-08 17:41) · Pakete 1–6 ohne Yoka · Grundlage: [PHASE_1_PLAN.md](PHASE_1_PLAN.md) D1–D14, D25 · [PHASE_1C_PLAN.md](PHASE_1C_PLAN.md) D15–D24 und § Erkenntnisse · [PROCESS.md](PROCESS.md) (Reviews, Testregel)
 
 > **Für die ausführende Session:** **Eine** Session (Sonnet 5.5, Effort medium, D12) setzt 1D-a von Paket 1 bis zum Merge um, ohne Rückfrage zwischen den Paketen. Review (Paket 2) und Bewertungen (Paket 4–5) laufen als **Opus-Subagenten** mit frischem Kontext (D10, D12, D20). Alles lokal (D11), Branch `phase-1d-a-v11` (existiert, enthält diesen Plan), Commits `phase 1D-a: …`, Plan im selben Commit pflegen (diese Datei **und** `PHASE_1_PLAN.md`: Statuszeile, Fortschritt, Zeiten). Das Yoka-DAW-Repo wird **nicht** gelesen (Fixtures genügen; D13, D24). **Nicht ändern:** `evals/cases/*/expected.md` und `evals/GRADER.md` (Commit `fd2b581`, D18), `evals/fixtures/**`, bestehende Dateien in `evals/results/`.
 
@@ -142,12 +142,12 @@ Nicht geändert: `evals/cases/*/expected.md`, `evals/cases/*/prompt.txt`, `evals
 
 **Modell: Sonnet 5.5, Effort medium**
 
-- [ ] Ä1–Ä7 in `agent/ptc.md` per Edit-Tool (UTF-8 ohne BOM, LF), `CHANGELOG.md`.
-- [ ] `scripts/check.ps1`: zwei Einträge in `$required` (D29), ASCII.
-- [ ] `powershell -File scripts\check.ps1 -SkipDeployed` → `check ok`.
-- [ ] Rot-Nachweis D29: Kopie von `agent/ptc.md` im Scratchpad ohne `### 3.5 Zustandspfade` → `check.ps1 -AgentPath <kopie> -SkipDeployed` meldet `required section missing: ### 3.5 Zustandspfade`, Exit 1.
-- [ ] Größe nach D34 (≤ 400 Zeilen, ≤ 23 500 Byte) festhalten.
-- [ ] **Verbotsliste (D27):** Grep `Plugin|Fader|reconnect|Aufnahme|OSC|Autosave|Undo-Schritt|28 von|4I|4J|Tracktion|MIDI|Fenster|Geste` (Groß-/Kleinschreibung ignorieren) in `agent/ptc.md` → Treffer nur in § 10, § 11. Sonst umformulieren.
+- [x] Ä1–Ä7 in `agent/ptc.md` per Edit-Tool (UTF-8 ohne BOM, LF), `CHANGELOG.md`.
+- [x] `scripts/check.ps1`: zwei Einträge in `$required` (D29), ASCII (`Erfüllbarkeit` als `'### 3.6 Erf' + [char]0xFC + 'llbarkeit'`, weil nur ASCII erlaubt).
+- [x] `powershell -File scripts\check.ps1 -SkipDeployed` → `check ok` (T, 17:36).
+- [x] Rot-Nachweis D29: Kopie ohne `### 3.5 Zustandspfade` → `FAIL: required section missing: ### 3.5 Zustandspfade`, Exit 1 (T).
+- [x] Größe nach D34: **339 Zeilen, 22 613 Byte** (Grenze 400 / 23 500; v1.0: 319 / 18 815, +20 % Byte).
+- [x] **Verbotsliste (D27):** Grep (ignore case) → Treffer nur Z. 311 („4J" in § 11, v1.0-Text) und Z. 320 (v1.1-Absatz § 11). Außerhalb leer.
 - [ ] Commit `phase 1D-a: Paket 1 (ptc.md v1.1.0, check.ps1)` erst **nach** Paket 2 (Review vor Commit, D10); bis dahin im Arbeitsbaum.
 
 **Fertig, wenn:** check grün, Rot-Nachweis D29 erbracht, Verbotsliste leer außerhalb § 10/§ 11 (T).
@@ -156,11 +156,11 @@ Nicht geändert: `evals/cases/*/expected.md`, `evals/cases/*/prompt.txt`, `evals
 
 **Modell: Opus 5.5, Effort medium** (Subagent, frischer Kontext, nur Read/Grep/Glob, D10)
 
-- [ ] `git add -N .`, dann vollständiger `git diff HEAD` (enthält `agent/ptc.md`, `CHANGELOG.md`, `scripts/check.ps1`).
+- [x] (Durchgang 1, Opus-Subagent, Urteil siehe § Fortschritt) `git add -N .`, dann vollständiger `git diff HEAD` (enthält `agent/ptc.md`, `CHANGELOG.md`, `scripts/check.ps1`).
 - [ ] Subagent erhält: Aufgabe („Kernänderung PTc v1.0.0 → v1.1.0 prüfen"), den Diff, D1–D14, D25 aus `PHASE_1_PLAN.md`, D26–D29 aus diesem Plan, `docs/PROCESS.md` § Reviews, die 1C-Ergebnisse `evals/results/2026-11-08_4j-ist_v1.0.md` und `…_4i-plan_v1.0.md` (Begründung der Änderung). **Nicht** § „Änderungen an `agent/ptc.md`" und die Risiko-Zeilen dieses Plans (Begründungen des Implementierers, PROCESS.md).
 - [ ] Prüfpunkte laut PROCESS.md plus ausdrücklich: Overfitting mit Verbotsliste (D27), Widerspruch zu D6 (vier Pflichtfragen), Fehlalarm-Gefahr der Befundpflicht, Kostenwirkung (D34).
 - [ ] Urteil **wörtlich** unter Fortschritt (diese Datei und `PHASE_1_PLAN.md`). Blocker → beheben, zweiter Durchgang mit neuem Diff; erst „kein Blocker" erlaubt den Commit.
-- [ ] Commit Paket 1+2.
+- [x] Commit Paket 1+2.
 
 **Fertig, wenn:** „kein Blocker" wörtlich eingetragen, Commit (T).
 
@@ -240,6 +240,29 @@ Nicht geändert: `evals/cases/*/expected.md`, `evals/cases/*/prompt.txt`, `evals
 | Grader-Subagenten Opus | 3–7 | ≈ 7 × 40 000 | Session |
 | **Summe 1D-a** | | **≈ 1,1–1,4 Mio.** | **≈ 5–6,5 USD Läufe (Grenze 8, D34)** |
 
+## Fortschritt
+
+### Paket 1+2 (2026-11-08 17:41)
+
+Review-Urteil Opus-Subagent (frischer Kontext, Durchgang 1, vollständiger Diff), **wörtlich**:
+
+> Urteil: kein Blocker
+>
+> **Blocker:** keine.
+>
+> **Hinweise (nicht blockierend), je Prüfpunkt:**
+>
+> - **Widerspruch zu D-Nummern:** keiner gefunden. D3 hält: kein Score. Die Zahlen in § 10 („0 Fehlalarme“) sind Eval-Metadaten, keine Ausgabe der Karte. Die Score-Regex in `check.ps1` bleibt. D6 hält: weiter vier Pflichtfragen, die Summe ist in Frage 4 eingebaut (wie D28 verlangt). D7 hält: Einsatzpunkte und Modell-Zeilen bleiben unverändert, kein `model:` im Frontmatter. D1 hält: `tools` unverändert. Kleinere Unschärfe: D26 nennt Ä1–Ä7, das CHANGELOG nur Ä1–Ä6 plus eine `check.ps1`-Zeile. Prüfen, ob Ä7 vollständig abgedeckt ist (den Abschnitt „Änderungen“ habe ich bewusst nicht gelesen).
+> - **Verlorene oder abgeschwächte v1.0-Regel:** keine. Alle Änderungen ergänzen nur (§ 0.5 Regel 6, Pflichtfrage 4, § 2.2, § 2.3, neu § 3.5, § 3.6, § 9 Regel 14, § 10, § 11). Nichts ist gestrichen.
+> - **Mehrdeutigkeit:** (a) § 2.2 Zustandskreuz: Ausgelöst wird nur, wenn die Operation Daten „verwirft … oder bricht sie ab“. Steht im Plan nicht, was im ungeprüften Zustand passiert, kann ein Lauf das als LECK (Zustand ungeprüft, fehlender Test) werten, ein anderer als offene Frage (§ 0.5 Regel 4, Quelle fehlt). Vorschlag: „Behandelt der Plan den Zustand nicht (weder Verhalten noch Test) → LECK mit Testaufgabe.“ (b) § 2.3 Befundpflicht: Der erste Satz macht jede nicht erfüllte Pflichtfrage zum Befund. Eine Stufe nennt die Regel aber nur für Grenzen, auf die sich ein Muss-Kriterium stützt. Für die übrigen Grenzen bleibt die Stufe offen (LECK, SYNC oder doch nur Notiz?). (c) Bei der Belegklasse von Ressourcen-Aussagen im Plan widersprechen sich zwei Regeln. § 0.5 Regel 3 sagt „[UNVERIFIZIERT] … (dann: S, mit Hinweis)“. Regel 14 in § 9 macht S zum Befund, Regel 4 in § 0.5 macht [UNVERIFIZIERT] zur Frage. Das war in v1.0 harmlos, entscheidet jetzt aber zwischen Befund und Frage. (d) § 7: Ob PTc:LITE § 3.5 und § 3.6 anwendet, ist nicht gesagt.
+> - **Kostenwirkung:** Größe: 339 Zeilen (≤ 400). Die Bytezahl schätze ich auf etwa 22,7–23,0 k, knapp unter 23 500. Ich konnte sie nicht messen, `check.ps1` prüft die Größe nicht. Vor dem Deploy messen. Mehrarbeit pro Lauf: § 3.5 verlangt für jeden „berührten“ dauerhaften Zustand alle Änderungspfade, das Zustandskreuz prüft „jeden laufenden Betriebszustand“. Das ist kombinatorisch und kostet mehr Lesen und Denken pro Lauf. Die Matrix-Grenze von etwa 12 Zeilen (§ 3.1) konkurriert jetzt mit den Pfad-Zeilen aus § 3.5. Echte Schnittstellen könnten verdrängt werden.
+> - **Overfitting:** Keiner der 14 Begriffe der Verbotsliste steht außerhalb von § 10 und § 11 (Grep geprüft; „Undo“ und „Undo/Revision“ standen schon in v1.0). Sinngemäß bilden mehrere Formulierungen aber die Ableitungsfälle fast 1:1 nach: „eigene Bedienoberflächen eingebetteter Fremdkomponenten“ (§ 3.5, J5 Plugin-Fenster); „Geändert-Markierung“ (§ 3.5, Autosave); „Gerät … neu öffnet“ + „Schreiben/Aufzeichnen“ (§ 2.2, I4); „eine statt N Einheiten“ (§ 3.6, I3); „Grenze je Aufruf statt Summe“ (§ 3.6, Pflichtfrage 4, I1); „Kontingent … ohne Reserve für angekündigte Folgearbeit“ (Pflichtfrage 4, I2). Die Kategorien sind allgemein brauchbar, darum kein Blocker. Die Beispiele sollten aber neutraler gewählt oder gestrichen werden. Nach D27 d zählt ein Treffer auf 4J/4I ohnehin nicht als Wirkungsnachweis.
+> - **Fehlalarm-Gefahr:** (a) § 3.6 setzt HART, also FAIL, schon dann, wenn der Mechanismus „etwas anderes liefert“. Ist der Mechanismus selbst mehrdeutig, wird aus einer Auslegung ein FAIL, denn Regel 14 in § 9 verbietet die Frage, sobald die Quelle gelesen ist. Vorschlag: HART nur bei eindeutigem Widerspruch, sonst LECK. (b) § 3.5 Satz 3 macht eine Lücke zum LECK, auch wenn eine Entscheidung sie bewusst deckt. Das reibt sich mit IDENTITÄT „Bei Konflikt gilt die Projektregel“. Gemildert wird das, weil LECK kein FAIL ist und ein offener Punkt die Lücke schließt. (c) Die Befundpflicht kann Aufblähung durch Leerlauf-Befunde bringen. § 10 nennt das als Anpassungsbedingung, das Gate dafür ist D31 (0 Fehlalarme).
+> - **Konsistenz von Frontmatter, Version, CHANGELOG und `check.ps1`:** in Ordnung. Die Version ist überall 1.1: description „v1.1“, Zeile 8 „1.1.0“, Quick Start, Fußzeile, § 11 und CHANGELOG „## 1.1.0“. `check.ps1` ist ASCII. `[char]0xFC` matcht das „ü“ korrekt, weil die Datei als UTF-8 dekodiert wird. Die neuen `$required`-Einträge entsprechen D29. Die Größengrenze aus D34 ist in `check.ps1` nicht abgesichert. D29 verlangt das nicht. Kleinigkeit: § 10 sagt „IST auf Sonnet bestätigt“, obwohl `4j-ist` v1.0 als Fall rot war (J5 verpasst). „bestätigt (mit einer inhaltlichen Lücke)“ wäre genauer, der Rest der Zeile sagt das schon halb.
+> - **Interner Widerspruch zwischen den neuen Regeln:** § 0.5 Regel 6, § 9 Regel 14 und § 3.6 passen zusammen (§ 3.6 ist der Spezialfall HART). Spannung 1: Die Befundpflicht in § 2.3 sagt „nie als bloße Notiz in der Querachsen-Zeile“. Die Ausgabe-Vorlage in § 8 behält aber „Ressourcen : [je Komponente: Budget? · Messbeleg? · …]“. Die Vorlage sollte auf Befund-Verweise umgestellt werden. Spannung 2: Mehrere Regeln setzen LECK für Lücken, die keine Umgehung sind: fehlendes Budget (§ 2.3), ungeprüfter Betriebszustand (§ 2.2), fehlender Weg zum Persistenzauslöser (§ 3.5). Die LECK-Definition in § 4 lautet aber „ein Teilpfad umgeht den Vertrag, der Hauptpfad trägt“. Für das fehlende Budget und den ungeprüften Zustand passt sie nicht. § 4 erweitern oder dort ein Beispiel ergänzen. Die neue Zeile „OFFENE FRAGEN“ in § 8 und „Degradiert“ unter HERKUNFT widersprechen sich nicht.
+
+**Umgang mit den Hinweisen (Claude, nach Empfehlung):** Kein Blocker, darum **keine** Änderung an `agent/ptc.md` in 1D-a-Paket 1 (jede Änderung bräuchte einen zweiten Durchgang und verschöbe die Rot-Bindung; der Wortlaut ist Vorgabe des Detailplans). Ä7 ist vollständig (Version an 5 Stellen, § 11, CHANGELOG) – der Reviewer kannte den Abschnitt nicht. Die Hinweise sind **Kandidaten für die Nachbesserungsrunde (D31)** und für v1.2: Mehrdeutigkeit (a)–(d), HART nur bei eindeutigem Widerspruch in § 3.6, § 4 LECK-Definition erweitern, Beispiele neutraler (Overfitting), § 8-Ressourcenzeile auf Befund-Verweise. Byte-Größe gemessen: 22 613 (< 23 500).
+
 ## Messwerte
 
 | Lauf | Modell | Token Summe | ohne Cache-Read | USD | Dauer | Turns | gültig | MUSS | KANN | NICHT verletzt | Fehlalarme |
@@ -269,8 +292,8 @@ Nicht geändert: `evals/cases/*/expected.md`, `evals/cases/*/prompt.txt`, `evals
 | Paket | Inhalt | Schätzung | Start | Ende | Ist | Quelle |
 |---|---|---|---|---|---|---|
 | Detailplan | dieser Plan | 0,5 h | 2026-11-08 ≈ 15:20 (erste Messung 15:31 bei Branch-Anlage) | 2026-11-08 15:35 | ≈ 0,25 h | Session |
-| 1 | v1.1 schreiben, check, Rot D29, Verbotsliste | 0,5 h | | | | |
-| 2 | Review (Opus-Subagent), ggf. zweiter Durchgang | 0,25–0,5 h | | | | |
+| 1 | v1.1 schreiben, check, Rot D29, Verbotsliste | 0,5 h | 2026-11-08 17:34 | 2026-11-08 17:37 | ≈ 0,1 h | `date` |
+| 2 | Review (Opus-Subagent), ggf. zweiter Durchgang | 0,25–0,5 h | 2026-11-08 17:37 | 2026-11-08 17:41 | ≈ 0,1 h (Subagent 128 s, 119 395 Token) | `date`, Subagent-Meldung |
 | 3 | `run.ps1`, Varianten, Rot-Bindung | 0,5 h | | | | |
 | 4 | Positivläufe (3, Hintergrund), Bewertung | 0,5 h | | | | |
 | 5 | Rot-Läufe (bis 3), Bewertung | 0,5 h | | | | |

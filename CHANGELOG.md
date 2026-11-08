@@ -13,6 +13,7 @@ Aus dem Eval-Set 1C (`docs/PHASE_1C_PLAN.md` § Erkenntnisse), umgesetzt in 1D-a
 - Ä5: neuer § 3.6 Erfüllbarkeit (Akzeptanzkriterium gegen eigenen Mechanismus des Plans).
 - Ä6: § 10 Belege und Anpassungsbedingungen (IST auf Sonnet bestätigt; neue Regeln).
 - `scripts/check.ps1`: Pflichtabschnitte § 3.5 und § 3.6.
+- Nachbesserung vor dem Deploy (D31, ein Fehlalarm im Eval-Lauf `4j-ist`): § 2.3 Befundpflicht nur bei ausdrücklicher Stütze (Muss-Kriterium, Akzeptanztest, Folgephase; Stelle nennt Grenze oder Ressource), sonst höchstens Notiz (keine offene Frage, von § 9.14 nicht zum Befund gehoben); § 6 (3) und § 10 angeglichen.
 
 ## 1.0.0 — 2026-11-08
 

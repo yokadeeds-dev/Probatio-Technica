@@ -112,7 +112,7 @@ Vier Pflichtfragen je relevanter Komponente:
 
 Fehlt eine Messung, schlage eine **konkrete Messaufgabe** für den Plan vor (was, womit, welche Grenze). Du misst nicht selbst.
 
-**Befundpflicht:** Jede Pflichtfrage endet als „erfüllt" oder als **Befund** – nie als bloße Notiz in der Querachsen-Zeile. Fehlt bei einer Grenze, auf die sich ein Muss-Kriterium, ein Akzeptanztest oder eine Folgephase stützt, das Budget, die Summe unter gleichzeitiger Last oder die Reserve, ist das mindestens **LECK** mit Korrekturliste-Eintrag (Stelle, Budget oder Messaufgabe festlegen). **HART**, wenn eine im Plan gesetzte harte Grenze schon überschritten oder rechnerisch nicht einhaltbar ist.
+**Befundpflicht:** Fehlt bei einer Grenze, auf die sich ein Muss-Kriterium, ein Akzeptanztest oder eine Folgephase des Plans **ausdrücklich** stützt (die Stelle nennt die Grenze oder die belastete Ressource; der Befund zitiert beide Stellen), das Budget, die Summe unter gleichzeitiger Last oder die Reserve, endet die Pflichtfrage als **Befund**, nie als bloße Notiz in der Querachsen-Zeile: mindestens **LECK** mit Korrekturliste-Eintrag (Stelle, Budget oder Messaufgabe festlegen). **HART**, wenn eine im Plan gesetzte harte Grenze schon überschritten oder rechnerisch nicht einhaltbar ist. Stützt sich im Plan **nichts** auf die Grenze (kein Muss-Kriterium, kein Akzeptanztest, keine Folgephase), ist ein fehlendes Budget **kein Befund**, höchstens eine Notiz in der Querachsen-Zeile; eine solche Notiz ist keine offene Frage, und § 9 Regel 14 hebt sie nicht zum Befund.
 
 ### 2.4 Fehlerarten-Raster
 Abbruch mittendrin · Teilfehler (halb geschrieben, halb angewendet) · Sperre/Deadlock · Wettlauf · ungültige, leere oder sehr große Eingabe · fehlende Abhängigkeit (Gerät, Datei, Prozess, Netz) · Wiederverwendung von Kennungen (PID, Pfad, ID). Je relevanter Komponente: Ist der Fall im Plan behandelt? Gibt es einen Test, der bei kaputter Implementierung rot würde?
@@ -188,7 +188,7 @@ PTc-PASS = TRUE wenn:
   (1) kein HART-Befund
   UND (2) jede ARCHITEKTURPRÄGENDE Änderung hat einen benannten Vertrag
           und einen Test über die Grenze (oder eine Plan-Aufgabe dafür)
-  UND (3) jede Ressourcen-/Leistungsgrenze, auf die sich der Plan stützt,
+  UND (3) jede Ressourcen-/Leistungsgrenze, auf die sich der Plan ausdrücklich stützt,
           hat einen Messbeleg (T) oder eine geplante Messaufgabe
   UND (4) jede neue dauerhafte Datei/Datenquelle hat eine Aufräum-Regel
           oder einen offenen Punkt
@@ -302,7 +302,7 @@ EINSCHRÄNKUNGEN: [Hypothesen, nicht Gelesenes, Existenz- vs. Verortungs-Unsiche
 | Ressourcen-Pflichtfragen | 4 | erzeugen sie überwiegend Leerlauf-Befunde → auf Komponenten mit dauerhaften Daten oder Echtzeit-Bezug beschränken |
 | Modellwahl je Modus | PLAN Opus, IST Sonnet (IST auf Sonnet bestätigt im Eval-Set 1C: alle MUSS bis auf eine inhaltliche Lücke, 0 Fehlalarme) | verpasst IST auf Sonnet Befunde, die ein Opus-Lauf findet → IST auf Opus |
 | Zustandspfade (§ 3.5) | Pflicht für dauerhafte Zustände | erzeugen sie überwiegend Leerlauf-Zeilen → auf Zustände mit Muss-Ziel beschränken |
-| Befundpflicht (§ 2.3), Frage nur bei fehlender Quelle (§ 9.14) | Pflicht | erzeugen sie Fehlalarme gegen behandelte Risiken → Schwelle auf Muss-Kriterien schärfen |
+| Befundpflicht (§ 2.3), Frage nur bei fehlender Quelle (§ 9.14) | Pflicht, geschärft auf ausdrückliche Stütze (1D-a) | erzeugen sie Fehlalarme gegen behandelte Risiken → Schwelle auf Muss-Kriterien schärfen |
 
 ---
 

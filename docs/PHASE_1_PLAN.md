@@ -112,6 +112,7 @@ Betrieb über weitere Unterphasen der Yoka-DAW bis zum Abschaltkriterium (D8: dr
 - **E-Beleg nachtragen:** Ergebnis von Yoka-DAW-Paket 7b (Blocker behoben, zweites Review) in das 4J-Lauf-Protokoll übernehmen.
 - **Arbeitskonzept-Doc** nennt PTc noch nicht (§ Werkzeuge) → nach 1B.
 - **Yoka-DAW `PROCESS.md`:** PTc-Eintrag erst in Phase 2 (Steuerdatei, Yokas Ja).
+- **Kandidat v1.2 (1D), Fehlerart „Frist verfehlt" (Yoka 2026-11-08, nicht in v1.1):** Eine asynchrone Vorbereitung läuft gegen einen festen Zeitpunkt (Beat, Puffer, Frame, Timeout, Termin). Prüffragen: Was passiert, wenn die Vorbereitung die Frist reißt? Ist der ungünstigste Fall (kalter Cache, Auslöser kurz vor der Frist) behandelt? Gibt es einen Test, der die Frist künstlich reißt? Auslöser war ein Review-Blocker aus der Yoka-DAW: Der Graph-Aufbau dauert länger als die Zeit bis zum nächsten Beat, dadurch startet der Transport mitten im Clip, es gibt einen Sprung und Priming im Audio-Thread. Lösung dort: Clip mit einem Beat Vorlauf, Transport um ganze Beats zurück, Test-Haken lässt während `start()` Audiozeit vergehen. v1.0 deckt das nur über die Stichworte „Wettlauf" (§ 2.4) und „blockierendes I/O auf zeitkritischen Threads" (§ 2.1) ab, voraussichtlich nur als offene Frage. Die Regel domänenneutral formulieren, Echtzeit-Audio als eines von mehreren Beispielen (keine DAW-Sonderfassung). Eval-Fall nur, wenn der Plan-Stand von vor dem Review-Befund noch existiert.
 
 ## Zeiten
 

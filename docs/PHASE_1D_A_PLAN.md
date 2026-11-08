@@ -187,10 +187,10 @@ Nicht geändert: `evals/cases/*/expected.md`, `evals/cases/*/prompt.txt`, `evals
 
 **Modell: Sonnet 5.5, Effort medium** (Läufe nach D33, Bewertung Opus-Subagent nach `GRADER.md`)
 
-- [ ] `run.ps1 -Case 4j-ist -Variant v -Model sonnet -MaxBudgetUsd 2`, danach `-Tag wdh` (Wiederholung), und `run.ps1 -Case 4i-plan -Variant v -Model opus -MaxBudgetUsd 3`; im Hintergrund, parallel möglich.
-- [ ] Gültigkeit (D24); je Lauf ein frischer Opus-Grader (nur `expected.md` + `.karte.md`, Auftrag `GRADER.md`), Ergebnis wörtlich in die Ergebnisdatei.
-- [ ] D31 prüfen (Regression). Bei Regression: Nachbesserungsrunde (Ä-Wortlaut schärfen, nie fall-spezifisch), Paket 2 erneut, nur den betroffenen Fall erneut (`-Tag nb`).
-- [ ] A1, A2, A4 auswerten; Messwerte-Tabelle.
+- [x] `run.ps1 -Case 4j-ist -Variant v -Model sonnet -MaxBudgetUsd 2`, danach `-Tag wdh` (Wiederholung), und `run.ps1 -Case 4i-plan -Variant v -Model opus -MaxBudgetUsd 3`; im Hintergrund, parallel möglich.
+- [x] Gültigkeit (D24); je Lauf ein frischer Opus-Grader (nur `expected.md` + `.karte.md`, Auftrag `GRADER.md`), Ergebnis wörtlich in die Ergebnisdatei.
+- [x] D31 prüfen (Regression). Bei Regression: Nachbesserungsrunde (Ä-Wortlaut schärfen, nie fall-spezifisch), Paket 2 erneut, nur den betroffenen Fall erneut (`-Tag nb`).
+- [x] A1, A2, A4 auswerten; Messwerte-Tabelle.
 
 **Fertig, wenn:** drei gültige, bewertete Läufe, D31 entschieden, Messwerte eingetragen (T).
 
@@ -263,19 +263,33 @@ Review-Urteil Opus-Subagent (frischer Kontext, Durchgang 1, vollständiger Diff)
 
 **Umgang mit den Hinweisen (Claude, nach Empfehlung):** Kein Blocker, darum **keine** Änderung an `agent/ptc.md` in 1D-a-Paket 1 (jede Änderung bräuchte einen zweiten Durchgang und verschöbe die Rot-Bindung; der Wortlaut ist Vorgabe des Detailplans). Ä7 ist vollständig (Version an 5 Stellen, § 11, CHANGELOG) – der Reviewer kannte den Abschnitt nicht. Die Hinweise sind **Kandidaten für die Nachbesserungsrunde (D31)** und für v1.2: Mehrdeutigkeit (a)–(d), HART nur bei eindeutigem Widerspruch in § 3.6, § 4 LECK-Definition erweitern, Beispiele neutraler (Overfitting), § 8-Ressourcenzeile auf Befund-Verweise. Byte-Größe gemessen: 22 613 (< 23 500).
 
+### Paket 4: Positivläufe, D31, Nachbesserung (2026-11-08 17:44–19:25)
+
+- **Erster Versuch 17:44** scheiterte an `You've hit your session limit · resets 7pm` (0 Token, keine Karte, ungültig nach D24). Ergebnisdateien nicht ins Repo übernommen; Neustart 19:03 nach Reset.
+- **Bewertung** (frische Opus-Grader, wörtlich in den Ergebnisdateien `evals/results/2026-11-08_*_v1.1*.md`): `4j-ist` Lauf 1: MUSS 6/6, **J12 NICHT verletzt** (LECK-4 „Last von `daw://library` … hat kein Budget“) → Urteil rot. Wiederholung: grün. `4i-plan`: Messung, MUSS 4/5.
+- **D31: Regression** (1 Fehlalarm in Lauf 1) → **eine Nachbesserungsrunde.** Ursache: Befundpflicht (Ä3 b) greift auch ohne Muss-Kriterium (Risiko A2 eingetreten). Änderung (allgemein, D27): § 2.3 Befundpflicht nur bei ausdrücklicher Stütze (Muss-Kriterium, Akzeptanztest, Folgephase; Stelle nennt Grenze oder Ressource), sonst höchstens Notiz; § 6 (3) „ausdrücklich“; § 10 Wert angepasst. Ein anfangs zusätzlich geschärfter § 3.6 wurde auf Blocker des zweiten Reviews zurückgesetzt.
+- **Review Durchgang 2** (Opus, nur ersten Satz wörtlich): „Urteil: Blocker“ – § 3.6 (HART nur bei eindeutigem Widerspruch) „hat keinen Anlass und wird nicht getestet. Das verstößt gegen D26 und D31“ (§ 3.6 gilt nur PTc:PLAN, J12 war IST; `4i-plan` 0 Fehlalarme). Lösung (a): § 3.6 zurücksetzen – umgesetzt.
+- **Review Durchgang 3** (Opus, wörtlich): „Urteil: kein Blocker“ – „Blocker: keine. Die Nachbesserung widerspricht keiner D-Nummer (D6: vier Pflichtfragen bleiben; D26/D31: Nachbesserungsrunde ist durch D31 gedeckt, Version 1.1.0 bleibt, weil sie noch nicht deployt ist; D3, D14, D27 eingehalten). Die Verbotsliste ist in § 2.3 und § 6 nicht berührt … Größe passt (339 Zeilen, 23 044 Byte …). § 3.6 ist gegenüber HEAD unverändert.“ Nicht blockierende Hinweise (nicht umgesetzt, Kandidaten v1.2): J12 mit dem Wortlaut „oder die belastete Ressource“ wahrscheinlich nicht sicher behoben; § 9.14 ausdrücklich „(Ausnahme: Notiz nach § 2.3)“; „zitiert beide Stellen“ präzisieren; „keine offene Frage“ → „nicht als offene Frage geführt“; § 10 Anpassungsbedingung neu fassen; „harte Grenze gilt als Stütze“.
+- **Nachläufe** `4j-ist` `nb` und `nb2` (v1.1 mit Nachbesserung, 23 044 Byte): beide **grün, MUSS 6/6 inkl. J5, 0 NICHT verletzt, 0 Fehlalarme.** `4i-plan` wurde **nicht** erneut gelaufen (Budget D34, Summe ≤ 8 USD; D31 verlangt nur den betroffenen Fall).
+- **D31 entschieden: erfüllt** (Regression behoben; J1–J4, J6 und I5 getroffen, 0 NICHT, 0 Fehlalarme in den Nachläufen bzw. `4i-plan`). Deploy zulässig.
+- **A1 (Zustandspfad-Regel bringt J5):** grün, **J5 in 4 von 4 v1.1-Läufen getroffen** (v1.0: 0 von 4). Nach D27 d nur Hinweis, kein Wirkungsnachweis. **A2 (Fehlalarme):** in 1 von 4 `4j-ist`-Läufen eingetreten (J12), nach Nachbesserung 0 von 2; Reststreuung bleibt (Review-Hinweis). **A4 (Kosten):** grün, Volllauf 209 551 ohne Cache-Read, Datei +20 % Byte.
+- **Streuung:** `4j-ist` v1.1 trifft J4 mit 6, 7, 8, 9 oder 10 von 14 Drifts – die Treffer-Zählung ist stabil, die Zahl der weiteren Befunde nicht.
+
 ## Messwerte
 
 | Lauf | Modell | Token Summe | ohne Cache-Read | USD | Dauer | Turns | gültig | MUSS | KANN | NICHT verletzt | Fehlalarme |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Referenz `4j-ist` v1.0 | Sonnet | 372 740 | 103 966 | 0,58 | 188,5 s | 10 | ja | 5/6 (J5 verpasst) | 1/2 | 0 | 0 |
 | Referenz `4i-plan` v1.0 | Opus | 289 063 | 108 593 | 1,24 | 276,8 s | 9 | ja | 1/5 (I1–I3 Teiltreffer, I4 verpasst) | 2/7 | 0 | 0 |
-| `4j-ist` v1.1 | Sonnet | | | | | | | | | | |
-| `4j-ist` v1.1 Wiederholung | Sonnet | | | | | | | | | | |
-| `4i-plan` v1.1 | Opus | | | | | | | | | | |
+| `4j-ist` v1.1 (vor Nachbesserung) | Sonnet | 404 719 | 112 773 | 0,61 | 157,6 s | 10 | ja | 6/6 (**J5 getroffen**) | 1/2 | **1 (J12)** | **1 (J12)** |
+| `4j-ist` v1.1 Wiederholung (`wdh`, vor Nachbesserung) | Sonnet | 499 846 | 115 994 | 0,64 | 179,6 s | 11 | ja | 6/6 (J5 getroffen) | 1/2 | 0 | 0 |
+| `4i-plan` v1.1 (vor Nachbesserung) | Opus | 242 651 | 96 778 | 1,15 | 281,7 s | 7 | ja | 4/5 (I2, I3, I4, I5 Treffer; I1 Teiltreffer) | 1/7 | 0 | 0 |
+| `4j-ist` v1.1 nach Nachbesserung (`nb`) | Sonnet | 234 153 | 106 920 | 0,60 | 185 s | 8 | ja | 6/6 (J5 getroffen) | 1/2 | 0 | 0 |
+| `4j-ist` v1.1 nach Nachbesserung (`nb2`) | Sonnet | 400 716 | 110 209 | 0,59 | 152,9 s | 10 | ja | 6/6 (J5 getroffen) | 1/2 | 0 | 0 |
 | `4j-ist` rot-ohne-3-5 | Sonnet | | | | | | | | | | |
 | `4j-ist` rot-ohne-plan-ist-meta | Sonnet | | | | | | | | | | |
 | `4i-plan` rot-ohne-befundpflicht | Opus | | | | | | | | | | |
-| **Volllauf v1.1** | | | | | | | | | | | |
+| **Volllauf v1.1** (`4j-ist` Lauf 1 + `4i-plan`, vor Nachbesserung) | | 647 370 | **209 551** (Ziel ≤ 250 000, D34 erfüllt) | 1,76 | | | | | | | |
 
 ## Erkenntnisse
 
@@ -295,7 +309,7 @@ Review-Urteil Opus-Subagent (frischer Kontext, Durchgang 1, vollständiger Diff)
 | 1 | v1.1 schreiben, check, Rot D29, Verbotsliste | 0,5 h | 2026-11-08 17:34 | 2026-11-08 17:37 | ≈ 0,1 h | `date` |
 | 2 | Review (Opus-Subagent), ggf. zweiter Durchgang | 0,25–0,5 h | 2026-11-08 17:37 | 2026-11-08 17:41 | ≈ 0,1 h (Subagent 128 s, 119 395 Token) | `date`, Subagent-Meldung |
 | 3 | `run.ps1`, Varianten, Rot-Bindung | 0,5 h | 2026-11-08 17:41 | 2026-11-08 17:47 | ≈ 0,1 h | `date` |
-| 4 | Positivläufe (3, Hintergrund), Bewertung | 0,5 h | | | | |
+| 4 | Positivläufe (3, Hintergrund), Bewertung, Nachbesserung (2 Reviews, 2 Nachläufe) | 0,5 h (+0,75 h) | 2026-11-08 17:44 | 2026-11-08 19:25 | ≈ 1,7 h brutto, davon ≈ 1,1 h Wartezeit auf Sitzungslimit | `date` |
 | 5 | Rot-Läufe (bis 3), Bewertung | 0,5 h | | | | |
 | 6 | Deploy, Plan, Merge, Tag | 0,25 h | | | | |
 | **Summe Umsetzung** | Paket 1–6 | **≈ 2,5–3 h** (Nachbesserung + 0,75 h) | | | | |

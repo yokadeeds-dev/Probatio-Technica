@@ -53,4 +53,5 @@ Je Lauf werden festgehalten: Treffer, Fehlalarme, Verpasst, Token, Dauer. **Mehr
 - **G4-Fragen:** nach Empfehlung, als „nach Empfehlung" mit Begründung im Plan.
 - **Merge und Tag:** nach der letzten Aufgabe einer Unterphase durch Claude.
 - **Läufe in Fremd-Projekten:** Das jeweilige Projekt stößt PTc-Läufe in seinem Plan an. Dieses Repo übernimmt Protokoll und Auswertung in `docs/runs/`. Änderungen am Fremd-Repo macht nur dessen Worker-Session; Befunde gehen als Nachricht oder über dessen Plan (D13).
+- **Selbsttest (D36):** Jeder Detailplan dieses Repos bekommt nach dem Schreiben und vor dem Commit ein `PTc:PLAN` mit der deployten Version (Opus, Effort medium). Befunde nach Empfehlung einarbeiten, Karte wörtlich in die Erkenntnisse, Protokoll in `docs/runs/`, nach der Umsetzung Treffer-Bewertung wie bei Fremd-Projekten.
 - **Yoka:** nur für Abnahmen am Phasenende und echte Strategie-Pivots.

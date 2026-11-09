@@ -1,6 +1,6 @@
 # Phase 1 „Nachweis" – Plan
 
-**Status 2026-11-09:** 1A „Fundament" abgeschlossen (Tag `phase-1a`, gepusht nach `yokadeeds-dev/Probatio-Technica`, privat). 1B „Vorhersagetest 4K" läuft (siehe Ende dieser Zeile). 1C „Eval-Set" abgeschlossen (Tag `phase-1c`, [PHASE_1C_PLAN.md](PHASE_1C_PLAN.md)): Eval-Set läuft ohne Dialog; v1.0 ist auf `4j-ist` rot (MUSS J5 stabil verpasst), `4i-plan` ist Messung (1/5 MUSS, 3 Teiltreffer); Rot-Nachweis in beiden Fällen nicht erbracht (Schnitte zu schwach, Begründung dort). Änderungsvorschläge für 1D stehen im Detailplan. **1D-a** (v1.1 aus 1C, vor 1B, D25): Detailplan fertig ([PHASE_1D_A_PLAN.md](PHASE_1D_A_PLAN.md), D26–D34, Pakete 1–6, ≈ 2,5–3 h). **1D-a erledigt** (Tag `phase-1d-a`, 2026-11-08): `agent/ptc.md` **v1.1.0 deployt** (339 Zeilen, 23 044 Byte); Review-Urteile wörtlich in [PHASE_1D_A_PLAN.md](PHASE_1D_A_PLAN.md) § Fortschritt. Eval v1.1: `4j-ist` J5 in 6 von 6 gültigen Läufen getroffen (v1.0: 0 von 4), 1 Fehlalarm (J12) im ersten Lauf, darum eine Nachbesserung (Befundpflicht auf ausdrückliche Stütze), danach 2 von 2 grün; `4i-plan` 4/5 MUSS. Rot-Nachweis erbracht für `rot-ohne-3-5` und `rot-ohne-befundpflicht`, nicht für den Meta-Schnitt (A3). Wirkung auf neue Pläne offen bis 1B. **1B Paket 1 erledigt** (2026-11-09): PTc v1.1.0 lief am 2026-11-08 23:47 als `PTc:PLAN` auf den unkommittierten 4K-Detailplan (Opus, 168 504 Token, 425 s): FAIL mit 1 HART, 17 Korrekturen, alle von der 4K-Session übernommen ([Lauf-Protokoll](runs/2026-11-08_yoka-daw_4k_ptc-plan.md)). **Nächstes:** 1B Paket 2 (Treffer-Bewertung, Opus), sobald die 4K-Umsetzung vor der Abnahme steht. Keine Aktion von Yoka nötig.
+**Status 2026-11-09:** 1A „Fundament" abgeschlossen (Tag `phase-1a`, gepusht nach `yokadeeds-dev/Probatio-Technica`, privat). 1B „Vorhersagetest 4K": Lauf erledigt, Protokoll erledigt, Auswertung nach 4K (siehe Ende dieser Zeile). D35 (Querschnitt-IST je Phase) eingetragen. 1C „Eval-Set" abgeschlossen (Tag `phase-1c`, [PHASE_1C_PLAN.md](PHASE_1C_PLAN.md)): Eval-Set läuft ohne Dialog; v1.0 ist auf `4j-ist` rot (MUSS J5 stabil verpasst), `4i-plan` ist Messung (1/5 MUSS, 3 Teiltreffer); Rot-Nachweis in beiden Fällen nicht erbracht (Schnitte zu schwach, Begründung dort). Änderungsvorschläge für 1D stehen im Detailplan. **1D-a** (v1.1 aus 1C, vor 1B, D25): Detailplan fertig ([PHASE_1D_A_PLAN.md](PHASE_1D_A_PLAN.md), D26–D34, Pakete 1–6, ≈ 2,5–3 h). **1D-a erledigt** (Tag `phase-1d-a`, 2026-11-08): `agent/ptc.md` **v1.1.0 deployt** (339 Zeilen, 23 044 Byte); Review-Urteile wörtlich in [PHASE_1D_A_PLAN.md](PHASE_1D_A_PLAN.md) § Fortschritt. Eval v1.1: `4j-ist` J5 in 6 von 6 gültigen Läufen getroffen (v1.0: 0 von 4), 1 Fehlalarm (J12) im ersten Lauf, darum eine Nachbesserung (Befundpflicht auf ausdrückliche Stütze), danach 2 von 2 grün; `4i-plan` 4/5 MUSS. Rot-Nachweis erbracht für `rot-ohne-3-5` und `rot-ohne-befundpflicht`, nicht für den Meta-Schnitt (A3). Wirkung auf neue Pläne offen bis 1B. **1B Paket 1 erledigt** (2026-11-09): PTc v1.1.0 lief am 2026-11-08 23:47 als `PTc:PLAN` auf den unkommittierten 4K-Detailplan (Opus, 168 504 Token, 425 s): FAIL mit 1 HART, 17 Korrekturen, alle von der 4K-Session übernommen ([Lauf-Protokoll](runs/2026-11-08_yoka-daw_4k_ptc-plan.md)). **Nächstes:** 1B Paket 2 (Treffer-Bewertung, Opus), sobald die 4K-Umsetzung vor der Abnahme steht. Keine Aktion von Yoka nötig.
 
 ## Ziel
 
@@ -20,7 +20,7 @@ Belegen, dass PTc **über Tests und Review hinaus** Befunde liefert – zu vertr
 | **1D** IST-Lauf und Bilanz | `PTc:IST` vor der 4K-Abnahme; Kostenbilanz; Änderungen aus 1B als v1.2 mit Review | nach 1B, 1D-a; 4K vor Abnahme | Lauf Sonnet, Bilanz Opus | offen |
 | **Abnahme Phase 1** | Bilanz an Yoka, Entscheidung Phase 2 | nach 1D | – | offen |
 
-## Entscheidungen (D1–D14)
+## Entscheidungen (D1–D14, D25–D35)
 
 | # | Thema | Entscheidung | Quelle / Begründung |
 |---|---|---|---|
@@ -39,6 +39,7 @@ Belegen, dass PTc **über Tests und Review hinaus** Befunde liefert – zu vertr
 | D13 | Fremd-Projekte | Läufe stößt das geprüfte Projekt in seinem eigenen Plan an; dieses Repo übernimmt Protokoll und Auswertung in `docs/runs/<Datum>_<projekt>_<objekt>_<modus>.md`. Änderungen am Fremd-Repo macht nur dessen Worker-Session | nach Empfehlung; Rollen-Trennung Worker/Auditor |
 | D25 | v1.1 vor 1B | Die Änderungen aus 1C werden als Unterphase **1D-a** vor 1B umgesetzt; 1B prüft dann v1.1 auf 4K. 1D behält IST-Lauf, Bilanz und die Änderungen aus 1B (v1.2). Die Vorhersagekraft von v1.0 allein wird nicht gemessen | Yoka 2026-11-08 („A", nach Empfehlung): 4K ist unkontaminiert und misst die Verbesserung auf einem neuen Plan statt nur auf 4J/4I, aus denen sie abgeleitet ist |
 | D14 | Kontaminierte Fälle | Der 4J-Lauf (Grundlage von v1.0) ist Regressionsfall, kein Wirkungsnachweis. Wirkung belegen nur Vorhersagetests auf Plänen, die PTc vor der Umsetzung sieht | nach Empfehlung |
+| D35 | Querschnitt-IST auf abgeschlossene Unterphasen | Je Phase ein `PTc:IST` auf den Phasenplan (Yoka-DAW: `docs/PHASE_4_PLAN.md`), nach dem letzten Messpaket und vor dem Doku-Paket; zusätzlich zu D7. Zählt nach D14 nicht als Wirkungsnachweis (Plan ist beim Lauf schon umgesetzt) und nicht für D8; eigene Bilanzzeile in 1D. Modell Sonnet. Andere Projekte erst in Phase 2 | nach Empfehlung (Cloud-Session 2026-11-09): Querschnitt über viele Unterphasen |
 
 ## 1A – Fundament (erledigt)
 
@@ -57,6 +58,7 @@ Belegen, dass PTc **über Tests und Review hinaus** Befunde liefert – zu vertr
 
 - [x] **Paket 1 (nach dem Lauf, Sonnet):** Karte und Kennzahlen (Modell, Token, Dauer) aus den 4K-Erkenntnissen übernehmen → `docs/runs/<Datum>_yoka-daw_4k_ptc-plan.md`. Festhalten, welche Befunde die DAW-Session in den Plan übernommen hat. → erledigt 2026-11-09: [`docs/runs/2026-11-08_yoka-daw_4k_ptc-plan.md`](runs/2026-11-08_yoka-daw_4k_ptc-plan.md); PTc v1.1.0, FAIL (1 HART), 17 Korrekturen, alle übernommen; 168 504 Token, 425 s.
 - [ ] **Paket 2 (nach der 4K-Umsetzung, vor der 4K-Abnahme, Opus):** Treffer-Bewertung nach `docs/PROCESS.md`: je Befund Treffer / Fehlalarm / Offen, dazu Verpasst (Probleme aus den 4K-Erkenntnissen und Reviews auf PTc-Ebenen/-Achsen). Mehrwert gegenüber Tests und Review ausweisen.
+- **Bewertungsregel 1B:** K1–K17 wurden vor der Umsetzung eingearbeitet. Ein Befund gilt daher als **Treffer**, wenn die 4K-Umsetzung ihn bestätigt (E-Beleg aus den Paket-Erkenntnissen der 4K, z. B. Paket 1 für K7, Paket 2 für K1–K4), nicht erst durch Eintreten des Fehlers.
 - [ ] **Paket 3:** Änderungsvorschläge für v1.2 sammeln (nur Liste, Umsetzung in 1D; v1.1 kam aus 1C, D25).
 
 **Fertig, wenn:** Lauf-Protokoll und Auswertung mit Belegen L und E liegen vor.
@@ -76,6 +78,7 @@ Belegen, dass PTc **über Tests und Review hinaus** Befunde liefert – zu vertr
 ## 1D – IST-Lauf und Bilanz
 
 - [ ] `PTc:IST` auf den 4K-Plan vor der 4K-Abnahme (Sonnet), Protokoll und Treffer-Bewertung wie 1B.
+- [ ] Querschnitt-IST Phase 4 (D35): `PTc:IST docs/PHASE_4_PLAN.md` (Sonnet), angestoßen von der Yoka-DAW-Worker-Session (4K Paket 7, letzter Schritt); Protokoll und Bewertung hier, eigene Bilanzzeile, zählt nicht für D8.
 - [ ] v1.2: Änderungen aus 1B in `agent/ptc.md` (die aus 1C kommen in 1D-a als v1.1, D25), Version und CHANGELOG, Review-Subagent (Urteil wörtlich hier), `check.ps1`, Eval-Set grün, Deploy.
 - [ ] Bilanz Phase 1: Tabelle je Lauf (Treffer, Fehlalarme, Verpasst, Mehrwert, Token, Dauer) und Empfehlung für Phase 2.
 
@@ -107,6 +110,7 @@ Betrieb über weitere Unterphasen der Yoka-DAW bis zum Abschaltkriterium (D8: dr
 | 2026-11-08 | 1C | Pakete 1–2: `evals/run.ps1`, Varianten, README, Fixtures `4j-ist`/`4i-plan`, Prompts; Rot-Nachweis Schnitt und D24, Trockenlauf Haiku gültig | T: `evals/results/2026-11-08_4i-plan_v1.0_trocken-*.md` |
 | 2026-11-08 | 1C | Detailplan `docs/PHASE_1C_PLAN.md`: D15–D24, Fälle `4j-ist` (Regression) und `4i-plan` (Vorhersage, Detailplan-Commit `589c2f3`), A1 grün (`claude -p --agent`, `--agents <json>` für Rot-Varianten) | Detailplan fertig, Umsetzung offen | T (A1-Läufe, Fakt 1–2 im Detailplan) |
 | 2026-11-09 | 1B | Paket 1: Lauf-Protokoll `PTc:PLAN` auf Yoka-DAW 4K (v1.1.0, Opus, 2026-11-08 23:47–23:54) übernommen, Karte wörtlich aus `58f8edd`; vorläufige E-Belege aus 4K-Paket 1 (K7, K8, K13, K15 umgesetzt) | FAIL, 1 HART, 17 Korrekturen, 17/17 übernommen; 168 504 Token (Selbstschätzung 95–110 k zu niedrig) | L, E: `docs/runs/2026-11-08_yoka-daw_4k_ptc-plan.md` |
+| 2026-11-09 | 1B | D35 eingetragen (Querschnitt-IST je Phase, zählt nicht für D8); Bewertungsregel 1B (Treffer = durch 4K-Umsetzung bestätigt); 1D-Zeile Querschnitt-IST Phase 4; Status „Lauf erledigt, Protokoll erledigt, Auswertung nach 4K" | Plan nachgeführt | Y (Auftrag) |
 
 ## Offene Punkte
 

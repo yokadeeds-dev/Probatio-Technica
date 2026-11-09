@@ -1,6 +1,6 @@
 # Phase 1 „Nachweis" – Plan
 
-**Status 2026-11-08:** 1A „Fundament" abgeschlossen (Tag `phase-1a`, gepusht nach `yokadeeds-dev/Probatio-Technica`, privat). 1B „Vorhersagetest 4K" wartet auf den 4K-Detailplan der Yoka-DAW (Auslöser dort eingetragen, Paket 7b). 1C „Eval-Set" abgeschlossen (Tag `phase-1c`, [PHASE_1C_PLAN.md](PHASE_1C_PLAN.md)): Eval-Set läuft ohne Dialog; v1.0 ist auf `4j-ist` rot (MUSS J5 stabil verpasst), `4i-plan` ist Messung (1/5 MUSS, 3 Teiltreffer); Rot-Nachweis in beiden Fällen nicht erbracht (Schnitte zu schwach, Begründung dort). Änderungsvorschläge für 1D stehen im Detailplan. **1D-a** (v1.1 aus 1C, vor 1B, D25): Detailplan fertig ([PHASE_1D_A_PLAN.md](PHASE_1D_A_PLAN.md), D26–D34, Pakete 1–6, ≈ 2,5–3 h). **1D-a erledigt** (Tag `phase-1d-a`, 2026-11-08): `agent/ptc.md` **v1.1.0 deployt** (339 Zeilen, 23 044 Byte); Review-Urteile wörtlich in [PHASE_1D_A_PLAN.md](PHASE_1D_A_PLAN.md) § Fortschritt. Eval v1.1: `4j-ist` J5 in 6 von 6 gültigen Läufen getroffen (v1.0: 0 von 4), 1 Fehlalarm (J12) im ersten Lauf, darum eine Nachbesserung (Befundpflicht auf ausdrückliche Stütze), danach 2 von 2 grün; `4i-plan` 4/5 MUSS. Rot-Nachweis erbracht für `rot-ohne-3-5` und `rot-ohne-befundpflicht`, nicht für den Meta-Schnitt (A3). Wirkung auf neue Pläne offen bis 1B. **Nächstes:** 1B wartet auf den 4K-Detailplan der Yoka-DAW. Keine Aktion von Yoka nötig.
+**Status 2026-11-09:** 1A „Fundament" abgeschlossen (Tag `phase-1a`, gepusht nach `yokadeeds-dev/Probatio-Technica`, privat). 1B „Vorhersagetest 4K" läuft (siehe Ende dieser Zeile). 1C „Eval-Set" abgeschlossen (Tag `phase-1c`, [PHASE_1C_PLAN.md](PHASE_1C_PLAN.md)): Eval-Set läuft ohne Dialog; v1.0 ist auf `4j-ist` rot (MUSS J5 stabil verpasst), `4i-plan` ist Messung (1/5 MUSS, 3 Teiltreffer); Rot-Nachweis in beiden Fällen nicht erbracht (Schnitte zu schwach, Begründung dort). Änderungsvorschläge für 1D stehen im Detailplan. **1D-a** (v1.1 aus 1C, vor 1B, D25): Detailplan fertig ([PHASE_1D_A_PLAN.md](PHASE_1D_A_PLAN.md), D26–D34, Pakete 1–6, ≈ 2,5–3 h). **1D-a erledigt** (Tag `phase-1d-a`, 2026-11-08): `agent/ptc.md` **v1.1.0 deployt** (339 Zeilen, 23 044 Byte); Review-Urteile wörtlich in [PHASE_1D_A_PLAN.md](PHASE_1D_A_PLAN.md) § Fortschritt. Eval v1.1: `4j-ist` J5 in 6 von 6 gültigen Läufen getroffen (v1.0: 0 von 4), 1 Fehlalarm (J12) im ersten Lauf, darum eine Nachbesserung (Befundpflicht auf ausdrückliche Stütze), danach 2 von 2 grün; `4i-plan` 4/5 MUSS. Rot-Nachweis erbracht für `rot-ohne-3-5` und `rot-ohne-befundpflicht`, nicht für den Meta-Schnitt (A3). Wirkung auf neue Pläne offen bis 1B. **1B Paket 1 erledigt** (2026-11-09): PTc v1.1.0 lief am 2026-11-08 23:47 als `PTc:PLAN` auf den unkommittierten 4K-Detailplan (Opus, 168 504 Token, 425 s): FAIL mit 1 HART, 17 Korrekturen, alle von der 4K-Session übernommen ([Lauf-Protokoll](runs/2026-11-08_yoka-daw_4k_ptc-plan.md)). **Nächstes:** 1B Paket 2 (Treffer-Bewertung, Opus), sobald die 4K-Umsetzung vor der Abnahme steht. Keine Aktion von Yoka nötig.
 
 ## Ziel
 
@@ -55,9 +55,9 @@ Belegen, dass PTc **über Tests und Review hinaus** Befunde liefert – zu vertr
 
 **Ort: Lokal** · Auslöser in der Yoka-DAW: Eintrag bei 4K in `docs/PHASE_4_PLAN.md` (Paket 7b, Beschluss Yoka 2026-11-08): nach dem 4K-Detailplan und vor Paket 1 `PTc:PLAN docs/PHASE_4K_PLAN.md`.
 
-- [ ] **Paket 1 (nach dem Lauf, Sonnet):** Karte und Kennzahlen (Modell, Token, Dauer) aus den 4K-Erkenntnissen übernehmen → `docs/runs/<Datum>_yoka-daw_4k_ptc-plan.md`. Festhalten, welche Befunde die DAW-Session in den Plan übernommen hat.
+- [x] **Paket 1 (nach dem Lauf, Sonnet):** Karte und Kennzahlen (Modell, Token, Dauer) aus den 4K-Erkenntnissen übernehmen → `docs/runs/<Datum>_yoka-daw_4k_ptc-plan.md`. Festhalten, welche Befunde die DAW-Session in den Plan übernommen hat. → erledigt 2026-11-09: [`docs/runs/2026-11-08_yoka-daw_4k_ptc-plan.md`](runs/2026-11-08_yoka-daw_4k_ptc-plan.md); PTc v1.1.0, FAIL (1 HART), 17 Korrekturen, alle übernommen; 168 504 Token, 425 s.
 - [ ] **Paket 2 (nach der 4K-Umsetzung, vor der 4K-Abnahme, Opus):** Treffer-Bewertung nach `docs/PROCESS.md`: je Befund Treffer / Fehlalarm / Offen, dazu Verpasst (Probleme aus den 4K-Erkenntnissen und Reviews auf PTc-Ebenen/-Achsen). Mehrwert gegenüber Tests und Review ausweisen.
-- [ ] **Paket 3:** Änderungsvorschläge für v1.1 sammeln (nur Liste, Umsetzung in 1D).
+- [ ] **Paket 3:** Änderungsvorschläge für v1.2 sammeln (nur Liste, Umsetzung in 1D; v1.1 kam aus 1C, D25).
 
 **Fertig, wenn:** Lauf-Protokoll und Auswertung mit Belegen L und E liegen vor.
 
@@ -99,17 +99,18 @@ Betrieb über weitere Unterphasen der Yoka-DAW bis zum Abschaltkriterium (D8: dr
 | 2026-11-08 | 1A | `check.ps1` erster Lauf rot auf der korrekten Datei: `String.StartsWith([char]0xFEFF)` ist in .NET Framework kulturabhängig und immer wahr → erstes Zeichen abgeschnitten. Behoben mit Zeichenvergleich | `check ok` | T |
 | 2026-11-08 | 1A | Rot-Nachweis `check.ps1` (Kopie im Scratchpad, `-AgentPath`): BOM, CRLF, `model:` im Frontmatter, ohne § 2.3, `Score: 7`, Version 2.0.0 ohne CHANGELOG → 7 FAIL, Exit 1. Abweichende Deploy-Kopie → FAIL, Exit 1. `deploy.ps1` → „already current" | alle Schutzprüfungen einmal rot | T |
 | 2026-11-08 | 1D-a | Detailplan `docs/PHASE_1D_A_PLAN.md`: D26–D34 nach Empfehlung, Ä1–Ä7 mit Wortlaut (Zustandspfade, Zustandskreuz, Summe unter Last + Befundpflicht, Frage nur bei fehlender Quelle, Erfüllbarkeit), Overfitting-Verbotsliste, Rot-Nachweis neu (drei Varianten, `rot-bindung.md` vorab), Deploy-Schwelle „keine Regression" (D31) | Detailplan fertig, Umsetzung offen | T (Fakten 1–8 im Detailplan) |
-| 2026-11-08 | 1D-a | Umsetzung Pakete 1â6: v1.1.0 (Ã1âÃ7), Review 3 DurchgÃ¤nge (kein Blocker / Blocker Â§ 3.6 / kein Blocker), Positiv- und NachlÃ¤ufe, Rot-Nachweis 2 von 3 Varianten, Deploy, Merge, Tag `phase-1d-a` | v1.1.0 deployt; J5 stabil getroffen; Meta-Schnitt nicht rot (A3) | T, L: `evals/results/2026-11-08_*_v1.1*.md`, PHASE_1D_A_PLAN.md |
+| 2026-11-08 | 1D-a | Umsetzung Pakete 1–6: v1.1.0 (Ä1–Ä7), Review 3 Durchgänge (kein Blocker / Blocker § 3.6 / kein Blocker), Positiv- und Nachläufe, Rot-Nachweis 2 von 3 Varianten, Deploy, Merge, Tag `phase-1d-a` | v1.1.0 deployt; J5 stabil getroffen; Meta-Schnitt nicht rot (A3) | T, L: `evals/results/2026-11-08_*_v1.1*.md`, PHASE_1D_A_PLAN.md |
 | 2026-11-08 | 1D-a | Entscheidung D25: v1.1 aus 1C vor 1B als Unterphase 1D-a; Detailplan als eigene Session (Opus) | Reihenfolge geändert | Y |
 | 2026-11-08 | 1C | Pakete 4–5: Positivläufe v1.0 (`4j-ist` + Wiederholung, `4i-plan`), Rot-Läufe `rot-ohne-3-4` und `rot-ohne-2-3`, Bewertung durch Opus-Grader | `4j-ist` rot (J5 stabil verpasst), `4i-plan` Messung 1/5 MUSS, Rot-Nachweis nicht erbracht | T: `evals/results/2026-11-08_*.md` |
 | 2026-11-08 | 1C | Paket 6: Erkenntnisse für 1D, Plan, Merge, Tag `phase-1c` | 1C abgeschlossen | T |
 | 2026-11-08 | 1C | Paket 3: Erwartungen blind (Opus-Subagent), Commit `fd2b581` vor dem ersten Eval-Lauf | T |
 | 2026-11-08 | 1C | Pakete 1–2: `evals/run.ps1`, Varianten, README, Fixtures `4j-ist`/`4i-plan`, Prompts; Rot-Nachweis Schnitt und D24, Trockenlauf Haiku gültig | T: `evals/results/2026-11-08_4i-plan_v1.0_trocken-*.md` |
 | 2026-11-08 | 1C | Detailplan `docs/PHASE_1C_PLAN.md`: D15–D24, Fälle `4j-ist` (Regression) und `4i-plan` (Vorhersage, Detailplan-Commit `589c2f3`), A1 grün (`claude -p --agent`, `--agents <json>` für Rot-Varianten) | Detailplan fertig, Umsetzung offen | T (A1-Läufe, Fakt 1–2 im Detailplan) |
+| 2026-11-09 | 1B | Paket 1: Lauf-Protokoll `PTc:PLAN` auf Yoka-DAW 4K (v1.1.0, Opus, 2026-11-08 23:47–23:54) übernommen, Karte wörtlich aus `58f8edd`; vorläufige E-Belege aus 4K-Paket 1 (K7, K8, K13, K15 umgesetzt) | FAIL, 1 HART, 17 Korrekturen, 17/17 übernommen; 168 504 Token (Selbstschätzung 95–110 k zu niedrig) | L, E: `docs/runs/2026-11-08_yoka-daw_4k_ptc-plan.md` |
 
 ## Offene Punkte
 
-- **1B hängt an der Yoka-DAW:** Der 4K-Auftrag steht erst nach Paket 7b in deren `PHASE_4_PLAN.md`. Prüfen vor 1B: Eintrag vorhanden.
+- **1B Paket 2 hängt an der Yoka-DAW:** Treffer-Bewertung erst, wenn die 4K-Umsetzung vor der Abnahme steht (Stand 2026-11-09 06:45: 4K-Pakete 1–3 committet, PR `yokadeeds-dev/Yoka-DAW#32`). Kosten-Hinweis für 1D: Token nur aus der Agent-Abrechnung, nicht aus der Selbstschätzung.
 - **E-Beleg nachtragen:** Ergebnis von Yoka-DAW-Paket 7b (Blocker behoben, zweites Review) in das 4J-Lauf-Protokoll übernehmen.
 - **Arbeitskonzept-Doc** nennt PTc noch nicht (§ Werkzeuge) → nach 1B.
 - **Yoka-DAW `PROCESS.md`:** PTc-Eintrag erst in Phase 2 (Steuerdatei, Yokas Ja).
@@ -120,7 +121,7 @@ Betrieb über weitere Unterphasen der Yoka-DAW bis zum Abschaltkriterium (D8: dr
 | Unterphase / Paket | Inhalt | Schätzung | Start | Ende | Ist | Quelle |
 |---|---|---|---|---|---|---|
 | 1A | Fundament | 0,5–1 h | 2026-11-08 ≈ 11:45 (erste Messung 11:48 nach Repo-Anlage) | 2026-11-08 11:54 | ≈ 0,15 h Wanduhr (Inhalte aus der laufenden Session übernommen) | Session |
-| 1B Paket 1 | Protokoll 4K | 0,25 h | | | | |
+| 1B Paket 1 | Protokoll 4K | 0,25 h | 2026-11-09 06:42 (erste Messung) | 2026-11-09 06:43 (letzte Messung vor Commit) | < 0,25 h (Shell-Uhr ungenau, Schritte dazwischen ohne Messung) | Session |
 | 1B Paket 2 | Auswertung 4K | 0,5–1 h | | | | |
 | 1C Detailplan | PHASE_1C_PLAN.md, A1 geprüft | 0,5–0,75 h | 2026-11-08 ≈ 13:55 | 2026-11-08 14:20 | ≈ 0,4 h | Session |
 | 1C Umsetzung | Pakete 1–6 laut PHASE_1C_PLAN.md | ≈ 3,5 h | 2026-11-08 14:42 | 2026-11-08 15:35 | ≈ 0,9 h Wanduhr (Pakete 4 und 5 überlappten) | Session |

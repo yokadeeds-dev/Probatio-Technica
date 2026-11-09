@@ -40,6 +40,7 @@ Belegen, dass PTc **über Tests und Review hinaus** Befunde liefert – zu vertr
 | D25 | v1.1 vor 1B | Die Änderungen aus 1C werden als Unterphase **1D-a** vor 1B umgesetzt; 1B prüft dann v1.1 auf 4K. 1D behält IST-Lauf, Bilanz und die Änderungen aus 1B (v1.2). Die Vorhersagekraft von v1.0 allein wird nicht gemessen | Yoka 2026-11-08 („A", nach Empfehlung): 4K ist unkontaminiert und misst die Verbesserung auf einem neuen Plan statt nur auf 4J/4I, aus denen sie abgeleitet ist |
 | D14 | Kontaminierte Fälle | Der 4J-Lauf (Grundlage von v1.0) ist Regressionsfall, kein Wirkungsnachweis. Wirkung belegen nur Vorhersagetests auf Plänen, die PTc vor der Umsetzung sieht | nach Empfehlung |
 | D35 | Querschnitt-IST auf abgeschlossene Unterphasen | Je Phase ein `PTc:IST` auf den Phasenplan (Yoka-DAW: `docs/PHASE_4_PLAN.md`), nach dem letzten Messpaket und vor dem Doku-Paket; zusätzlich zu D7. Zählt nach D14 nicht als Wirkungsnachweis (Plan ist beim Lauf schon umgesetzt) und nicht für D8; eigene Bilanzzeile in 1D. Modell Sonnet. Andere Projekte erst in Phase 2 | nach Empfehlung (Cloud-Session 2026-11-09): Querschnitt über viele Unterphasen |
+| D36 | Selbsttest | Ab 1D bekommt **jeder PTc-Detailplan** vor der Umsetzung ein `PTc:PLAN` mit der jeweils deployten Version (Opus, Effort medium), aufgerufen von der Detailplan-Session nach dem Plan und vor dem Commit; Befunde nach Empfehlung einarbeiten, Karte wörtlich in die Erkenntnisse des Detailplans, Protokoll `docs/runs/<Datum>_ptc_<unterphase>_ptc-plan.md`, Token aus der Agent-Abrechnung. Zählt als **Vorhersagefall außerhalb der DAW-Domäne** (Treffer-Bewertung nach der Umsetzung, eigene Bilanzzeile) und für D8. Rückblickende Läufe auf ältere PTc-Pläne nicht: v1.1 ist aus 1C/1D-a abgeleitet (D14) | Yoka 2026-11-09 („A: Regel ab 1D"); PTc-Repo ist der einzige Kandidat mit Plan vor der Umsetzung und dokumentierten Problemen danach (EVL: keine Vorab-Pläne; ki-studio-mackie: Phase 2) |
 
 ## 1A – Fundament (erledigt)
 
@@ -77,6 +78,7 @@ Belegen, dass PTc **über Tests und Review hinaus** Befunde liefert – zu vertr
 
 ## 1D – IST-Lauf und Bilanz
 
+- [ ] Selbsttest (D36): Detailplan 1D (falls einer geschrieben wird) bzw. der Plan für v1.2 vor der Umsetzung mit `PTc:PLAN` prüfen; nach der Umsetzung Treffer-Bewertung, eigene Bilanzzeile.
 - [ ] `PTc:IST` auf den 4K-Plan vor der 4K-Abnahme (Sonnet), Protokoll und Treffer-Bewertung wie 1B.
 - [ ] Querschnitt-IST Phase 4 (D35): `PTc:IST docs/PHASE_4_PLAN.md` (Sonnet), angestoßen von der Yoka-DAW-Worker-Session (4K Paket 7, letzter Schritt); Protokoll und Bewertung hier, eigene Bilanzzeile, zählt nicht für D8.
 - [ ] v1.2: Änderungen aus 1B in `agent/ptc.md` (die aus 1C kommen in 1D-a als v1.1, D25), Version und CHANGELOG, Review-Subagent (Urteil wörtlich hier), `check.ps1`, Eval-Set grün, Deploy.
@@ -110,6 +112,7 @@ Betrieb über weitere Unterphasen der Yoka-DAW bis zum Abschaltkriterium (D8: dr
 | 2026-11-08 | 1C | Pakete 1–2: `evals/run.ps1`, Varianten, README, Fixtures `4j-ist`/`4i-plan`, Prompts; Rot-Nachweis Schnitt und D24, Trockenlauf Haiku gültig | T: `evals/results/2026-11-08_4i-plan_v1.0_trocken-*.md` |
 | 2026-11-08 | 1C | Detailplan `docs/PHASE_1C_PLAN.md`: D15–D24, Fälle `4j-ist` (Regression) und `4i-plan` (Vorhersage, Detailplan-Commit `589c2f3`), A1 grün (`claude -p --agent`, `--agents <json>` für Rot-Varianten) | Detailplan fertig, Umsetzung offen | T (A1-Läufe, Fakt 1–2 im Detailplan) |
 | 2026-11-09 | 1B | Paket 1: Lauf-Protokoll `PTc:PLAN` auf Yoka-DAW 4K (v1.1.0, Opus, 2026-11-08 23:47–23:54) übernommen, Karte wörtlich aus `58f8edd`; vorläufige E-Belege aus 4K-Paket 1 (K7, K8, K13, K15 umgesetzt) | FAIL, 1 HART, 17 Korrekturen, 17/17 übernommen; 168 504 Token (Selbstschätzung 95–110 k zu niedrig) | L, E: `docs/runs/2026-11-08_yoka-daw_4k_ptc-plan.md` |
+| 2026-11-09 | Phase 1 | Entscheidung D36 Selbsttest: jeder PTc-Detailplan ab 1D vor der Umsetzung mit `PTc:PLAN`; Repo-Prüfung (GitHub-API) ergab PTc-Repo als einzigen Kandidaten mit Plan vor der Umsetzung und dokumentierten Problemen danach | Regel in `PROCESS.md` § Ablauf | Y (Entscheidung), T (API-Abfrage in der Session) |
 | 2026-11-09 | 1B | D35 eingetragen (Querschnitt-IST je Phase, zählt nicht für D8); Bewertungsregel 1B (Treffer = durch 4K-Umsetzung bestätigt); 1D-Zeile Querschnitt-IST Phase 4; Status „Lauf erledigt, Protokoll erledigt, Auswertung nach 4K" | Plan nachgeführt | Y (Auftrag) |
 
 ## Offene Punkte

@@ -3,6 +3,8 @@
 Antworten auf Deutsch, knapp, Aktion zuerst. Prozess und Abnahme: `docs/PROCESS.md`.
 Stand: einzige Quelle sind Statuszeile und § Fortschritt in `docs/PHASE_1_PLAN.md`.
 
+**Zu Beginn jeder Session:** `powershell -NoProfile -File scripts/pending.ps1` ausführen (D39). Es listet offene PTc-Arbeit in der Yoka-DAW (Läufe ohne Protokoll, abgeschlossene Unterphasen ohne Treffer-Bewertung, laufende Unterphasen ohne geplanten `PTc:IST`). Offene Punkte zuerst abarbeiten oder im Plan vermerken.
+
 ## Was das ist
 
 PTc ist ein nur lesendes Prüfwerkzeug (Claude-Code-Subagent) für Software-Pläne und halb umgesetzte Unterphasen: Ebenen von der Operation bis zum Prozess, Schnittstellen-Matrix, Querachsen (Threads, Lebenszyklus, Ressourcen, Fehlerarten), Plan gegen Ist, PASS/FAIL mit Korrekturliste, **kein Score**. Abgeleitet aus MiMaMa v1.1, eigenständig, **kein Mitglied der Probatio-Familie** (D1). Erster Einsatzort: Yoka-DAW (`F:\Yoka\Workspace\Yoka-DAW`).
@@ -13,6 +15,7 @@ PTc ist ein nur lesendes Prüfwerkzeug (Claude-Code-Subagent) für Software-Plä
 |---|---|
 | `agent/ptc.md` | maßgebliche Fassung des Agenten; Anleitung und Spezifikation zugleich (D4) |
 | `scripts/check.ps1` | statische Prüfung: Frontmatter, Pflichtabschnitte, Version, CHANGELOG, BOM/CRLF, Deploy-Stand |
+| `scripts/pending.ps1` | nur lesend: offene PTc-Läufe, Protokolle und Bewertungen der Yoka-DAW (D39); `-DawPath`, `-RunsPath` |
 | `scripts/deploy.ps1` | prüft und kopiert nach `~/.claude/agents/ptc.md` |
 | `docs/PHASE_1_PLAN.md` | Phasenplan: Statuszeile, D-Nummern, Unterphasen, Fortschritt, Offene Punkte, Zeiten |
 | `docs/PROCESS.md` | Belegklassen, Abnahme, Treffer-Bewertung, Review, Testregel, Ablauf |

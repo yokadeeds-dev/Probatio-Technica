@@ -46,15 +46,89 @@
 - 168 504 Token, ≈ 1,4 × des 4J-Vorlaufs (≈ 122 000) und über dem D7-Richtwert „etwa ein Review". Treiber: 50 Werkzeugaufrufe (4J: 8). PTc hat Code gelesen (Datei:Zeile-Belege in fast jeder Korrektur), der 4J-Vorlauf nicht.
 - Die Selbstschätzung des Agenten lag um ≈ 60 000 Token zu niedrig. → Token nur aus der Agent-Abrechnung übernehmen (für 1D, Kostenregel).
 
-## Vorläufige Belege aus der 4K-Umsetzung (E, Stand 2026-11-09 06:45)
+## Treffer-Bewertung (2026-11-11, 1B Paket 2, D37)
 
-Aus `PHASE_4K_PLAN.md` § Erkenntnisse „Paket 1" (Commit `3ff49f9`). Nur Übernahme und Umsetzung, **noch keine Treffer-Bewertung** (die folgt in 1B Paket 2 nach der 4K-Umsetzung):
+**Verfahren:** frischer Opus-Subagent (`general-purpose`, Opus 5.5, nur Read/Grep/Glob), ohne PTc-Interna und ohne Erwartung. Material: Karte (unten), `docs/PROCESS.md` § Treffer-Bewertung, Plan bei `58f8edd` und bei `phase-4k` (§ Erkenntnisse aller Pakete, Reviews wörtlich), `git log --stat 58f8edd..phase-4k`, `phase-4k:docs/phase4k_abnahme.md` und `phase4_abnahme.md`; Bewertungsregel 1B (Treffer = durch die Umsetzung sachlich bestätigt, „umgesetzt“ allein reicht nicht); Pakete 6b/6c (nach dem Lauf hinzugekommen) zählen nicht als Verpasst. Kosten des Bewerters: 195 854 Token, 31 Werkzeugaufrufe, 319 s. Ersetzt den Abschnitt „Vorläufige Belege“ (Stand 2026-11-09).
 
-- K7: Aufrufstellen umgesetzt (`openFileAsProject`, `project.new`, `project.recover`), zwei Rot-Nachweise erbracht, Schutztest ergänzt.
-- K8: ohne Probeladen umgesetzt, Rot-Nachweis über die Prüfstelle `failNextLoadForTests` erbracht.
-- K13: (i) mit Rot-Nachweis umgesetzt.
-- K15: `browser.preview_changed` mit `reason: "limit"`, ausdrücklich „kein neues Event (PTc K15)".
-- K1–K4 betreffen Paket 2 („Beenden, `daw_hung`", Commit `4d51a85`); Auswertung in 1B Paket 2.
+### Ergebnis
+
+| Treffer | Fehlalarm | Offen | Verpasst | Mehrwert |
+|---|---|---|---|---|
+| 11 (K1, K2, K4, K5, K7, K8, K10, K11, K12, K15, K16; K10, K12 schwach) | 1 (K6) | 5 (K3, K9, K13, K14, K17) | 10 (7 klar, 3 schwach) | 3 (K1 HART, K2, K4) |
+
+### Prüfung durch die Session (neben dem Urteil)
+
+- Stichproben gegen `phase-4k:docs/PHASE_4K_PLAN.md` bestätigt: Zeile 435 (WER-Dump nach dem Filter, ohne WER kein Dump), 437 (`daw_hung` über Herzschlag bei `ERROR_PIPE_BUSY`), 467 (2,0 GB frei, 31,2 GB gelöscht), 536 (`not_applied: ["block_size"]`); `phase4k_abnahme.md:75` (Befund 7, hart beendeter Prozess hält die Pipe).
+- **Einverstanden** mit den Einstufungen. Zwei Abwägungen: K4 ist Treffer über einen Analogieschluss (harter Abbruch durch Claude Desktop statt `TerminateProcess` des Wächters); belastbar, weil 4J denselben Befund mit `taskkill /F` hatte. K5 und Verpasst 6 überlappen: PTc sah die Plattenachse, aber nur das Aufräumen danach, nicht den Platz davor.
+- **Verpasst 4 (64 statt 256 Samples)** ist der teuerste Fall: Plan-gegen-Ist auf einer Messvoraussetzung, die seit 4B falsch war. Kandidat v1.2 (1B Paket 3): Messvoraussetzungen (Puffer, Takt, Gerät) verlangen einen Beleg, dass der Ist-Wert angewandt wurde, nicht nur angefordert (domänenneutral: „angefordert ≠ wirksam“). Zweiter Kandidat: eigene Korrekturen (K3-Entwurf) auf Wettläufe prüfen (Verpasst 3).
+- Mehrwert 3 von 11 Treffern; alle drei liegen auf Lebenszyklus/Fehlerarten (Absturz, Hänger), die übrigen Treffer hätte die Testregel oder der erste ASan-Lauf der DAW selbst gezeigt.
+
+### Urteil des Bewerters (wörtlich; Überschriften um zwei Ebenen tiefer gesetzt, sonst unverändert)
+
+#### 1. Einstufung K1–K17
+
+Pfadkürzel: `P_end` = b4k/PHASE_4K_PLAN_at_phase-4k.md, `P_vor` = b4k/PHASE_4K_PLAN_at_58f8edd.md, `Abn` = b4k/phase4k_abnahme.md, `Abn4` = b4k/phase4_abnahme.md
+
+| K | Einstufung | Beleg E | Begründung | Mehrwert |
+|---|---|---|---|---|
+| 1 | **Treffer** | P_end:437 „pytest mit echter, belegter Pipe … und altem bzw. `stopped`-Herzschlag: vorher `assert 'daw_busy' == 'daw_hung'` (2 Fälle rot)“; `link.py` blieb unverändert, „der Fall entsteht beim Öffnen“ | Die Umsetzung bestätigt: Bei belegter Pipe kam vorher `daw_busy`, und der Hänger zeigt sich beim Öffnen, nicht als Zeitüberschreitung im Link. Die ursprüngliche Erkennung und ihr Rot-Nachweis wären fachlich falsch gewesen. | ja: Ein Test nach Originalplan (Server nimmt an und antwortet nie) hätte eine falsche Umsetzung grün bestätigt. Der Review prüft den Diff, nicht das Konzept. |
+| 2 | **Treffer** | `juce_SystemStats.cpp:253` „return EXCEPTION_EXECUTE_HANDLER;“; P_end:435 „Mit `SetErrorMode (SEM_NOGPFAULTERRORBOX)` im Kind entstand **kein** Dump“ und Dump `yoka_tests.exe.9192.dmp` „nach dem Filter geschrieben“ | Aus dem Code belegt: Der JUCE-Handler verdrängt WER. Empirisch belegt: Läuft WER nicht, entsteht kein Dump, und mit `EXCEPTION_CONTINUE_SEARCH` entsteht er. | ja: Ein In-Process-Dump über den JUCE-Handler wäre im Test grün gewesen. Dass WER-Dumps wegfallen und Heap-Schäden den Filter nie erreichen, hätte weder ein Test noch ein Review gezeigt. |
+| 3 | **Offen** | P_end:434 „64 atomare Plätze … `compare_exchange` … Der Filter setzt zuerst ein Flag `crashing()`“ | Der lock-freie Weg funktioniert (Rot-Nachweis ohne `closeAllPipeHandles`). Ein Deadlock des ursprünglichen PipeServer-Abbaus wurde aber nie gezeigt, die Gefahr ist nur aus dem Code plausibel. | unklar |
+| 4 | **Treffer** | Abn:75 Befund 7 „hart beendet … blieb ohne Fenster mit 2 Threads und `zml12asio.dll` hängen, hält die Pipe“; P_end:439 „`exit` bis Prozessende 32–35 ms“, 10 Läufe ohne `shutdown_stuck` | Ein harter Abbruch (entspricht `TerminateProcess`) befreit nichts, er erzeugte den Hänger sogar. Ein Wächter mit `TerminateProcess` wäre also wirkungslos bzw. schädlich gewesen. Die `exit`-Zeile hat den normalen Abbau als unauffällig eingegrenzt (Abn:64). | ja: Kein Test und kein Review hätte gezeigt, dass `TerminateProcess` beim Kernel-Hänger nicht greift. Belegt hat es erst der Abnahme-Block. |
+| 5 | **Treffer** | P_end:467 „Vorher 2,0 GB frei, danach alte Vergleichs-Builds gelöscht (31,2 GB)“; P_end:357 „Rest aus 4J: `Yoka-DAW-4i` 2,0 GB + `src-phase-4i` 0,2 GB“ | Ohne Aufräumregel blieben die Vergleichs-Ordner aus 4J liegen, und der Plattenplatz wurde tatsächlich knapp. | unklar: Der Engpass trat trotz K5 auf (die Regel greift erst nach der Abnahme) und fiel im Betrieb auf, nicht durch Test oder Review. |
+| 6 | **Fehlalarm** (folgenlos) | `ProjectWriter.cpp:93` „edit.resetChangedStatus();“; Karte:13 „die Folgerung (kein Timer-Abbruch) bleibt richtig“ | Sachlich richtig, aber nach eigener Aussage des Prüfers ohne Folge für Umsetzung oder Ergebnis. | nein |
+| 7 | **Treffer** | P_end:419 „Rot-Nachweis: … ‚Änderung 50 ms nach open‘ (vorher ungeändert) … rot“; Aufrufstellen `openFileAsProject`, `project.new`, `project.recover` | Bestätigt: `open` rief die Markierung nicht auf, der Test brauchte die neuen Aufrufstellen. Der Schutztest war vorher grün und hat keinen Fehler gefangen. | nein: Der geplante Test „Änderung 50 ms nach open“ wäre ohne die Aufrufstellen rot geblieben, das Problem wäre also auch so aufgefallen. |
+| 8 | **Treffer** | P_end:420 „Prüfstelle: `ProjectSession::failNextLoadForTests`. Kein Probeladen. **Rot-Nachweis:** ohne Rollback Fehlercode `internal` und Datei bleibt die Version“ | Bestätigt: Die echte Lücke „EDIT-Wurzel da, Laden scheitert nach der Kopie“ bestand. Dass die ursprünglich geplanten Fälle nicht rot werden konnten, zeigt die Umsetzung nicht direkt. | unklar: Die Testregel (Rot-Nachweis) hätte die nie roten Fälle wohl gezeigt, die echte Lücke aber nicht sicher. |
+| 9 | **Offen** | P_end:191 „~~Aufgabe 3: Befund B1 (D334)~~ → nach Phase 5 (G4-1 Yoka B)“ | B1 wurde durch Yokas G4-Antwort gestrichen, die Messung lief nie. Nicht entscheidbar. | – |
+| 10 | **Treffer** (schwach) | P_end:559 „Prüfwerkzeuge neu … 7,8 min … Wiederholung 0/0/0 (12,4 min) … 18,6 min“; P_end:474 „schlug `yoka_tests` in Release einmal fehl, als parallel andere Läufe liefen“ | Schritt 0 war nötig, fehlte in der Schätzung und lief seriell. Gleichzeitige Läufe schaden nachweislich. Die Menge war überschätzt: rund 55 min statt +2–2,7 h. | unklar (reine Zeitplanung, geringe Folge) |
+| 11 | **Treffer** | P_end:486 „`Freeze`, `LevelQuery` (Zeitgrenzen, PTc K11) und der Testfall ‚the index of 20 000 files*‘ (Zeitgrenze 2500 ms, unter ASan 3958 ms). Fehlschläge ohne ASan-Bericht gelten nicht als Befund“; P_end:487 `--measure` unter ASan „sauber beendet“ | Zeitgrenzen-Fehlschläge unter ASan traten wie vorhergesagt ein, die Ausschlussliste war nötig. Der `--measure`-Lauf ergab keinen Befund. | nein: Der erste ASan-Lauf hätte die roten Zeitgrenzen sofort gezeigt. |
+| 12 | **Treffer** (Prämisse) | Abn:75 „hält die Pipe … Windows-Neustart zur Freigabe“; P_end:560 „Windows-Neustart“ | Bestätigt: Ein hängender Prozess sperrt Pipe und L-12 bis zum Windows-Neustart. Der konkret abgesicherte Fall (Hänger in Paket 2, Exe-Kopie) trat nicht ein (P_end:439 „Hänger nicht nachgestellt“). | unklar |
+| 13 | **Offen** | P_end:425 (i) „Rot-Nachweis: `file_path` … weggelassen → rot“; P_end:455 „Kein Rückfall … kein Review D292“, „ein Foto bei 150 % mit Fremd-VST3 wurde nicht gemacht“ | Teil (i) stimmte formal mit der Testregel überein, deckte aber keinen Fehler auf. Der bedingte Review war folgenlos (der Rückfall griff nicht), die Prüfung mit Fremd-VST3 wurde nicht ausgeführt. | nein |
+| 14 | **Offen** | P_end:386–413, :572 (Abschnitt und Zeile „Plan, PTc“ gefüllt) | Im Material ist nur die Einarbeitung zu sehen, nicht der kritisierte Vorher-Stand. Die Umsetzung bestätigt nichts inhaltlich. | nein |
+| 15 | **Treffer** | P_end:421 „über das bestehende Event `browser.preview_changed` (`playing: false`, `reason: "limit"`), kein neues Event (PTc K15)“; `preview_stopped` kommt in `registry/` und `src/` nicht vor | Das Event gab es nicht. Die Korrektur sparte Änderungen an Register und Katalog. | nein: Der Register-Zähltest (siehe P_end:528) und der Drift-Test hätten ein neues Event angezeigt. |
+| 16 | **Treffer** | Abn4:17 „Teil 2: phase4a_abnahme.md Szenarien 1–6 … `ModalState`-Restlücke als akzeptierter Rest (D337)“; P_end:552 „`PROCESS.md` § Upstream-Prüfung ergänzt (D328, PTc K16)“ | Bestätigt: Kriterium 7, Teil 2 hatte vorher keinen Beleg und brauchte ausdrücklich die 4A-Abnahme. | unklar: Das Gerüst `phase4_abnahme.md` (D335 (7), „je mit Beleg“) hätte die Lücke vermutlich auch gezeigt. |
+| 17 | **Offen** | `YokaLookAndFeel.cpp:166` (späterer Stand) „> theme::fontSize (1.0f)“; P_end:460 „`getLabelFont` mit relativer Schwelle (PTc K17)“ | Umgesetzt und aus dem Code schlüssig. Eine Auswirkung wurde aber nie beobachtet (Abn:54, Szenario 1 mit Schrift 15 ohne Anmerkung). | nein |
+
+#### 2. Verpasst
+
+Nur ursprüngliche Pakete 1–9, ohne 6b/6c.
+
+1. **Revision zählt Ereignisse (Schnittstelle, Paket 1).** P_end:419: „**nicht** Ereignisse, weil `publishSystemEvent` die Revision hochzählt“, deshalb wurde ein neuer `getMutationCount()` nötig. Erkennbar war das aus P_vor:27 (D332 b/c: „merkt sich die Revision“) und dem Bus-Code. K7 hat den Revisionsansatz sogar mitgetragen. Gefunden hat es der Umsetzer.
+2. **Lint-Verbot `closeAudioDevice` (Schnittstelle Plan ↔ Lint, Paket 2).** P_end:440: „trifft das Verbotsmuster `closeAudioDevice` im Lint `tests/lint/check_bus_only.ps1`“. Erkennbar war das, weil P_vor:28 (D333 (2)) das Schließen des Geräts in `AppContext` plant und die Lint-Regel im Repo stand. Gefunden haben es Test und Review.
+3. **Wettlauf im Absturz-Filter (Threads, Paket 2).** P_end:434: „danach legt die Annahme keine neue Instanz an … sonst belegte der abgestürzte Prozess den Namen gleich wieder“. Der Entwurf aus K3 schloss nur die Handles und übersah, dass der Annahme-Thread während des Filters weiterläuft. Gefunden hat es der Umsetzer beim Durchsehen.
+4. **L-12-Treiber hält 64 Samples (Plan gegen Ist, Erfüllbarkeit, Paket 7).** P_end:536: „`not_applied: ["block_size"]` … alle ‚256er‘-Lasttests seit 4B liefen mit 64“. Erkennbar war das aus drei Quellen:
+   - D331 (P_vor:26) setzt 256 voraus, ohne den tatsächlich angewandten Puffer zu prüfen.
+   - `not_applied` gab es schon im Code: Paket 7 (`f67005b`) änderte kein `src/`.
+   - Der Widerspruch „Überläufe trotz 0,7–2,3 ms von 5,33 ms“ stand in D208.
+
+   Gefunden hat es die eigene Messung des Projekts.
+5. **Zeitschätzung Paket 5 (Ressource Zeit).** P_end:577: Schätzung 1–1,5 h, Ist 4,7 h. Laut Plan kostet jeder neue Build-Ordner 30–45 min Neubau (P_end:567). Paket 5 braucht mindestens zwei volle Neubauten (vorher und nachher) plus Volltests. Die Schätzung war also schon in sich nicht stimmig. K10 betraf nur Paket 9.
+6. **Freier Platz auf C: vor den neuen Build-Ordnern (Platte; teilweise in K5).** P_end:467: „Vorher 2,0 GB frei … Ausnahme vom 35-GB-Minimum“. Der Plan legt rund 14 GB neue Ordner an (P_end:357), ohne vorher den freien Platz zu prüfen. K5 regelt nur das Aufräumen nach der Abnahme.
+7. **ASan bricht beim ersten Fremdfehler ab und fängt den CrashFilter-Test ab (Fehlerarten, Paket 6).** P_end:485: „MSVC 14.44 kennt **keine** Ignorierliste … ASan bricht beim ersten Fehler ab“. P_end:486: `CrashFilter`, „ASan fängt ihn vor dem eigenen Filter ab“. D330 (4) nahm an, Fremdfehler gehen nur in die Offenen Punkte, während der Lauf weitergeht. K11 sah nur Zeitgrenzen, und den Crash-Test hatte K2 selbst eingeführt. Schwach dazu: C1060 durch Speichermangel beim parallelen ASan-Neubau auf 16 GB (P_end:483).
+8. **DAW-Lebenszyklus beim Neustart von Claude Desktop (Lebenszyklus, Paket 9).** Abn:75, Befund 7. P_vor:293 verlangt „Claude Desktop ganz beenden“, und Annahme 2 (P_vor:87) sagt „nie ein laufendes YokaDAW mit ASIO killen“. Der Plan legt aber nicht fest, aus welchem Prozessbaum die DAW in Paket 9 gestartet wird. Das kostete einen Windows-Neustart mitten im Block.
+9. **(schwach) Datei-Drop unter globalem Skalierungsfaktor (Schnittstelle, Paket 4).** Abn:71, Befund 3: „bei Skalierung 125/150 % nicht an“. D341 und die Annahmen 5/6 prüfen nur Plugin-Fenster und Layout, nicht die OS-Koordinaten beim Drag & Drop.
+10. **(schwach) Kontrast-Paarliste unvollständig (Erfüllbarkeit D340 (4), Pakete 3–5).** P_end:450, :462 (weiß auf `select` 2,53 : 1), :473 (`play` 2,3 : 1, `record` 3,9 : 1). D340 verlangt „alle Text-/Hintergrund-Paare“, die Liste umfasste aber nur bekannte Paare.
+
+**Nicht vorhersehbar:**
+- C1083-Lesefehler bei Neubauten (P_end:475, :559)
+- Regex- und `C`-Präfix-Fehler aus dem Altbestand (P_end:480)
+- `SEM_NOGPFAULTERRORBOX` im Testkind (P_end:435)
+- Lastabhängige Wackeltests `FreezeTests:263`, `ProjectCacheTests:308` (P_end:474, :563)
+- Auto-Modus lehnt die Sonnet-Session ab (P_end:534)
+- Befund 8 „Nicker nicht gefragt“, Verhalten von Claude Desktop (Abn:77)
+- Befunde 1, 2, 4: Altverhalten aus 4H, D213 und 4F, nicht Gegenstand des Plans (Abn:69–72)
+
+**Randnotiz:** Befunde 5 und 6 (Mehrfachauswahl im Mixer, Stem-Export bricht am Effekt-Bus ab) und das Review in 6c (`masterDetails` ohne `channels`) gehören zu 6b/6c und zählen nicht.
+
+#### 3. Zählung
+
+| Treffer | Fehlalarm | Offen | Verpasst | Mehrwert |
+|---|---|---|---|---|
+| 11 (K1, 2, 4, 5, 7, 8, 10, 11, 12, 15, 16) | 1 (K6) | 5 (K3, 9, 13, 14, 17) | 10 (davon 3 schwach: Nr. 6, 9, 10) | 3 (K1, K2, K4) |
+
+#### 4. Gesamturteil
+
+Der Prüfer traf den Kern der riskanten Unterphase: Erkennung des Hängers, WER-Dumps und die Wirkungslosigkeit von `TerminateProcess` wurden durch Rot-Nachweis, Dump-Befund und Befund 7 sachlich bestätigt. Echten Mehrwert über Tests und Reviews des Projekts liefern aber nur diese drei Befunde. Die übrigen Treffer hätte das Projekt mit seiner Testregel, dem Register-Test oder dem ersten ASan-Lauf selbst gefunden, oder sie sind Prozess- und Zeitpunkte mit geringer Folge. Fünf Befunde bleiben offen, meist weil der Fall nicht eintrat oder entfiel, einer war folgenlos. Die schwerste Lücke ist der verpasste 64-Samples-Befund (D331 gegen Ist): Der Widerspruch stand bereits in D208, und er hat die Lasttests seit 4B entwertet. Dazu kommen übersehene Schnittstellen (Revision zählt Ereignisse, Lint-Verbot) und Lücken im Lebenszyklus des eigenen Crash-Filter-Entwurfs und von Szenario 7.
 
 ---
 

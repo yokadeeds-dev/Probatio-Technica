@@ -20,7 +20,7 @@ Belegen, dass PTc **über Tests und Review hinaus** Befunde liefert – zu vertr
 | **1D** IST-Lauf und Bilanz | `PTc:IST` vor der **5B-Abnahme** (D38); Kostenbilanz; Änderungen aus 1B als v1.2 mit Review | nach 1D-a; 5B vor Abnahme; Bilanz nach 1B | Lauf Sonnet, Bilanz Opus | offen; IST vor der 4K-Abnahme und Querschnitt-IST Phase 4 verpasst (Befund, D38) |
 | **Abnahme Phase 1** | Bilanz an Yoka, Entscheidung Phase 2 | nach 1D | – | offen |
 
-## Entscheidungen (D1–D14, D25–D39)
+## Entscheidungen (D1–D14, D25–D40)
 
 | # | Thema | Entscheidung | Quelle / Begründung |
 |---|---|---|---|
@@ -44,6 +44,7 @@ Belegen, dass PTc **über Tests und Review hinaus** Befunde liefert – zu vertr
 | D37 | 1B mit drei Vorhersagefällen | 1B umfasst die `PTc:PLAN`-Läufe auf die Yoka-DAW-Detailpläne **4K, 5A und 5B**; das sind zugleich die drei Unterphasen für D8. Je Fall Protokoll in `docs/runs/`, nach dem Tag der Unterphase Treffer-Bewertung durch einen **frischen Opus-Subagenten** (nur Read/Grep/Glob, ohne PTc-Interna und ohne Erwartung), sein Urteil wörtlich ins Protokoll, die eigene Prüfung daneben. 1B endet mit der Bewertung von 5B. Liegt nur die Einarbeitungsliste der DAW vor (5A, 5B), gilt sie als Karte | nach Empfehlung (Session 2026-11-11, Auftrag Yoka „Ja, starten“): Die DAW lief ohne PTc-Begleitung weiter und hat PTc:PLAN auf 5A und 5B selbst angestoßen; drei unkontaminierte Fälle liegen vor, ein vierter wäre erst nach 5C möglich |
 | D38 | IST-Lauf vor der 5B-Abnahme, verpasste Läufe | 1D-Lauf `PTc:IST` vor der **5B-Abnahme** (Sonnet) statt vor der 4K-Abnahme. Verpasst und als Befund geführt: `PTc:IST` vor der 4K-Abnahme (Abnahme 2026-11-10) und Querschnitt-IST Phase 4 (D35). Der Querschnitt-IST wird **nicht nachgeholt** (Token sparen); D35 gilt ab dem Ende von Phase 5 (`PTc:IST docs/PHASE_5_PLAN.md`) | nach Empfehlung: Ursache war der tote Lernkreis (nichts löste die Läufe aus, D39); ein IST auf einen schon abgenommenen Stand hätte keinen Vorhersagewert (D14) |
 | D39 | Auslöser `scripts/pending.ps1` | Nur lesendes Skript listet offene PTc-Arbeit: (a) DAW-Pläne mit „### PTc:PLAN/IST“ ohne Protokoll, (b) Protokolle `*_ptc-plan.md`/`*_ptc-ist.md` mit Tag der Unterphase, aber ohne Abschnitt `## Treffer-Bewertung`, (c) laufende Unterphasen (Branch `phase-<n><x>-*` ohne Tag), deren Plan kein `PTc:IST` nennt. **Jede PTc-Session führt es zu Beginn aus** (`CLAUDE.md`). Exit 1 bei offenen Punkten. Rot-Nachweis gegen einen gekürzten `docs/runs`-Stand. Die DAW-Seite braucht eigene Auslöser (Offene Punkte) | nach Empfehlung: Der Lernkreis war tot, weil keine Session die PTc-Aufgaben sah; ein Skript statt Disziplin, wie die Hook-Empfehlung der Anti-Drift-Regel |
+| D40 | Ausnahme zweites Projekt: home-inventar | Einmaliger Vergleichslauf `PTc:IST` (Sonnet) gegen ein Code-/Security-Review (Sonnet, gleiches Material) auf die offenen PRs #2 und #1 von `yokadeeds-dev/home-inventar`, im Klon im Scratchpad. Weicht ab von „Nicht in Phase 1: Einsatz in einem zweiten Projekt“. Zählt nicht für D8 und ist kein Vorhersagetest (D14); eigene Bilanzzeile. Befunde gehen nur an die Inventar-Session (D13) | Yoka 2026-11-11 („A und B, dann vergleichen“) |
 
 ## 1A – Fundament (erledigt)
 
@@ -103,6 +104,7 @@ Belegen, dass PTc **über Tests und Review hinaus** Befunde liefert – zu vertr
 | Phase 4 Querschnitt-IST (D35) | Querschnitt | nein | **verpasst**, nicht nachgeholt (D38) | | | | | – | – | – |
 | 5B PTc:IST | IST vor Abnahme (D38) | – | offen | | | | | | | |
 | Selbsttest 1D (D36) | Vorhersage außerhalb DAW | ja | offen | | | | | | | |
+| home-inventar PR #2/#1 PTc:IST (D40) | Vergleich mit Review, kein Vorhersagetest | nein | 11 Themen wie das Review, 3 nur PTc (Backup/Migrationsprobe, Doku-Drift, Messaufgaben), Review 4 nur Review | – | – | – | – | 143 133 (Review 146 424) | 3,6 min (Review 2,9 min) | L `runs/2026-11-11_home-inventar_pr2_ptc-ist.md` |
 
 **Fertig, wenn:** Bilanz mit Belegen L/E/T liegt vor, v1.2 deployt (v1.1 deployt 1D-a).
 
@@ -139,6 +141,7 @@ Betrieb über weitere Unterphasen der Yoka-DAW bis zum Abschaltkriterium (D8: dr
 | 2026-11-11 | 1B | `scripts/pending.ps1` (D39, nur lesend, ASCII), `CLAUDE.md`: Aufruf zu Beginn jeder Session. Lauf auf den echten Stand (vor den Bewertungen): (b) 4K und 5A ohne Treffer-Bewertung, (c) 5B ohne geplanten `PTc:IST`, Exit 1, 2,9 s. **Rot-Nachweis:** Kopie von `docs/runs` ohne die Protokolle 5A und 5B (`-RunsPath`) → zusätzlich (a) `5a_ptc-plan` und `5b_ptc-plan` gemeldet, Exit 1 | Lücke wird gemeldet; (c) bleibt bis zum DAW-Schritt rot | T (Ausgabe in der Session) |
 | 2026-11-11 | 1B | Paket 2: Treffer-Bewertung 4K durch frischen Opus-Subagenten (195 854 Token, 319 s), Urteil wörtlich im Protokoll, Prüfung der Session daneben (Stichproben bestätigt, einverstanden); ersetzt „Vorläufige Belege“. Teuerster Verpasst: 64 statt 256 Samples seit 4B (Plan gegen Ist einer Messvoraussetzung) | 11 Treffer, 1 Fehlalarm, 5 Offen, 10 Verpasst (3 schwach), Mehrwert 3 (K1, K2, K4) | L, E: `docs/runs/2026-11-08_yoka-daw_4k_ptc-plan.md` § Treffer-Bewertung |
 | 2026-11-11 | 1B | Treffer-Bewertung 5A durch frischen Opus-Subagenten (143 921 Token, 178 s), Urteil wörtlich im Protokoll, Prüfung der Session daneben (Stichproben bestätigt, ein Zitat zu K8 nicht wörtlich, Einstufung bleibt). Beide HART-Befunde trugen nicht (K1 sachlich falsch: Prämisse D376 nicht am Code geprüft) | 10 Treffer (4 teilweise), 5 Fehlalarme, 4 Offen, 9 Verpasst (2 schwach), Mehrwert 3 (K4, K5, K8) | L, E: `docs/runs/2026-11-10_yoka-daw_5a_ptc-plan.md` § Treffer-Bewertung |
+| 2026-11-11 | Phase 1 | D40: `PTc:IST` (Sonnet) und Code-/Security-Review (Sonnet) parallel auf home-inventar PR #2/#1, Vergleich. PTc: beide PRs gemeinsam FAIL (2 HART aus dem Zusammenspiel), PR #2 allein PASS nach K2–K4; Review: PR #2 mergen nach Korrekturen, PR #1 nicht mergen | 11 gemeinsame Themen, 3 nur PTc, 4 nur Review; Kosten gleich (143 133 / 146 424 Token) | L: `docs/runs/2026-11-11_home-inventar_pr2_ptc-ist.md` |
 
 ## Offene Punkte
 
@@ -164,4 +167,5 @@ Betrieb über weitere Unterphasen der Yoka-DAW bis zum Abschaltkriterium (D8: dr
 | 1B Plan | D37–D39, 1B/1D, Bilanz | 0,25 h | 2026-11-11 19:20 | 2026-11-11 19:23 | ≈ 0,05 h | `date`, Session |
 | 1B Auslöser | `pending.ps1`, Rot-Nachweis, `CLAUDE.md` | 0,25 h | 2026-11-11 19:21 | 2026-11-11 19:25 | ≈ 0,07 h | `date`, Session |
 | 1B Bewertung 5A | Auswertung 5A | 0,5 h | 2026-11-11 19:19 | 2026-11-11 19:26 | ≈ 0,15 h Wanduhr (Subagent 178 s parallel) | `date`, Agent |
+| Vergleich home-inventar (D40) | PTc:IST und Review parallel, Protokoll | 0,5 h | 2026-11-11 19:30 | 2026-11-11 19:36 | ≈ 0,2 h Wanduhr | `date`, Agent |
 | 1D | IST-Lauf, v1.2, Bilanz | 1,5–2 h | | | | |

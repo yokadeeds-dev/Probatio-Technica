@@ -155,7 +155,7 @@ Betrieb über weitere Unterphasen der Yoka-DAW bis zum Abschaltkriterium (D8: dr
 |---|---|---|---|---|---|---|
 | 1A | Fundament | 0,5–1 h | 2026-11-08 ≈ 11:45 (erste Messung 11:48 nach Repo-Anlage) | 2026-11-08 11:54 | ≈ 0,15 h Wanduhr (Inhalte aus der laufenden Session übernommen) | Session |
 | 1B Paket 1 | Protokoll 4K | 0,25 h | 2026-11-09 06:42 (erste Messung) | 2026-11-09 06:43 (letzte Messung vor Commit) | < 0,25 h (Shell-Uhr ungenau, Schritte dazwischen ohne Messung) | Session |
-| 1B Paket 2 | Auswertung 4K | 0,5–1 h | 2026-11-11 19:17 | 2026-11-11 19:27 | ≈ 0,15 h Wanduhr (Subagent 319 s parallel) | `date`, Agent |
+| 1B Paket 2 | Auswertung 4K | 0,5–1 h | 2026-11-11 19:17 | 2026-11-11 19:26 | ≈ 0,15 h Wanduhr (Subagent 319 s parallel) | `date`, Agent |
 | 1B Protokolle 5A, 5B | Lauf-Protokolle nachgetragen | 0,25 h | 2026-11-11 19:17 | 2026-11-11 19:20 | ≈ 0,05 h (parallel zu den Bewertungs-Subagenten; Ende im Commit `67a1925` falsch mit 19:40 angegeben) | `date`, Session |
 | 1C Detailplan | PHASE_1C_PLAN.md, A1 geprüft | 0,5–0,75 h | 2026-11-08 ≈ 13:55 | 2026-11-08 14:20 | ≈ 0,4 h | Session |
 | 1C Umsetzung | Pakete 1–6 laut PHASE_1C_PLAN.md | ≈ 3,5 h | 2026-11-08 14:42 | 2026-11-08 15:35 | ≈ 0,9 h Wanduhr (Pakete 4 und 5 überlappten) | Session |
@@ -163,5 +163,5 @@ Betrieb über weitere Unterphasen der Yoka-DAW bis zum Abschaltkriterium (D8: dr
 | 1D-a Umsetzung | Pakete 1–6 laut PHASE_1D_A_PLAN.md | ≈ 2,5–3 h | 2026-11-08 17:34 | 2026-11-08 19:36 | ≈ 2,0 h Wanduhr inkl. ≈ 1,1 h Wartezeit auf das Sitzungslimit (netto ≈ 1 h; Nachbesserung + 2 Review-Durchgänge) | `date`, Session |
 | 1B Plan | D37–D39, 1B/1D, Bilanz | 0,25 h | 2026-11-11 19:20 | 2026-11-11 19:23 | ≈ 0,05 h | `date`, Session |
 | 1B Auslöser | `pending.ps1`, Rot-Nachweis, `CLAUDE.md` | 0,25 h | 2026-11-11 19:21 | 2026-11-11 19:25 | ≈ 0,07 h | `date`, Session |
-| 1B Bewertung 5A | Auswertung 5A | 0,5 h | 2026-11-11 19:19 | 2026-11-11 19:29 | ≈ 0,15 h Wanduhr (Subagent 178 s parallel) | `date`, Agent |
+| 1B Bewertung 5A | Auswertung 5A | 0,5 h | 2026-11-11 19:19 | 2026-11-11 19:26 | ≈ 0,15 h Wanduhr (Subagent 178 s parallel) | `date`, Agent |
 | 1D | IST-Lauf, v1.2, Bilanz | 1,5–2 h | | | | |

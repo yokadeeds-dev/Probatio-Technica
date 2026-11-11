@@ -1,6 +1,6 @@
 # Phase 1 „Nachweis" – Plan
 
-**Status 2026-11-11:** 1A „Fundament" abgeschlossen (Tag `phase-1a`, gepusht nach `yokadeeds-dev/Probatio-Technica`, privat). 1B „Vorhersagetest 4K": Lauf erledigt, Protokoll erledigt, Auswertung nach 4K (siehe Ende dieser Zeile). D35 (Querschnitt-IST je Phase) eingetragen. 1C „Eval-Set" abgeschlossen (Tag `phase-1c`, [PHASE_1C_PLAN.md](PHASE_1C_PLAN.md)): Eval-Set läuft ohne Dialog; v1.0 ist auf `4j-ist` rot (MUSS J5 stabil verpasst), `4i-plan` ist Messung (1/5 MUSS, 3 Teiltreffer); Rot-Nachweis in beiden Fällen nicht erbracht (Schnitte zu schwach, Begründung dort). Änderungsvorschläge für 1D stehen im Detailplan. **1D-a** (v1.1 aus 1C, vor 1B, D25): Detailplan fertig ([PHASE_1D_A_PLAN.md](PHASE_1D_A_PLAN.md), D26–D34, Pakete 1–6, ≈ 2,5–3 h). **1D-a erledigt** (Tag `phase-1d-a`, 2026-11-08): `agent/ptc.md` **v1.1.0 deployt** (339 Zeilen, 23 044 Byte); Review-Urteile wörtlich in [PHASE_1D_A_PLAN.md](PHASE_1D_A_PLAN.md) § Fortschritt. Eval v1.1: `4j-ist` J5 in 6 von 6 gültigen Läufen getroffen (v1.0: 0 von 4), 1 Fehlalarm (J12) im ersten Lauf, darum eine Nachbesserung (Befundpflicht auf ausdrückliche Stütze), danach 2 von 2 grün; `4i-plan` 4/5 MUSS. Rot-Nachweis erbracht für `rot-ohne-3-5` und `rot-ohne-befundpflicht`, nicht für den Meta-Schnitt (A3). Wirkung auf neue Pläne offen bis 1B. **1B Paket 1 erledigt** (2026-11-09): PTc v1.1.0 lief am 2026-11-08 23:47 als `PTc:PLAN` auf den unkommittierten 4K-Detailplan (Opus, 168 504 Token, 425 s): FAIL mit 1 HART, 17 Korrekturen, alle von der 4K-Session übernommen ([Lauf-Protokoll](runs/2026-11-08_yoka-daw_4k_ptc-plan.md)). **1B Nachholen (2026-11-11, Yoka „Ja, starten“):** Läufe 5A und 5B protokolliert ([5A](runs/2026-11-10_yoka-daw_5a_ptc-plan.md): FAIL 2 HART, 18 K, 216 165 Token; [5B](runs/2026-11-11_yoka-daw_5b_ptc-plan.md): FAIL 2 HART, 10 K, 163 689 Token). **Nächstes:** Treffer-Bewertung 4K und 5A, Plan 1B/1D, Auslöser `scripts/pending.ps1`. Keine Aktion von Yoka nötig.
+**Status 2026-11-11:** 1A „Fundament" abgeschlossen (Tag `phase-1a`, gepusht nach `yokadeeds-dev/Probatio-Technica`, privat). 1B „Vorhersagetest 4K": Lauf erledigt, Protokoll erledigt, Auswertung nach 4K (siehe Ende dieser Zeile). D35 (Querschnitt-IST je Phase) eingetragen. 1C „Eval-Set" abgeschlossen (Tag `phase-1c`, [PHASE_1C_PLAN.md](PHASE_1C_PLAN.md)): Eval-Set läuft ohne Dialog; v1.0 ist auf `4j-ist` rot (MUSS J5 stabil verpasst), `4i-plan` ist Messung (1/5 MUSS, 3 Teiltreffer); Rot-Nachweis in beiden Fällen nicht erbracht (Schnitte zu schwach, Begründung dort). Änderungsvorschläge für 1D stehen im Detailplan. **1D-a** (v1.1 aus 1C, vor 1B, D25): Detailplan fertig ([PHASE_1D_A_PLAN.md](PHASE_1D_A_PLAN.md), D26–D34, Pakete 1–6, ≈ 2,5–3 h). **1D-a erledigt** (Tag `phase-1d-a`, 2026-11-08): `agent/ptc.md` **v1.1.0 deployt** (339 Zeilen, 23 044 Byte); Review-Urteile wörtlich in [PHASE_1D_A_PLAN.md](PHASE_1D_A_PLAN.md) § Fortschritt. Eval v1.1: `4j-ist` J5 in 6 von 6 gültigen Läufen getroffen (v1.0: 0 von 4), 1 Fehlalarm (J12) im ersten Lauf, darum eine Nachbesserung (Befundpflicht auf ausdrückliche Stütze), danach 2 von 2 grün; `4i-plan` 4/5 MUSS. Rot-Nachweis erbracht für `rot-ohne-3-5` und `rot-ohne-befundpflicht`, nicht für den Meta-Schnitt (A3). Wirkung auf neue Pläne offen bis 1B. **1B Paket 1 erledigt** (2026-11-09): PTc v1.1.0 lief am 2026-11-08 23:47 als `PTc:PLAN` auf den unkommittierten 4K-Detailplan (Opus, 168 504 Token, 425 s): FAIL mit 1 HART, 17 Korrekturen, alle von der 4K-Session übernommen ([Lauf-Protokoll](runs/2026-11-08_yoka-daw_4k_ptc-plan.md)). **1B Nachholen (2026-11-11, Yoka „Ja, starten“):** Läufe 5A und 5B protokolliert ([5A](runs/2026-11-10_yoka-daw_5a_ptc-plan.md): FAIL 2 HART, 18 K, 216 165 Token; [5B](runs/2026-11-11_yoka-daw_5b_ptc-plan.md): FAIL 2 HART, 10 K, 163 689 Token). Plan umgebaut (D37–D39): 1B = drei Vorhersagefälle 4K/5A/5B, endet mit der 5B-Bewertung; 1D-IST vor der 5B-Abnahme; IST vor der 4K-Abnahme und Querschnitt-IST Phase 4 verpasst (Befund, nicht nachgeholt). **Nächstes:** Treffer-Bewertung 4K und 5A, Auslöser `scripts/pending.ps1`. Keine Aktion von Yoka nötig.
 
 ## Ziel
 
@@ -14,13 +14,13 @@ Belegen, dass PTc **über Tests und Review hinaus** Befunde liefert – zu vertr
 | Unterphase | Inhalt | Auslöser / Abhängigkeit | Modell | Status |
 |---|---|---|---|---|
 | **1A** Fundament | Repo, maßgebliche Agent-Datei, Check und Deploy, Prozess, Plan, Lauf-Archiv 4J | – | Opus | erledigt 2026-11-08 |
-| **1B** Vorhersagetest 4K | `PTc:PLAN` auf den 4K-Detailplan vor der Umsetzung; nach 4K Auswertung gegen die 4K-Erkenntnisse | 4K-Detailplan der Yoka-DAW | Lauf Opus, Protokoll Sonnet, Auswertung Opus | wartet |
+| **1B** Vorhersagetests 4K, 5A, 5B (D37) | `PTc:PLAN` auf die Detailpläne 4K, 5A, 5B vor der Umsetzung; je Unterphase nach ihrem Tag Treffer-Bewertung gegen Erkenntnisse, Reviews und Abnahme; Grundlage für D8 | Detailpläne der Yoka-DAW; endet mit der Bewertung 5B | Lauf Opus, Protokoll Sonnet, Auswertung Opus (frischer Subagent) | läuft: 4K, 5A bewertet; 5B wartet auf Tag `phase-5b` |
 | **1C** Eval-Set | eingefrorene Fixtures mit bekannten Befunden, Erwartungsdateien, Ausführungsweg, Rot-Nachweis mit verstümmelter Fassung | keine (parallel zu 1B möglich) | Detailplan Opus, Umsetzung Sonnet | erledigt 2026-11-08 (Tag `phase-1c`, [PHASE_1C_PLAN.md](PHASE_1C_PLAN.md)); Ergebnis rot auf 4J, Rot-Nachweis offen für 1D |
 | **1D-a** v1.1 aus 1C | Änderungen aus den 1C-Erkenntnissen in `agent/ptc.md` (v1.1), stärkere Rot-Schnitte, Review, Eval-Volllauf, Deploy; **vor** 1B (D25) | nach 1C | Detailplan Opus, Umsetzung Sonnet | erledigt 2026-11-08 (Tag `phase-1d-a`, [PHASE_1D_A_PLAN.md](PHASE_1D_A_PLAN.md)); v1.1.0 deployt |
-| **1D** IST-Lauf und Bilanz | `PTc:IST` vor der 4K-Abnahme; Kostenbilanz; Änderungen aus 1B als v1.2 mit Review | nach 1B, 1D-a; 4K vor Abnahme | Lauf Sonnet, Bilanz Opus | offen |
+| **1D** IST-Lauf und Bilanz | `PTc:IST` vor der **5B-Abnahme** (D38); Kostenbilanz; Änderungen aus 1B als v1.2 mit Review | nach 1D-a; 5B vor Abnahme; Bilanz nach 1B | Lauf Sonnet, Bilanz Opus | offen; IST vor der 4K-Abnahme und Querschnitt-IST Phase 4 verpasst (Befund, D38) |
 | **Abnahme Phase 1** | Bilanz an Yoka, Entscheidung Phase 2 | nach 1D | – | offen |
 
-## Entscheidungen (D1–D14, D25–D35)
+## Entscheidungen (D1–D14, D25–D39)
 
 | # | Thema | Entscheidung | Quelle / Begründung |
 |---|---|---|---|
@@ -41,6 +41,9 @@ Belegen, dass PTc **über Tests und Review hinaus** Befunde liefert – zu vertr
 | D14 | Kontaminierte Fälle | Der 4J-Lauf (Grundlage von v1.0) ist Regressionsfall, kein Wirkungsnachweis. Wirkung belegen nur Vorhersagetests auf Plänen, die PTc vor der Umsetzung sieht | nach Empfehlung |
 | D35 | Querschnitt-IST auf abgeschlossene Unterphasen | Je Phase ein `PTc:IST` auf den Phasenplan (Yoka-DAW: `docs/PHASE_4_PLAN.md`), nach dem letzten Messpaket und vor dem Doku-Paket; zusätzlich zu D7. Zählt nach D14 nicht als Wirkungsnachweis (Plan ist beim Lauf schon umgesetzt) und nicht für D8; eigene Bilanzzeile in 1D. Modell Sonnet. Andere Projekte erst in Phase 2 | nach Empfehlung (Cloud-Session 2026-11-09): Querschnitt über viele Unterphasen |
 | D36 | Selbsttest | Ab 1D bekommt **jeder PTc-Detailplan** vor der Umsetzung ein `PTc:PLAN` mit der jeweils deployten Version (Opus, Effort medium), aufgerufen von der Detailplan-Session nach dem Plan und vor dem Commit; Befunde nach Empfehlung einarbeiten, Karte wörtlich in die Erkenntnisse des Detailplans, Protokoll `docs/runs/<Datum>_ptc_<unterphase>_ptc-plan.md`, Token aus der Agent-Abrechnung. Zählt als **Vorhersagefall außerhalb der DAW-Domäne** (Treffer-Bewertung nach der Umsetzung, eigene Bilanzzeile) und für D8. Rückblickende Läufe auf ältere PTc-Pläne nicht: v1.1 ist aus 1C/1D-a abgeleitet (D14) | Yoka 2026-11-09 („A: Regel ab 1D"); PTc-Repo ist der einzige Kandidat mit Plan vor der Umsetzung und dokumentierten Problemen danach (EVL: keine Vorab-Pläne; ki-studio-mackie: Phase 2) |
+| D37 | 1B mit drei Vorhersagefällen | 1B umfasst die `PTc:PLAN`-Läufe auf die Yoka-DAW-Detailpläne **4K, 5A und 5B**; das sind zugleich die drei Unterphasen für D8. Je Fall Protokoll in `docs/runs/`, nach dem Tag der Unterphase Treffer-Bewertung durch einen **frischen Opus-Subagenten** (nur Read/Grep/Glob, ohne PTc-Interna und ohne Erwartung), sein Urteil wörtlich ins Protokoll, die eigene Prüfung daneben. 1B endet mit der Bewertung von 5B. Liegt nur die Einarbeitungsliste der DAW vor (5A, 5B), gilt sie als Karte | nach Empfehlung (Session 2026-11-11, Auftrag Yoka „Ja, starten“): Die DAW lief ohne PTc-Begleitung weiter und hat PTc:PLAN auf 5A und 5B selbst angestoßen; drei unkontaminierte Fälle liegen vor, ein vierter wäre erst nach 5C möglich |
+| D38 | IST-Lauf vor der 5B-Abnahme, verpasste Läufe | 1D-Lauf `PTc:IST` vor der **5B-Abnahme** (Sonnet) statt vor der 4K-Abnahme. Verpasst und als Befund geführt: `PTc:IST` vor der 4K-Abnahme (Abnahme 2026-11-10) und Querschnitt-IST Phase 4 (D35). Der Querschnitt-IST wird **nicht nachgeholt** (Token sparen); D35 gilt ab dem Ende von Phase 5 (`PTc:IST docs/PHASE_5_PLAN.md`) | nach Empfehlung: Ursache war der tote Lernkreis (nichts löste die Läufe aus, D39); ein IST auf einen schon abgenommenen Stand hätte keinen Vorhersagewert (D14) |
+| D39 | Auslöser `scripts/pending.ps1` | Nur lesendes Skript listet offene PTc-Arbeit: (a) DAW-Pläne mit „### PTc:PLAN/IST“ ohne Protokoll, (b) Protokolle `*_ptc-plan.md`/`*_ptc-ist.md` mit Tag der Unterphase, aber ohne Abschnitt `## Treffer-Bewertung`, (c) laufende Unterphasen (Branch `phase-<n><x>-*` ohne Tag), deren Plan kein `PTc:IST` nennt. **Jede PTc-Session führt es zu Beginn aus** (`CLAUDE.md`). Exit 1 bei offenen Punkten. Rot-Nachweis gegen einen gekürzten `docs/runs`-Stand. Die DAW-Seite braucht eigene Auslöser (Offene Punkte) | nach Empfehlung: Der Lernkreis war tot, weil keine Session die PTc-Aufgaben sah; ein Skript statt Disziplin, wie die Hook-Empfehlung der Anti-Drift-Regel |
 
 ## 1A – Fundament (erledigt)
 
@@ -53,16 +56,19 @@ Belegen, dass PTc **über Tests und Review hinaus** Befunde liefert – zu vertr
 - [x] Commit `b278a9d`, Tag `phase-1a` (lokal)
 - [x] Privates GitHub-Repo `yokadeeds-dev/Probatio-Technica` angelegt, `main` und Tag `phase-1a` gepusht (2026-11-08, nach Yokas Freigabe „Ja, anlegen"; der erste Versuch war von der automatischen Freigabe gesperrt)
 
-## 1B – Vorhersagetest 4K
+## 1B – Vorhersagetests 4K, 5A, 5B (D37)
 
-**Ort: Lokal** · Auslöser in der Yoka-DAW: Eintrag bei 4K in `docs/PHASE_4_PLAN.md` (Paket 7b, Beschluss Yoka 2026-11-08): nach dem 4K-Detailplan und vor Paket 1 `PTc:PLAN docs/PHASE_4K_PLAN.md`.
+**Ort: Lokal** · Auslöser in der Yoka-DAW: Eintrag bei 4K in `docs/PHASE_4_PLAN.md` (Paket 7b, Beschluss Yoka 2026-11-08): nach dem 4K-Detailplan und vor Paket 1 `PTc:PLAN docs/PHASE_4K_PLAN.md`. 5A und 5B: von den DAW-Plan-Sessions selbst angestoßen (D114 der DAW), hier erst am 2026-11-11 nachgetragen. Auslöser hier: `scripts/pending.ps1` (D39).
 
 - [x] **Paket 1 (nach dem Lauf, Sonnet):** Karte und Kennzahlen (Modell, Token, Dauer) aus den 4K-Erkenntnissen übernehmen → `docs/runs/<Datum>_yoka-daw_4k_ptc-plan.md`. Festhalten, welche Befunde die DAW-Session in den Plan übernommen hat. → erledigt 2026-11-09: [`docs/runs/2026-11-08_yoka-daw_4k_ptc-plan.md`](runs/2026-11-08_yoka-daw_4k_ptc-plan.md); PTc v1.1.0, FAIL (1 HART), 17 Korrekturen, alle übernommen; 168 504 Token, 425 s.
 - [ ] **Paket 2 (nach der 4K-Umsetzung, vor der 4K-Abnahme, Opus):** Treffer-Bewertung nach `docs/PROCESS.md`: je Befund Treffer / Fehlalarm / Offen, dazu Verpasst (Probleme aus den 4K-Erkenntnissen und Reviews auf PTc-Ebenen/-Achsen). Mehrwert gegenüber Tests und Review ausweisen.
 - **Bewertungsregel 1B:** K1–K17 wurden vor der Umsetzung eingearbeitet. Ein Befund gilt daher als **Treffer**, wenn die 4K-Umsetzung ihn bestätigt (E-Beleg aus den Paket-Erkenntnissen der 4K, z. B. Paket 1 für K7, Paket 2 für K1–K4), nicht erst durch Eintreten des Fehlers.
+- [x] **5A, 5B Protokoll** (2026-11-11): [`2026-11-10_yoka-daw_5a_ptc-plan.md`](runs/2026-11-10_yoka-daw_5a_ptc-plan.md), [`2026-11-11_yoka-daw_5b_ptc-plan.md`](runs/2026-11-11_yoka-daw_5b_ptc-plan.md).
+- [ ] **5A Treffer-Bewertung** (nach Tag `phase-5a`, Opus-Subagent, D37).
+- [ ] **5B Treffer-Bewertung** nach Tag `phase-5b` (Opus-Subagent, D37); danach 1B fertig.
 - [ ] **Paket 3:** Änderungsvorschläge für v1.2 sammeln (nur Liste, Umsetzung in 1D; v1.1 kam aus 1C, D25).
 
-**Fertig, wenn:** Lauf-Protokoll und Auswertung mit Belegen L und E liegen vor.
+**Fertig, wenn:** Lauf-Protokolle und Auswertungen 4K, 5A, 5B mit Belegen L und E liegen vor.
 
 ## 1C – Eval-Set
 
@@ -79,10 +85,24 @@ Belegen, dass PTc **über Tests und Review hinaus** Befunde liefert – zu vertr
 ## 1D – IST-Lauf und Bilanz
 
 - [ ] Selbsttest (D36): Detailplan 1D (falls einer geschrieben wird) bzw. der Plan für v1.2 vor der Umsetzung mit `PTc:PLAN` prüfen; nach der Umsetzung Treffer-Bewertung, eigene Bilanzzeile.
-- [ ] `PTc:IST` auf den 4K-Plan vor der 4K-Abnahme (Sonnet), Protokoll und Treffer-Bewertung wie 1B.
-- [ ] Querschnitt-IST Phase 4 (D35): `PTc:IST docs/PHASE_4_PLAN.md` (Sonnet), angestoßen von der Yoka-DAW-Worker-Session (4K Paket 7, letzter Schritt); Protokoll und Bewertung hier, eigene Bilanzzeile, zählt nicht für D8.
+- [ ] `PTc:IST` auf den 5B-Plan vor der 5B-Abnahme (Sonnet, D38), Protokoll und Treffer-Bewertung wie 1B. Setzt einen festen Schritt im 5B-Plan der DAW voraus (Offene Punkte).
+- [x] ~~`PTc:IST` auf den 4K-Plan vor der 4K-Abnahme~~ → **verpasst** (4K abgenommen 2026-11-10, `222f58d`, ohne IST-Lauf); Befund, nicht nachgeholt (D38).
+- [x] ~~Querschnitt-IST Phase 4 (D35)~~ → **verpasst** (Phase 4 abgeschlossen, Tag `phase-4`); nicht nachgeholt, D35 gilt ab dem Ende von Phase 5 (D38).
 - [ ] v1.2: Änderungen aus 1B in `agent/ptc.md` (die aus 1C kommen in 1D-a als v1.1, D25), Version und CHANGELOG, Review-Subagent (Urteil wörtlich hier), `check.ps1`, Eval-Set grün, Deploy.
-- [ ] Bilanz Phase 1: Tabelle je Lauf (Treffer, Fehlalarme, Verpasst, Mehrwert, Token, Dauer) und Empfehlung für Phase 2.
+- [ ] Bilanz Phase 1: Tabelle je Lauf (unten) und Empfehlung für Phase 2.
+
+**Bilanz (Stand 2026-11-11):**
+
+| Lauf | Art | D8 | Treffer | Fehlalarm | Offen | Verpasst | Mehrwert | Token | Dauer | Beleg |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 4J MiMaMa:FULL | Regression (D14) | nein | 6 | 0 | – | – | – | ≈ 122 000 | 4,3 min | L `runs/2026-11-08_yoka-daw_4j_mimama-full.md` |
+| 4K PTc:PLAN v1.1 | Vorhersage | ja | Bewertung folgt | | | | | 168 504 | 7,1 min | L `runs/2026-11-08_yoka-daw_4k_ptc-plan.md` |
+| 5A PTc:PLAN v1.1 | Vorhersage | ja | Bewertung folgt | | | | | 216 165 | 10,4 min | L `runs/2026-11-10_yoka-daw_5a_ptc-plan.md` |
+| 5B PTc:PLAN v1.1 | Vorhersage | ja | nach Tag `phase-5b` | | | | | 163 689 | 6,2 min | L `runs/2026-11-11_yoka-daw_5b_ptc-plan.md` |
+| 4K PTc:IST | IST vor Abnahme | – | **verpasst** (D38) | | | | | – | – | – |
+| Phase 4 Querschnitt-IST (D35) | Querschnitt | nein | **verpasst**, nicht nachgeholt (D38) | | | | | – | – | – |
+| 5B PTc:IST | IST vor Abnahme (D38) | – | offen | | | | | | | |
+| Selbsttest 1D (D36) | Vorhersage außerhalb DAW | ja | offen | | | | | | | |
 
 **Fertig, wenn:** Bilanz mit Belegen L/E/T liegt vor, v1.2 deployt (v1.1 deployt 1D-a).
 
@@ -115,10 +135,12 @@ Betrieb über weitere Unterphasen der Yoka-DAW bis zum Abschaltkriterium (D8: dr
 | 2026-11-09 | Phase 1 | Entscheidung D36 Selbsttest: jeder PTc-Detailplan ab 1D vor der Umsetzung mit `PTc:PLAN`; Repo-Prüfung (GitHub-API) ergab PTc-Repo als einzigen Kandidaten mit Plan vor der Umsetzung und dokumentierten Problemen danach | Regel in `PROCESS.md` § Ablauf | Y (Entscheidung), T (API-Abfrage in der Session) |
 | 2026-11-09 | 1B | D35 eingetragen (Querschnitt-IST je Phase, zählt nicht für D8); Bewertungsregel 1B (Treffer = durch 4K-Umsetzung bestätigt); 1D-Zeile Querschnitt-IST Phase 4; Status „Lauf erledigt, Protokoll erledigt, Auswertung nach 4K" | Plan nachgeführt | Y (Auftrag) |
 | 2026-11-11 | 1B | Läufe `PTc:PLAN` auf Yoka-DAW 5A (`fdaf43c`) und 5B (`a66a1b3`) nachträglich protokolliert; Karten maschinell und wörtlich (Block bis zur nächsten Überschrift), Token aus der Agent-Abrechnung (§ Zeiten der DAW-Pläne). Beide Karten sind Einarbeitungslisten der DAW-Session, nicht die wörtliche Agent-Ausgabe | 5A: FAIL, 2 HART, 18 K + G4, 18/18 übernommen, 216 165 Token, 621 s, 110 Aufrufe · 5B: FAIL, 2 HART, 10 K, 10/10, 163 689 Token, 370 s, 67 Aufrufe | L: `docs/runs/2026-11-10_yoka-daw_5a_ptc-plan.md`, `docs/runs/2026-11-11_yoka-daw_5b_ptc-plan.md` |
+| 2026-11-11 | 1B, 1D | D37 (1B mit 4K, 5A, 5B; Bewertung durch frischen Opus-Subagenten), D38 (IST vor der 5B-Abnahme; verpasste Läufe als Befund, Querschnitt-IST Phase 4 nicht nachgeholt), D39 (Auslöser `pending.ps1`) nach Empfehlung; Bilanz-Tabelle in 1D; Offener Punkt „Toter Lernkreis“ mit den nötigen DAW-Schritten | Plan nachgeführt | Y (Auftrag „Ja, starten“), E: Tags `phase-4k`, `phase-4`, `phase-5a` der Yoka-DAW |
 
 ## Offene Punkte
 
-- **1B Paket 2 hängt an der Yoka-DAW:** Treffer-Bewertung erst, wenn die 4K-Umsetzung vor der Abnahme steht (Stand 2026-11-09 06:45: 4K-Pakete 1–3 committet, PR `yokadeeds-dev/Yoka-DAW#32`). Kosten-Hinweis für 1D: Token nur aus der Agent-Abrechnung, nicht aus der Selbstschätzung.
+- **Toter Lernkreis (Befund 2026-11-11):** Zwischen 2026-11-09 und 2026-11-11 lief die DAW ohne PTc-Begleitung weiter (4K-Abnahme, 5A komplett, 5B begonnen); IST vor der 4K-Abnahme und Querschnitt-IST Phase 4 verpasst, 5A/5B-Läufe hier nicht protokolliert. Abhilfe hier: `scripts/pending.ps1` (D39). **Auf der DAW-Seite nötig (nur deren Worker-Session, D13):** (1) fester Schritt `PTc:IST docs/PHASE_5B_PLAN.md` (Sonnet) im 5B-Plan vor Paket 6 (Abnahme), Karte wörtlich in die Erkenntnisse; (2) in den Detailplan-Vorlagen bzw. `PROCESS.md` der DAW: je Unterphase `PTc:PLAN` nach dem Detailplan **und** `PTc:IST` vor der Abnahme als Schritte mit Haken, die Karte des Agenten **wörtlich** (nicht nur Einarbeitungsliste) sowie Uhrzeit, Token und Dauer; (3) Querschnitt-IST nach D35 als Schritt im Phase-5-Plan vor dem Doku-Paket. (2) berührt die Steuerdatei der DAW und braucht laut „Phase 2“ Yokas Ja.
+- Kosten-Hinweis für 1D: Token nur aus der Agent-Abrechnung, nicht aus der Selbstschätzung.
 - **E-Beleg nachtragen:** Ergebnis von Yoka-DAW-Paket 7b (Blocker behoben, zweites Review) in das 4J-Lauf-Protokoll übernehmen.
 - **Arbeitskonzept-Doc** nennt PTc noch nicht (§ Werkzeuge) → nach 1B.
 - **Yoka-DAW `PROCESS.md`:** PTc-Eintrag erst in Phase 2 (Steuerdatei, Yokas Ja).
@@ -131,9 +153,10 @@ Betrieb über weitere Unterphasen der Yoka-DAW bis zum Abschaltkriterium (D8: dr
 | 1A | Fundament | 0,5–1 h | 2026-11-08 ≈ 11:45 (erste Messung 11:48 nach Repo-Anlage) | 2026-11-08 11:54 | ≈ 0,15 h Wanduhr (Inhalte aus der laufenden Session übernommen) | Session |
 | 1B Paket 1 | Protokoll 4K | 0,25 h | 2026-11-09 06:42 (erste Messung) | 2026-11-09 06:43 (letzte Messung vor Commit) | < 0,25 h (Shell-Uhr ungenau, Schritte dazwischen ohne Messung) | Session |
 | 1B Paket 2 | Auswertung 4K | 0,5–1 h | | | | |
-| 1B Protokolle 5A, 5B | Lauf-Protokolle nachgetragen | 0,25 h | 2026-11-11 19:17 | 2026-11-11 19:40 | ≈ 0,4 h (parallel zu den Bewertungs-Subagenten) | `date`, Session |
+| 1B Protokolle 5A, 5B | Lauf-Protokolle nachgetragen | 0,25 h | 2026-11-11 19:17 | 2026-11-11 19:20 | ≈ 0,05 h (parallel zu den Bewertungs-Subagenten; Ende im Commit `67a1925` falsch mit 19:40 angegeben) | `date`, Session |
 | 1C Detailplan | PHASE_1C_PLAN.md, A1 geprüft | 0,5–0,75 h | 2026-11-08 ≈ 13:55 | 2026-11-08 14:20 | ≈ 0,4 h | Session |
 | 1C Umsetzung | Pakete 1–6 laut PHASE_1C_PLAN.md | ≈ 3,5 h | 2026-11-08 14:42 | 2026-11-08 15:35 | ≈ 0,9 h Wanduhr (Pakete 4 und 5 überlappten) | Session |
 | 1D-a Detailplan | PHASE_1D_A_PLAN.md | 0,5 h | 2026-11-08 ≈ 15:20 (erste Messung 15:31) | 2026-11-08 15:35 | ≈ 0,25 h | Session |
 | 1D-a Umsetzung | Pakete 1–6 laut PHASE_1D_A_PLAN.md | ≈ 2,5–3 h | 2026-11-08 17:34 | 2026-11-08 19:36 | ≈ 2,0 h Wanduhr inkl. ≈ 1,1 h Wartezeit auf das Sitzungslimit (netto ≈ 1 h; Nachbesserung + 2 Review-Durchgänge) | `date`, Session |
+| 1B Plan | D37–D39, 1B/1D, Bilanz | 0,25 h | 2026-11-11 19:20 | 2026-11-11 19:23 | ≈ 0,05 h | `date`, Session |
 | 1D | IST-Lauf, v1.2, Bilanz | 1,5–2 h | | | | |
